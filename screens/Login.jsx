@@ -77,7 +77,6 @@ export default function Login (props){
                     source={require('../assets/LA-Logo-libri-wiki.png')}
                     style = {style.logo}
                 />
-                
             </View>
             <View style = {style.form}>
                 <View style = {style.cajaIng}>
