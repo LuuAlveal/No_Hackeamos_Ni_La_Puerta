@@ -6,13 +6,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import Register from './screens/Register';
 
 export default function App() {
   const Stack = createStackNavigator();
 
   function MyStack() {
     return (
-     <Stack.Navigator>
+      <Stack.Navigator>
         <Stack.Screen 
           name="Login" 
           component={ Login } 
@@ -25,9 +26,23 @@ export default function App() {
               marginBottom:0,
             }
           }}
-        />
+      />
 
-        <Stack.Screen 
+      <Stack.Screen 
+          name="Register" 
+          component={ Register } 
+          options={{
+            title: "E.P.E.T N 20",
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundColor: '#304A6E',
+              marginBottom:0,
+            }
+          }}
+      />
+
+      <Stack.Screen 
           name="Home" 
           component={ Home } 
           options={{
@@ -39,7 +54,9 @@ export default function App() {
               marginBottom:0,
             }
           }}
-        />
+      />
+
+
       </Stack.Navigator>
   );
 }

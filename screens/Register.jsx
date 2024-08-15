@@ -1,41 +1,42 @@
-import React, { useState } from 'react';
+import React, {useState} from "react";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert, ImageBackground} from 'react-native';
 import appFirebase from '../firebase';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 const auth = getAuth (appFirebase)
 
-export default function Login (props){
+export default function Register (props){
 
     const [email, setEmail] = useState ()
     const [password, setPassword] = useState ()
- 
-    const logueo = async (e) => {
-        e.preventDefault();
-        try{
-            await signInWithEmailAndPassword(auth, email, password)
-            Alert.alert('Iniciando sesion','Ingresando...')
-            props.navigation.navigate('Home')
-        } catch (error){
-            console.log (error)
-            alert('Usuario o Contrasenia Incorrecta.')
-            Alert.alert('Error','Usuario o Contrasenia Incorrecta.')
-        }
-    }
-    const Registrarse = () => {
-        props.navigation.navigate('Register');
+
+    const handleCreateAccount = () => {
+        createUserWithEmailAndPassword(auth, email, password)
+        .then ((userCredential) =>{
+            console.log('Cuenta creada')
+            alert('Cuenta creada Exitosamente ...')
+            const user = userCredential.user;
+            console.log(user)
+            Alert.alert('Cuenta creada','Exitosamente')
+            props.navigation.navigate('Login')
+        })
+        .catch(error => {
+            console.log(error)
+            window.alert(error.message)
+            Alert.alert(error.message)
+        })
     }
     const style = StyleSheet.create({
         container:{
             flex: 1,
             justifyContent: 'center',
-            alignItems: 'center',
+            alignItems: 'center'
         },
         form: {
-            margin: 50,
-            padding: '2rem',
+            margin: 20,
+            padding: '4rem',
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            borderRadius: '10px',
-            width: '90%',
+            borderRadius: 10,
+            width: 'auto',
             shadowColor: '#000',
             shadowOffset:{
                 width:10,
@@ -59,23 +60,12 @@ export default function Login (props){
             borderRadius: 30,
             paddingVertical: 10,
             marginTop: 20,
-            width: 150,
-            padding:20,
-            border: 'none',
-            color: 'white'
+            width: 150
         },
         textButton:{
             textAlign: 'center',
             color: 'white',
             fontFamily: 'sans-serif'
-        },
-        logo:{
-            width: 200,
-            height: 200
-        },
-        registerButton:{
-            color: 'white',
-            fontSize: 20
         },
         backgroundImage: {
             flex: 1,
@@ -83,24 +73,22 @@ export default function Login (props){
             height: '100%',
             justifyContent: 'center',
             alignItems: 'center'
+        },
+        tituloRegistrarse:{
+            textAlign: 'center',
+            fontFamily: 'sans-serif',
+            fontSize: '2em',
+            paddingBottom: 25
         }
     });
     return (
-     <ImageBackground
-        source={require ('../assets/epet20fondo.png')}
-        resizeMode= {'cover'}
-        style = {style.backgroundImage}
-     >
-        <View style = {style.container}>
-
-            <View>
-                <Image 
-                    source={require('../assets/LA-Logo-libri-wiki.png')}
-                    style = {style.logo}
-                />
-            </View>
-
+        <ImageBackground 
+            source={require ('../assets/epet20fondo.png')}
+            resizeMode= {'cover'}
+            style = {style.backgroundImage}
+        >
             <View style = {style.form}>
+                <Text style = {style.tituloRegistrarse}>REGISTRARSE</Text>
                 <Text style = {{ fontSize: 15}}>E-Mail</Text>
                 <View style = {style.cajaIng}>
                     <TextInput
@@ -122,24 +110,15 @@ export default function Login (props){
                 <View style = {style.containerButton}>
                     <TouchableOpacity 
                         style = {style.button}
-                        onPress={logueo}
+                        onPress={ handleCreateAccount }
                     >
-                        <text style={style.textButton}>
-                            Iniciar Sesion
-                        </text>
+                        <Text style={style.textButton}>
+                            Registrarse
+                        </Text>
                     </TouchableOpacity>
                 </View>
             </View>
-
-            <View>
-                <TouchableOpacity 
-                    style = {style.registerButton}
-                    onPress={ Registrarse }
-                >
-                    Crear  Cuenta
-                </TouchableOpacity>
-        </View>
-        </View>
         </ImageBackground>
     );
+    
 }

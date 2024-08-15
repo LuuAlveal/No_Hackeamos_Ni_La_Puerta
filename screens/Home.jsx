@@ -28,7 +28,8 @@ export default function Home (){
             width: 200,
             height: 200,
             borderRadius: 50
-        }
+        },
+        
     })
     return (
         <View style = {style.container}>
