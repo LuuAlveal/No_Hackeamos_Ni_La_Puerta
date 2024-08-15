@@ -57,7 +57,7 @@ export default function Login (props){
             alignItems: 'center',
         },
         form: {
-            margin: 30,
+            margin: 15,
             padding: '2rem',
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
             borderRadius: '10px',
