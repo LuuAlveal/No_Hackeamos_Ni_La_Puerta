@@ -31,7 +31,7 @@ export default function Login (props){
             alignItems: 'center',
         },
         form: {
-            margin: 50,
+            margin: 30,
             padding: '2rem',
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
             borderRadius: '10px',
@@ -138,7 +138,8 @@ export default function Login (props){
                 >
                     Crear  Cuenta
                 </TouchableOpacity>
-        </View>
+            </View>
+            
         </View>
         </ImageBackground>
     );
