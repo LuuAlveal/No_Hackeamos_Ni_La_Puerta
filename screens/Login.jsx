@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert, ImageBackground} from 'react-native';
 import appFirebase from '../firebase';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
+const provider = new GoogleAuthProvider();
 const auth = getAuth (appFirebase)
-
 export default function Login (props){
 
+
+    //loguearse con email y contrasenia
     const [email, setEmail] = useState ()
     const [password, setPassword] = useState ()
- 
+    
     const logueo = async (e) => {
         e.preventDefault();
         try{
@@ -20,6 +22,30 @@ export default function Login (props){
             alert('Usuario o Contrasenia Incorrecta.')
             Alert.alert('Error','Usuario o Contrasenia Incorrecta.')
         }
+    }
+    //Loguearse con google
+    const LogueoGoogle =  async (e) =>{
+        e.preventDefault();
+        signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          // IdP data available using getAdditionalUserInfo(result)
+          // ...
+          props.navigation.navigate('Home')
+        }).catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.customData.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+        });
     }
     const Registrarse = () => {
         props.navigation.navigate('Register');
@@ -64,9 +90,18 @@ export default function Login (props){
             border: 'none',
             color: 'white'
         },
+        buttonGoogle:{
+            marginTop:10,
+            fontSize: 15
+        },
         textButton:{
             textAlign: 'center',
             color: 'white',
+            fontFamily: 'sans-serif'
+        },        
+        textButtonGoogle:{
+            textAlign: 'center',
+            color: '#0a0a0',
             fontFamily: 'sans-serif'
         },
         logo:{
@@ -126,6 +161,16 @@ export default function Login (props){
                     >
                         <text style={style.textButton}>
                             Iniciar Sesion
+                        </text>
+                    </TouchableOpacity>
+                </View>
+                <View style = {style.containerButton}>
+                    <TouchableOpacity 
+                        style = {style.buttonGoogle}
+                        onPress={ LogueoGoogle }
+                    >
+                        <text style={style.textButtonGoogle}>
+                            Iniciar con Google 
                         </text>
                     </TouchableOpacity>
                 </View>
