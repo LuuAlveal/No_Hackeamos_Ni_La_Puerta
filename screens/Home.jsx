@@ -63,6 +63,11 @@ export default function Home (){
                     </TouchableOpacity>
                 </View> 
                 <View style = {style.containarButton}>   
+                <TouchableOpacity style = {style.button} >
+                    <text> 
+                    Ajustes 
+                    </text>    
+                    </TouchableOpacity> 
                 </View >
                 <Image                      
                     source={require('../assets/3b4c0036b590cc1977d03230bb7d34f0.jpg')}
