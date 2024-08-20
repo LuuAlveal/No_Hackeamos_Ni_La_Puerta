@@ -59,6 +59,19 @@ export default function App() {
 
       </Stack.Navigator>
   );
+       <Stack.Screen 
+          name="Ajustes" 
+          component={ Ajuste } 
+          options={{
+            title: "E.P.E.T N 20",
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundColor: '#304A6E',
+              marginBottom:0,
+            }
+          }}
+      />
 }
   return (
     <NavigationContainer>
