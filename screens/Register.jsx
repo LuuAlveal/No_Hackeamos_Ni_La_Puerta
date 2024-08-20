@@ -1,32 +1,43 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert, ImageBackground} from 'react-native';
 import appFirebase from '../firebase';
+import Swal from 'sweetalert2';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 const auth = getAuth (appFirebase)
 
 export default function Register (props){
-
     const [email, setEmail] = useState ()
     const [password, setPassword] = useState ()
-
     const handleCreateAccount = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then ((userCredential) =>{
-            console.log('Cuenta creada')
-            alert('Cuenta creada Exitosamente ...')
-            const user = userCredential.user;
-            console.log(user)
-            Alert.alert('Cuenta creada','Exitosamente')
+            const user = userCredential.user; 
+            console.log=(user);
+            Swal.fire({
+                title:'Cuenta Creada Exitosamente',
+                icon: 'success',
+                timer: '2000'
+            })
             props.navigation.navigate('Login')
         })
         .catch(error => {
             const CodigoError = error.code; 
             if(CodigoError == 'auth/email-already-in-use')
-                alert('Correo en uso')
+                Swal.fire({
+                    title:'El email ya esta en uso',
+                    icon: 'warning'
+                })
             else if (CodigoError == 'auth/invalid-email')
-                alert('El correo no es valido')
+                Swal.fire({
+                    title:'Email Invailido',
+                    icon: 'warning'
+                })
             else if (CodigoError == 'auth/weak-password')
-                alert('La contraseña debe tener al menos 6 caracteres')
+                Swal.fire({
+                    title:'Error ',
+                    text:'La contraseña tiene que tener minimo 6 digitos',
+                    icon: 'warning'
+                })
         });
     }
     const style = StyleSheet.create({
@@ -116,13 +127,14 @@ export default function Register (props){
                         style = {style.button}
                         onPress={ handleCreateAccount }
                     >
+                        
                         <Text style={style.textButton}>
                             Registrarse
                         </Text>
                     </TouchableOpacity>
                 </View>
             </View>
-        </ImageBackground>
+            </ImageBackground>
     );
     
 }
