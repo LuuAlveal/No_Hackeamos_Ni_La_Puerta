@@ -62,6 +62,13 @@ export default function Home (){
                     </text>
                     </TouchableOpacity>
                 </View> 
+                <View style = {style.containerButton}>
+                    <TouchableOpacity style = {style.button}>
+                        <text style={style.textButton} >
+                            Ajustes
+                        </text>
+                        </TouchableOpacity>
+                </View>
                 <Image                       
                     source={require('../assets/3b4c0036b590cc1977d03230bb7d34f0.jpg')}
                     style = {{
