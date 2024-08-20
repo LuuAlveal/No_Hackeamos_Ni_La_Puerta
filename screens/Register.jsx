@@ -20,12 +20,12 @@ export default function Register (props){
             props.navigation.navigate('Login')
         })
         .catch(error => {
-            const errorCode = error.code; 
-            if(errorCode == 'auth/email-already-in-use')
+            const CodigoError = error.code; 
+            if(CodigoError == 'auth/email-already-in-use')
                 alert('Correo en uso')
-            else if (errorCode == 'auth/invalid-email')
+            else if (CodigoError == 'auth/invalid-email')
                 alert('El correo no es valido')
-            else if (errorCode == 'auth/weak-password')
+            else if (CodigoError == 'auth/weak-password')
                 alert('La contraseña debe tener al menos 6 caracteres')
         });
     }
