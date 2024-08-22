@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert, ImageBackground} from 'react-native';
 import appFirebase from '../firebase';
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
+import Swal from 'sweetalert2';
 const provider = new GoogleAuthProvider();
 const auth = getAuth (appFirebase)
 export default function Login (props){
@@ -15,12 +16,13 @@ export default function Login (props){
         e.preventDefault();
         try{
             await signInWithEmailAndPassword(auth, email, password)
-            Alert.alert('Iniciando sesion','Ingresando...')
             props.navigation.navigate('Home')
         } catch (error){
             console.log (error)
-            alert('Usuario o Contrasenia Incorrecta.')
-            Alert.alert('Error','Usuario o Contrasenia Incorrecta.')
+            Swal.fire({
+                title:'Usuario o contraseña incorrecto',
+                icon: 'error'
+            })
         }
     }
     //Loguearse con google
@@ -115,7 +117,7 @@ export default function Login (props){
         backgroundImage: {
             flex: 1,
             width: '100%',
-            height: '100%',
+            height: '100vh',
             justifyContent: 'center',
             alignItems: 'center'
         }

@@ -24,18 +24,20 @@ export default function Register (props){
             const CodigoError = error.code; 
             if(CodigoError == 'auth/email-already-in-use')
                 Swal.fire({
-                    title:'El email ya esta en uso',
-                    icon: 'warning'
+                    title:'Error',
+                    text: 'El Email ya esta en uso',
+                    icon: 'error'
                 })
             else if (CodigoError == 'auth/invalid-email')
                 Swal.fire({
-                    title:'Email Invailido',
-                    icon: 'warning'
+                    title:'Error',
+                    text: 'Email Invalido',
+                    icon: 'error'
                 })
             else if (CodigoError == 'auth/weak-password')
                 Swal.fire({
                     title:'Error ',
-                    text:'La contraseña tiene que tener minimo 6 digitos',
+                    text:'La contraseña debe tener minimo 6 digitos',
                     icon: 'warning'
                 })
         });
@@ -85,7 +87,7 @@ export default function Register (props){
         backgroundImage: {
             flex: 1,
             width: '100%',
-            height: '100%',
+            height: '100vh',
             justifyContent: 'center',
             alignItems: 'center'
         },
