@@ -8,7 +8,7 @@ Aplicacion completamente espumante 🍾🍾 para Anotarse a Materias previas
    ```bash
    npm install sweetalert2
    ```
-3. Inciar proyecto
+3. Iniciar proyecto
    ```bash
    npm start
    ```
