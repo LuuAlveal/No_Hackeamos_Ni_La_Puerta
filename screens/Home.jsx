@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
-export default function Home (){
+export default function Home (props){
+    const Opciones = ()=>{
+        props.navigation.navigate('Opciones')
+    }
     const style = StyleSheet.create({
         container:{
             flex: 1,
@@ -49,7 +52,10 @@ export default function Home (){
                     />
                 </View>
                 <View style = {style.containerButton}>
-                    <TouchableOpacity style = {style.button}>
+                    <TouchableOpacity 
+                        style = {style.button}
+                        onPress={Opciones}
+                    >
                     <text style={style.textButton}>
                         Anotarse a Materias previas
                     </text>

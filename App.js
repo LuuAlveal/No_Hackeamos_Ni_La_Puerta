@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from './screens/Login';
 import Home from './screens/Home';
 import Register from './screens/Register';
-
+import Opciones from './screens/Opciones';
 export default function App() {
   const Stack = createStackNavigator();
 
@@ -55,13 +55,9 @@ export default function App() {
             }
           }}
       />
-
-
-      </Stack.Navigator>
-  );
-       <Stack.Screen 
-          name="Ajustes" 
-          component={ Ajuste } 
+        <Stack.Screen 
+          name="Opciones" 
+          component={ Opciones } 
           options={{
             title: "E.P.E.T N 20",
             headerTintColor: 'white',
@@ -72,6 +68,10 @@ export default function App() {
             }
           }}
       />
+
+      </Stack.Navigator>
+  );
+
 }
   return (
     <NavigationContainer>
