@@ -1,4 +1,5 @@
 Aplicacion completamente espumante 🍾🍾 para Anotarse a Materias previas
+
 GUIA DE INSTALACION
 1. Instalar dependencias
     ``` bash
