@@ -161,9 +161,9 @@ export default function Login (props){
                         style = {style.button}
                         onPress={logueo}
                     >
-                        <text style={style.textButton}>
+                        <Text style={style.textButton}>
                             Iniciar Sesion
-                        </text>
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 <View style = {style.containerButton}>
@@ -171,9 +171,9 @@ export default function Login (props){
                         style = {style.buttonGoogle}
                         onPress={ LogueoGoogle }
                     >
-                        <text style={style.textButtonGoogle}>
+                        <Text style={style.textButtonGoogle}>
                             Iniciar con Google 
-                        </text>
+                        </Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -183,7 +183,11 @@ export default function Login (props){
                     style = {style.registerButton}
                     onPress={ Registrarse }
                 >
-                    Crear  Cuenta
+                    <Text 
+                        style = {{color:"white", fontSize:"1.2rem"}}
+                    >
+                        Crear  Cuenta
+                    </Text>
                 </TouchableOpacity>
             </View>
             

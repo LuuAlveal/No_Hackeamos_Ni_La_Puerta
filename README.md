@@ -13,4 +13,3 @@ GUIA DE INSTALACION
    ```bash
    npm start
    ```
-Apartir de abrir esta app digale "El Hechicero", porque esta a punto de ver magia.

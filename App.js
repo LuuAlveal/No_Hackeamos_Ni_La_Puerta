@@ -22,8 +22,7 @@ export default function App() {
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerStyle: { 
-              backgroundColor: '#304A6E',
-              marginBottom:0,
+              backgroundColor: '#304A6E'
             }
           }}
       />
@@ -37,7 +36,6 @@ export default function App() {
             headerTitleAlign: 'center',
             headerStyle: {
               backgroundColor: '#304A6E',
-              marginBottom:0,
             }
           }}
       />
@@ -50,8 +48,7 @@ export default function App() {
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerStyle: {
-              backgroundColor: '#304A6E',
-              marginBottom:0,
+              backgroundColor: '#304A6E'
             }
           }}
       />
@@ -63,8 +60,7 @@ export default function App() {
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerStyle: {
-              backgroundColor: '#304A6E',
-              marginBottom:0,
+              backgroundColor: '#304A6E'
             }
           }}
       />
