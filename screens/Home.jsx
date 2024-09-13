@@ -40,7 +40,7 @@ export default function Home (props){
     })
     return (
         <View style = {style.container}>
-                    <text
+                    <Text
                         style={{
                             fontFamily: 'sans-serif,roboto',
                             fontSize: 50
@@ -48,7 +48,7 @@ export default function Home (props){
                     >
                         APLICACION DIVERTIDA :D
 
-                    </text>
+                    </Text>
                 <View>
                     <Image 
                         source={require('../assets/cdf6ce500bef3968c210ca45a588e4c4.jpg')}
@@ -60,9 +60,9 @@ export default function Home (props){
                         style = {style.button}
                         onPress={Opciones}
                     >
-                    <text style={style.textButton}>
+                    <Text style={style.textButton}>
                         Anotarse a Materias previas
-                    </text>
+                    </Text>
                     </TouchableOpacity>
                 </View> 
                 <View style = {style.containerButton}>
@@ -70,16 +70,16 @@ export default function Home (props){
                         style = {style.button}
                         onPress={handlePress}
                     >
-                    <text style={style.textButton}>
+                    <Text style={style.textButton}>
                         Historial
-                    </text>
+                    </Text>
                     </TouchableOpacity>
                 </View> 
                 <View style = {style.containarButton}>   
                 <TouchableOpacity style = {style.button} >
-                    <text style={style.textButton}> 
+                    <Text style={style.textButton}> 
                     Ajustes 
-                    </text>    
+                    </Text>    
                     </TouchableOpacity> 
                 </View >
                 <Image                      
