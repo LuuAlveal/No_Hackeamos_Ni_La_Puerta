@@ -6,6 +6,9 @@ export default function Home (props){
     const Opciones = ()=>{
         props.navigation.navigate('Opciones')
     }
+    const Ayuda = ()=>{
+        props.navigation.navigate('Ayuda')
+    }
     const handlePress = () => {
         Linking.openURL('https://drive.google.com/file/d/1mGvps6PheUVDiOZqAsK6akfrO_bBrEqZ/view?usp=drive_link');
       };
@@ -68,7 +71,7 @@ export default function Home (props){
                 <View style = {style.containerButton}>
                     <TouchableOpacity 
                         style = {style.button}
-                        onPress={handlePress}
+                        onPress={Ayuda}
                     >
                     <Text style={style.textButton}>
                         Historial
