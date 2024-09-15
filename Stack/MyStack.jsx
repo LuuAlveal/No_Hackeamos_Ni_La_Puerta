@@ -6,6 +6,7 @@ import Login from '../screens/Login';
 import Home from '../screens/Home';
 import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
+import Ayuda from '../screens/ayuda';
 
 const Stack = createStackNavigator();
   
@@ -62,6 +63,19 @@ export default function MyStack() {
               }
             }}
         />
+          <Stack.Screen 
+            name="Ayuda" 
+            component={ Ayuda } 
+            options={{
+              title: "E.P.E.T N 20",
+              headerTintColor: 'white',
+              headerTitleAlign: 'center',
+              headerStyle: {
+                backgroundColor: '#304A6E'
+              }
+            }}
+        />
+
   
         </Stack.Navigator>
     );
