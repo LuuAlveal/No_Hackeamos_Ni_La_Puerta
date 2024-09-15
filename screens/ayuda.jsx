@@ -3,10 +3,12 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 export default function Ayuda () {
     return (
-        <View>
-            <Text>
-                PRUEBA1
-            </Text>
+        <View style={styles.container}>
+            <View style={style.header}>
+                <Text>
+                    PRUEBA1
+                </Text>
+            </View>
         </View>
     )
 }
