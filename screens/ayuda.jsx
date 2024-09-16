@@ -1,22 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#304A6E',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    header: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      width: '100%',
-      padding: 20,
-    },
-});
-
 export default function Ayuda () {
     return (
         <View style={styles.container}>
@@ -50,3 +34,18 @@ export default function Ayuda () {
         </View>
     )
 }
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#304A6E',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    header: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '100%',
+      padding: 20,
+    },
+});

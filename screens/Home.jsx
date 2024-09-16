@@ -78,7 +78,7 @@ export default function Home (props){
                     </Text>
                     </TouchableOpacity>
                 </View>
-                <View style = {style.containerButton}>
+                {/*<View style = {style.containerButton}>
                     <TouchableOpacity 
                         style = {style.button}
                         onPress={Ayuda}
@@ -87,7 +87,7 @@ export default function Home (props){
                         Ayuda
                     </Text>
                     </TouchableOpacity>
-                </View>
+                </View>*/}
                 <View style = {style.containarButton}>   
                 <TouchableOpacity style = {style.button} >
                     <Text style={style.textButton}> 
