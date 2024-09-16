@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image,ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image,ImageBackground, fontSize } from 'react-native';
 export default function Opciones () {
   return (
     <ImageBackground
@@ -75,13 +75,12 @@ const styles = StyleSheet.create({
   settingsButton: {
     top: '-50px', 
     left: '400px', 
-    borderRadius: 30,
-    backgroundColor: '#333',
+    borderRadius: 35,
+    backgroundColor: '#FFFAFA',
     position: 'absolute',
     width: '50px',
     height: '55px',
-    
-
+    fontSize: '20px',
   },
   css_text_146c3p1: {
     fontSize: 24,
