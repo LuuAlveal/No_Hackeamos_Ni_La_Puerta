@@ -1,14 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image,ImageBackground } from 'react-native';
 export default function Opciones () {
   return (
-    <View style={styles.container}>
+    <ImageBackground
+        source={require ('../assets/epet20fondo.png')}
+        resizeMode= {'cover'}
+        style = {styles.backgroundImage}
+     > 
+
+
+     <View style={styles.container}>
       <View style={styles.header}>
         {/*<Image
           source={require('./epet20fondo.png')} // Reemplaza con la ruta a tu logo
           style={styles.logo}
-        />*/}
+        />
+        class="css-text-146c3p1"
+        */}
         <TouchableOpacity style={styles.settingsButton}>
+          
           <Text>⚙️</Text>
           
         </TouchableOpacity>
@@ -33,32 +43,57 @@ export default function Opciones () {
           <Text>← Volver</Text>
         </TouchableOpacity>
       </View>
-    </View>
+     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222', // Ajusta el color de fondo
     alignItems: 'center',
     justifyContent: 'center',
   },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100vh',
+    justifyContent: 'center',
+    alignItems: 'center'
+},
   header: {
-    flexDirection: 'row',
+    
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
     padding: 20,
   },
   logo: {
-    // Ajusta el tamaño y estilo de tu logo
+    
   },
   settingsButton: {
-    // Estilos para el botón de configuración
+    top: '-50px', 
+    left: '400px', 
+    borderRadius: 30,
+    backgroundColor: '#333',
+    position: 'absolute',
+    width: '50px',
+    height: '55px',
+    
+
   },
+  css_text_146c3p1: {
+    fontSize: 24,
+    color: '#333',
+    width: '500%',
+    marginVertical: 50,
+    padding: 50,
+    },
   optionsContainer: {
-    width: '80%',
+    width: '500%',
+    alignItems: 'center',
+    
+
   },
   optionButton: {
     backgroundColor: '#444',
@@ -66,8 +101,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 10,
     alignItems: 'center',
+    width: '80%',
+    height: 50,
+    backgroundColor: '#FFFAFA'
   },
   backButton: {
-    // Estilos para el botón de volver
+
   },
 });
