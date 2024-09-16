@@ -39,9 +39,10 @@ export default function Opciones () {
         <TouchableOpacity style={styles.optionButton}>
           <Text>Opción 5</Text>
         </TouchableOpacity>
+        { /*
         <TouchableOpacity style={styles.backButton}>
           <Text>← Volver</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */ }
       </View>
      </View>
     </ImageBackground>
