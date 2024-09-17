@@ -19,7 +19,7 @@ export default function Opciones () {
         */}
         <TouchableOpacity style={styles.settingsButton}>
           
-          <Text>⚙️</Text>
+        <Text style={{ fontSize: 40 }}>⚙️</Text>
           
         </TouchableOpacity>
       </View>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '50px',
     height: '55px',
-    fontSize: '20px',
+    fontSize: '2em',
   },
   css_text_146c3p1: {
     fontSize: 24,
