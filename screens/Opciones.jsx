@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
   },
   optionButton: {
-    padding: 15,
+    padding: 16,
     borderRadius: 10,
     marginVertical: 10,
     alignItems: 'center',
