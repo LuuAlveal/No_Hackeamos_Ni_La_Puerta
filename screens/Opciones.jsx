@@ -19,7 +19,7 @@ export default function Opciones () {
         */}
         <TouchableOpacity style={styles.settingsButton}>
           
-        <Text style={{ fontSize: 40 }}>⚙️</Text>
+        <Text style={{ fontSize: 40, padding: '0' }}>⚙️</Text>
           
         </TouchableOpacity>
       </View>
@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    padding: 20,
   },
   logo: {
     
@@ -75,20 +74,11 @@ const styles = StyleSheet.create({
   settingsButton: {
     top: '-50px', 
     left: '400px', 
-    borderRadius: 35,
-    backgroundColor: '#FFFAFA',
     position: 'absolute',
-    width: '50px',
-    height: '55px',
-    fontSize: '2em',
+    padding: '0',
+    borderWidth: 0,
+
   },
-  css_text_146c3p1: {
-    fontSize: 24,
-    color: '#333',
-    width: '500%',
-    marginVertical: 50,
-    padding: 50,
-    },
   optionsContainer: {
     width: '500%',
     alignItems: 'center',
@@ -96,7 +86,6 @@ const styles = StyleSheet.create({
 
   },
   optionButton: {
-    backgroundColor: '#444',
     padding: 15,
     borderRadius: 10,
     marginVertical: 10,
