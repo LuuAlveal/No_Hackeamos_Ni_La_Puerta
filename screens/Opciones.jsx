@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image,ImageBackground, fontSize } from 'react-native';
 
 export default function Opciones (props) {
+
+  
   const infOpc = ()=>{
     props.navigation.navigate('infOpc')
 }
