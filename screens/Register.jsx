@@ -20,39 +20,80 @@ export default function Register (props){
         setState({ ...state, [name]: value })
     }
 
-    const handleCreateAccount = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then ((userCredential) =>{
-            const user = userCredential.user; 
-            console.log=(user);
+    const handleCreateAccount = async () => {
+        if (state.nombre === '') {
             Swal.fire({
-                title:'Cuenta Creada Exitosamente',
-                icon: 'success',
-                timer: '2000'
+                title: 'ERROR',
+                text: 'Ingrese su nombre',
+                icon: 'warning'
             })
-            props.navigation.navigate('Login')
-        })
-        .catch(error => {
-            const CodigoError = error.code; 
-            if(CodigoError == 'auth/email-already-in-use')
+        } else if (state.apellido === '') {
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese su apellido',
+                icon: 'warning'
+            })
+        } else if (state.dni === '') {
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese su dni',
+                icon: 'error'
+            })
+        } else if (state.email === '') {
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese su email',
+                icon: 'error'
+            })
+        } else if (state.password === '') {
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese una contraseña',
+                icon: 'error'
+            })
+        }
+        else {
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, state.email, state.password);
+                const user = userCredential.user;
+
+                await setDoc(doc(BD,'alumnos',user.uid),{
+                    nombre: state.nombre,
+                    apellido: state.apellido,
+                    dni: state.dni,
+                    email: state.email,
+                    materiasPrevias: []
+                });
                 Swal.fire({
-                    title:'Error',
-                    text: 'El Email ya esta en uso',
-                    icon: 'error'
+                    title: 'Cuenta Creada Exitosamente',
+                    icon: 'success',
+                    timer: '2000'
                 })
-            else if (CodigoError == 'auth/invalid-email')
-                Swal.fire({
-                    title:'Error',
-                    text: 'Email Invalido',
-                    icon: 'error'
-                })
-            else if (CodigoError == 'auth/weak-password')
-                Swal.fire({
-                    title:'Error ',
-                    text:'La contraseña debe tener minimo 6 digitos',
-                    icon: 'warning'
-                })
-        });
+                props.navigation.navigate('Login')
+            }
+            catch (error) {
+                const CodigoError = error.code;
+                if (CodigoError == 'auth/email-already-in-use')
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'El Email ya esta en uso',
+                        icon: 'error'
+                    })
+                else if (CodigoError == 'auth/invalid-email')
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Email Invalido. Ejemplo de email requerido: TuCorreo@example.com',
+                        icon: 'error'
+                    })
+                else if (CodigoError == 'auth/weak-password')
+                    Swal.fire({
+                        title: 'Error ',
+                        text: 'La contraseña debe tener minimo 6 digitos',
+                        icon: 'warning'
+                    })
+            };
+        }
+
     }
     const style = StyleSheet.create({
         container:{
@@ -137,15 +178,6 @@ export default function Register (props){
                     />
                 </View>
 
-                <Text style = {{ fontSize: 15}}>E-Mail</Text>
-                <View style = {style.cajaIng}>
-                    <TextInput
-                        placeholder='TuCorreo@example.com'
-                        style = {{paddingHorizontal:15, outline:0}}
-                        onChangeText={(value) => handleChangeText('email', value)}
-                    />
-                </View>
-
                 <Text style={{ fontSize: 15 }}>DNI</Text>
                 <View style={style.cajaIng}>
                     <TextInput
@@ -156,6 +188,16 @@ export default function Register (props){
                     />
                 </View>
                 
+                <Text style = {{ fontSize: 15}}>E-Mail</Text>
+                <View style = {style.cajaIng}>
+                    <TextInput
+                        placeholder='TuCorreo@example.com'
+                        style = {{paddingHorizontal:15, outline:0}}
+                        onChangeText={(value) => handleChangeText('email', value)}
+                    />
+                </View>
+
+
                 <Text style = {{ fontSize: 15}}>Password</Text>
                 <View style = {style.cajaIng}>
                     <TextInput
