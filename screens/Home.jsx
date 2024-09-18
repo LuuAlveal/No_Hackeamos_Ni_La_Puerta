@@ -43,21 +43,7 @@ export default function Home (props){
     })
     return (
         <View style = {style.container}>
-                    <Text
-                        style={{
-                            fontFamily: 'sans-serif,roboto',
-                            fontSize: 50
-                        }}
-                    >
-                        APLICACION DIVERTIDA :D
 
-                    </Text>
-                <View>
-                    <Image 
-                        source={require('../assets/cdf6ce500bef3968c210ca45a588e4c4.jpg')}
-                        style = {style.logo}
-                    />
-                </View>
                 <View style = {style.containerButton}>
                     <TouchableOpacity 
                         style = {style.button}
@@ -95,14 +81,7 @@ export default function Home (props){
                     </Text>    
                     </TouchableOpacity> 
                 </View >
-                <Image                      
-                    source={require('../assets/3b4c0036b590cc1977d03230bb7d34f0.jpg')}
-                    style = {{
-                        width:200,
-                        height:200,
-                        borderRadius:90
-                    }}
-                />
+
         </View>
     );
 }
