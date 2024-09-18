@@ -13,8 +13,19 @@ import Ayuda from '../screens/ayuda';
 import infOpc from '../screens/infOpc';
 
 const Stack = createStackNavigator();
-  
+const auth = getAuth(appFirebase);
+
 export default function MyStack() {
+      const navigation = useNavigation();
+      const CerrarSesion = () =>{
+        signOut(auth)
+          .then(()=>{
+            navigation.navigate('Login');
+          })
+          .catch(error => {
+            console.error("Error al cerrar sesion: ", error)
+          })
+      }
       return (
         <Stack.Navigator>
           <Stack.Screen 
