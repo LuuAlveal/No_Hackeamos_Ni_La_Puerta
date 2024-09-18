@@ -16,19 +16,6 @@ export default function Opciones (props) {
 
 
      <View style={styles.container}>
-      <View style={styles.header}>
-        {/*<Image
-          source={require('./epet20fondo.png')} // Reemplaza con la ruta a tu logo
-          style={styles.logo}
-        />
-        class="css-text-146c3p1"
-        */}
-        <TouchableOpacity style={styles.settingsButton}>
-          
-        <Text style={{ fontSize: 40, padding: '0' }}>⚙️</Text>
-          
-        </TouchableOpacity>
-      </View>
       <View style={styles.optionsContainer}>
         <TouchableOpacity style={styles.optionButton} onPress={infOpc}>
           <Text>Opción 1</Text>
@@ -45,10 +32,6 @@ export default function Opciones (props) {
         <TouchableOpacity style={styles.optionButton}>
           <Text>Opción 5</Text>
         </TouchableOpacity>
-        { /*
-        <TouchableOpacity style={styles.backButton}>
-          <Text>← Volver</Text>
-        </TouchableOpacity> */ }
       </View>
      </View>
     </ImageBackground>
@@ -67,29 +50,10 @@ const styles = StyleSheet.create({
     height: '100vh',
     justifyContent: 'center',
     alignItems: 'center'
-},
-  header: {
-    
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-  },
-  logo: {
-    
-  },
-  settingsButton: {
-    top: '-50px', 
-    left: '400px', 
-    position: 'absolute',
-    padding: '0',
-    borderWidth: 0,
-
   },
   optionsContainer: {
     width: '500%',
     alignItems: 'center',
-    
-
   },
   optionButton: {
     padding: 16,
@@ -99,8 +63,5 @@ const styles = StyleSheet.create({
     width: '80%',
     height: 50,
     backgroundColor: '#FFFAFA'
-  },
-  backButton: {
-
-  },
+  }
 });

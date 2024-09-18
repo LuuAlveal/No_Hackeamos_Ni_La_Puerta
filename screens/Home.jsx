@@ -1,81 +1,77 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 import { Linking } from 'react-native';
 
-export default function Home (props){
-    const Opciones = ()=>{
+export default function Home(props) {
+    const Opciones = () => {
         props.navigation.navigate('Opciones')
     }
-    const Ayuda = ()=>{
+    const Ayuda = () => {
         props.navigation.navigate('Ayuda')
     }
     const handlePress = () => {
         Linking.openURL('https://drive.google.com/file/d/1mGvps6PheUVDiOZqAsK6akfrO_bBrEqZ/view?usp=drive_link');
-      };
+    };
     const style = StyleSheet.create({
-        container:{
+        container: {
             flex: 1,
             justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#304A6E'
+            alignItems: 'center'
         },
-        containerButton:{
-            alignItems: 'center' 
+        containerButton: {
+            alignItems: 'center'
         },
-        button:{
+        button: {
             backgroundColor: '#4F76AC',
             borderRadius: 30,
             paddingVertical: 10,
             marginTop: 20,
             width: 250
         },
-        textButton:{
+        textButton: {
             textAlign: 'center',
             color: 'white',
             fontFamily: 'sans-serif'
         },
-        logo:{
+        logo: {
             width: 200,
             height: 200,
             borderRadius: 50
         },
-        
+        backgroundImage: {
+            flex: 1,
+            width: '100%',
+            height: '100vh',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }
     })
     return (
-        <View style = {style.container}>
-                    <Text
-                        style={{
-                            fontFamily: 'sans-serif,roboto',
-                            fontSize: 50
-                        }}
-                    >
-                        APLICACION DIVERTIDA :D
+        <ImageBackground
+            source={require('../assets/FondoEpetHome.jpeg')}
+            resizeMode={'cover'}
+            style={style.backgroundImage}
+        >
+            <View style={style.container}>
 
-                    </Text>
-                <View>
-                    <Image 
-                        source={require('../assets/cdf6ce500bef3968c210ca45a588e4c4.jpg')}
-                        style = {style.logo}
-                    />
-                </View>
-                <View style = {style.containerButton}>
-                    <TouchableOpacity 
-                        style = {style.button}
+                <View style={style.containerButton}>
+                    <TouchableOpacity
+                        style={style.button}
                         onPress={Opciones}
                     >
-                    <Text style={style.textButton}>
-                        Anotarse a Materias previas
-                    </Text>
+                        <Text style={style.textButton}>
+                            Anotarse a Materias previas
+                        </Text>
                     </TouchableOpacity>
-                </View> 
-                <View style = {style.containerButton}>
-                    <TouchableOpacity 
-                        style = {style.button}
+                </View>
+                <View style={style.containerButton}>
+                    <TouchableOpacity
+                        style={style.button}
                         onPress={handlePress}
                     >
-                    <Text style={style.textButton}>
-                        Historial
-                    </Text>
+                        <Text style={style.textButton}>
+                            Historial
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 {/*<View style = {style.containerButton}>
@@ -88,21 +84,15 @@ export default function Home (props){
                     </Text>
                     </TouchableOpacity>
                 </View>*/}
-                <View style = {style.containarButton}>   
-                <TouchableOpacity style = {style.button} >
-                    <Text style={style.textButton}> 
-                    Ajustes 
-                    </Text>    
-                    </TouchableOpacity> 
+                <View style={style.containarButton}>
+                    <TouchableOpacity style={style.button} >
+                        <Text style={style.textButton}>
+                            Ajustes
+                        </Text>
+                    </TouchableOpacity>
                 </View >
-                <Image                      
-                    source={require('../assets/3b4c0036b590cc1977d03230bb7d34f0.jpg')}
-                    style = {{
-                        width:200,
-                        height:200,
-                        borderRadius:90
-                    }}
-                />
-        </View>
+
+            </View>
+        </ImageBackground>
     );
 }
