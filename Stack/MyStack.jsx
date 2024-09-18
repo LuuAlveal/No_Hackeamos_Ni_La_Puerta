@@ -1,7 +1,10 @@
 import React from 'react';
 import 'react-native-gesture-handler';
+import { Button } from 'react-native';
+import appFirebase from '../firebase';
+import { getAuth, signOut } from 'firebase/auth'
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation} from '@react-navigation/native';
 import Login from '../screens/Login';
 import Home from '../screens/Home';
 import Register from '../screens/Register';
