@@ -1,6 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image,ImageBackground, fontSize } from 'react-native';
-export default function Opciones () {
+
+export default function Opciones (props) {
+  const infOpc = ()=>{
+    props.navigation.navigate('infOpc')
+}
   return (
     <ImageBackground
         source={require ('../assets/epet20fondo.png')}
@@ -24,10 +28,10 @@ export default function Opciones () {
         </TouchableOpacity>
       </View>
       <View style={styles.optionsContainer}>
-        <TouchableOpacity style={styles.optionButton}>
+        <TouchableOpacity style={styles.optionButton} onPress={infOpc}>
           <Text>Opción 1</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.optionButton}>
+        <TouchableOpacity style={styles.optionButton} >
           <Text>Opción 2</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton}>

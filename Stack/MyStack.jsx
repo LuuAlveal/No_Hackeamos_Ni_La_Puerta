@@ -7,6 +7,7 @@ import Home from '../screens/Home';
 import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
 import Ayuda from '../screens/ayuda';
+import infOpc from '../screens/infOpc';
 
 const Stack = createStackNavigator();
   
@@ -75,7 +76,21 @@ export default function MyStack() {
               }
             }}
         />
+   
 
+   <Stack.Screen 
+            name="infOpc" 
+            component={ infOpc } 
+            options={{
+              title: "E.P.E.T N 20",
+              headerTintColor: 'white',
+              headerTitleAlign: 'center',
+              headerStyle: {
+                backgroundColor: '#304A6E',
+              }
+            }}
+        />
+  
   
         </Stack.Navigator>
     );
