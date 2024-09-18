@@ -8,8 +8,18 @@ const auth = getAuth (appFirebase)
 const BD = getFirestore(appFirebase)
 
 export default function Register (props){
-    const [email, setEmail] = useState ()
-    const [password, setPassword] = useState ()
+    const [state, setState] = useState({
+        nombre: "",
+        apellido: "",
+        dni: "",
+        email: "",
+        password: ""
+    })
+
+    const handleChangeText = (name, value) => {
+        setState({ ...state, [name]: value })
+    }
+
     const handleCreateAccount = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then ((userCredential) =>{
@@ -108,20 +118,50 @@ export default function Register (props){
         >
             <View style = {style.form}>
                 <Text style = {style.tituloRegistrarse}>REGISTRARSE</Text>
+
+                <Text style={{ fontSize: 15 }}>Nombre</Text>
+                <View style={style.cajaIng}>
+                    <TextInput
+                        placeholder='Nombre'
+                        style={{ paddingHorizontal: 15, outline: 0 }}
+                        onChangeText={(value) => handleChangeText('nombre', value)}
+                    />
+                </View>
+
+                <Text style={{ fontSize: 15 }}>Apellido</Text>
+                <View style={style.cajaIng}>
+                    <TextInput
+                        placeholder='Apellido'
+                        style={{ paddingHorizontal: 15, outline: 0 }}
+                        onChangeText={(value) => handleChangeText('apellido', value)}
+                    />
+                </View>
+
                 <Text style = {{ fontSize: 15}}>E-Mail</Text>
                 <View style = {style.cajaIng}>
                     <TextInput
                         placeholder='TuCorreo@example.com'
                         style = {{paddingHorizontal:15, outline:0}}
-                        onChangeText={(text)=>setEmail(text)}
+                        onChangeText={(value) => handleChangeText('email', value)}
                     />
                 </View>
+
+                <Text style={{ fontSize: 15 }}>DNI</Text>
+                <View style={style.cajaIng}>
+                    <TextInput
+                        placeholder='DNI'
+                        style={{ paddingHorizontal: 15, outline: 0 }}
+                        maxLength={8}
+                        onChangeText={(value) => handleChangeText('dni', value)}
+                    />
+                </View>
+                
                 <Text style = {{ fontSize: 15}}>Password</Text>
                 <View style = {style.cajaIng}>
                     <TextInput
                         placeholder='Password'
                         secureTextEntry={true}
-                        onChangeText={(text)=>setPassword(text)}
+                        onChangeText={(value) => handleChangeText('password', value)}
                         style = {{paddingHorizontal:15, outline:0}}
                     />
                 </View>
@@ -137,6 +177,7 @@ export default function Register (props){
                         </Text>
                     </TouchableOpacity>
                 </View>
+
             </View>
             </ImageBackground>
     );
