@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert, ImageBackground} from 'react-native';
 import appFirebase from '../firebase';
 import Swal from 'sweetalert2';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import { getFirestore, doc, setDoc} from "firebase/firestore";
 const auth = getAuth (appFirebase)
+const BD = getFirestore(appFirebase)
 
 export default function Register (props){
     const [email, setEmail] = useState ()
