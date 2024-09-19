@@ -11,6 +11,7 @@ import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
 import Ayuda from '../screens/ayuda';
 import infOpc from '../screens/infOpc';
+import ajustes from '../screens/Ajustes';
 
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
@@ -141,9 +142,29 @@ export default function MyStack() {
           }
         }}
       />
-
-
-    </Stack.Navigator>
+     <Stack.Screen
+        name="Ajustes"
+        component={ajustes}
+        options={{
+          title: "E.P.E.T N 20",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E',
+          },
+          headerRight: () => {
+            return (
+              <Button
+                onPress={() => navigation.navigate('Ajustes')}
+                title="Ajustes"
+                color="#304A6E"
+              />
+            );
+          }
+        }}   
+      />
+   
+          </Stack.Navigator>
   );
 
 }
