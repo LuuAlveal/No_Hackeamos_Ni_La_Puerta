@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground  } from 'react-native';
 import { Linking } from 'react-native';
 
 const AnotarseMateria = () => {
@@ -18,17 +18,25 @@ const MaximoMaterias = () => {
     Linking.openURL('https://drive.google.com/file/d/1YLziNl5WJ8bm7OO64sU6lwXUX_GZfWYl/view?usp=drive_link');
 };
 const styles = StyleSheet.create({
+   
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+   
     container: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#304A6E',
     },
     optionButton: {
       padding: 16,
       textAlign: 'center',
-      borderRadius: 12,
-      marginVertical: 12,
+      borderRadius: 15,
+      marginVertical: 15,
       alignItems: 'center',
       width: '80%',
       height: 60,
@@ -38,8 +46,15 @@ const styles = StyleSheet.create({
 
 export default function Ayuda () {
     return (
+
+        <ImageBackground
+        source={require('../assets/epet20fondo.png')}
+        resizeMode={'cover'}
+        style={styles.backgroundImage}
+      >
+
         <View style={styles.container}>
-            <View style={styles.header}>
+            
                 <TouchableOpacity 
                     style={styles.optionButton}
                     onPress={AnotarseMateria}
@@ -81,6 +96,6 @@ export default function Ayuda () {
                     </Text>    
                 </TouchableOpacity>
             </View>
-        </View>
+    </ImageBackground>
     )
 };
