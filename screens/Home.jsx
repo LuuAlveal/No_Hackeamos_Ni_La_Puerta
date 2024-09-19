@@ -10,9 +10,10 @@ export default function Home(props) {
     }
     const style = StyleSheet.create({
         container: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center'
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            borderRadius:10,         
+            margin: '1rem',
+            padding: '2rem',
         },
         containerButton: {
             alignItems: 'center'
