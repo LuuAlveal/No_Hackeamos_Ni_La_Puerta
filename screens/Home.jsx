@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
-import { Linking } from 'react-native';
 
 export default function Home(props) {
     const Opciones = () => {
@@ -9,9 +8,6 @@ export default function Home(props) {
     const Ayuda = () => {
         props.navigation.navigate('Ayuda')
     }
-    const handlePress = () => {
-        Linking.openURL('https://drive.google.com/file/d/1mGvps6PheUVDiOZqAsK6akfrO_bBrEqZ/view?usp=drive_link');
-    };
     const style = StyleSheet.create({
         container: {
             flex: 1,
@@ -65,10 +61,7 @@ export default function Home(props) {
                     </TouchableOpacity>
                 </View>
                 <View style={style.containerButton}>
-                    <TouchableOpacity
-                        style={style.button}
-                        onPress={handlePress}
-                    >
+                    <TouchableOpacity>
                         <Text style={style.textButton}>
                             Historial
                         </Text>
