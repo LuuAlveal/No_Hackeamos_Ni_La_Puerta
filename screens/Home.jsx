@@ -79,13 +79,6 @@ export default function Home(props) {
                     </Text>
                     </TouchableOpacity>
                 </View>
-                <View style={style.containarButton}>
-                    <TouchableOpacity style={style.button} >
-                        <Text style={style.textButton}>
-                            Ajustes
-                        </Text>
-                    </TouchableOpacity>
-                </View >
 
             </View>
         </ImageBackground>
