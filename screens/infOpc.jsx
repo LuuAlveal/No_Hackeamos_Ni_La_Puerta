@@ -22,7 +22,7 @@ export default function infOpc() {
       icon: 'success',
       confirmButtonText: 'Aceptar',
     }).then(() => {
-      navigation.navigate('Home');
+      navigation.navigate('');
     });
   };
 
