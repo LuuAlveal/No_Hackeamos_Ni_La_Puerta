@@ -61,7 +61,9 @@ export default function Home(props) {
                     </TouchableOpacity>
                 </View>
                 <View style={style.containerButton}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        style={style.button}
+                    >
                         <Text style={style.textButton}>
                             Historial
                         </Text>
