@@ -11,7 +11,7 @@ import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
 import Ayuda from '../screens/ayuda';
 import infOpc from '../screens/infOpc';
-import ajustes from '../screens/Ajustes';
+import Ajustes from '../screens/Ajustes';
 
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
@@ -144,7 +144,7 @@ export default function MyStack() {
       />
      <Stack.Screen
         name="Ajustes"
-        component={ajustes}
+        component={Ajustes}
         options={{
           title: "E.P.E.T N 20",
           headerTintColor: 'white',
