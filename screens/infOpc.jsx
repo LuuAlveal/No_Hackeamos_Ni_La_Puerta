@@ -14,8 +14,7 @@ export default function infOpc() {
   const [inscrito, setInscrito] = useState(false);
 
   const handleInscripcion = () => {
-    // Aquí implementarías la lógica para inscribir al usuario
-    // Por ejemplo, enviar una solicitud a un servidor
+   
     setInscrito(true);
     Swal.fire({
       title: '¡Inscripción exitosa!',
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   infoContainer: {
-    backgroundColor: '#f9f9f9',
+    backgroundColor: 'rgba(249, 249, 249, 0.5)',
     padding: 20,
     borderRadius: 10,
     borderWidth: 1,
