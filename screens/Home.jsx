@@ -8,6 +8,9 @@ export default function Home(props) {
     const Ayuda = () => {
         props.navigation.navigate('Ayuda')
     }
+    const Creditos = () => {
+        props.navigation.navigate('Creditos') //Despues borrar linea 11, 12 y 13
+    }
     const style = StyleSheet.create({
         container: {
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -73,10 +76,10 @@ export default function Home(props) {
                 <View style = {style.containerButton}>
                     <TouchableOpacity 
                         style = {style.button}
-                        onPress={Ayuda}
+                        onPress={Creditos}
                     >
                     <Text style={style.textButton}>
-                        Ayuda
+                        Creditos
                     </Text>
                     </TouchableOpacity>
                 </View>
