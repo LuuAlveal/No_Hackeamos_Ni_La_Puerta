@@ -12,6 +12,7 @@ import Opciones from '../screens/Opciones';
 import Ayuda from '../screens/ayuda';
 import infOpc from '../screens/infOpc';
 import Ajustes from '../screens/ajustes';
+import Creditos from '../screens/Creditos';
 
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
@@ -128,8 +129,6 @@ export default function MyStack() {
           }
         }}
       />
-
-
       <Stack.Screen
         name="infOpc"
         component={infOpc}
@@ -172,7 +171,18 @@ export default function MyStack() {
           }
         }}   
       />
-   
+      <Stack.Screen
+        name="Creditos"
+        component={Creditos}
+        options={{
+          title: "E.P.E.T N 20",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          }
+        }}
+      />
           </Stack.Navigator>
   );
 
