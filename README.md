@@ -1,8 +1,9 @@
-Aplicacion completamente espumante 🍾🍾 para Anotarse a Materias previas
+# Aplicacion completamente espumante 🍾🍾  Anotarse a Materias previas
 
-GUIA DE INSTALACION
+## 🛠️ GUIA DE INSTALACION
 
---------DENTRO DEL PROYECTO------------
+**DENTRO DEL PROYECTO HACER**
+
 1. Instalar dependencias
     ``` bash
     npm install
@@ -15,3 +16,8 @@ GUIA DE INSTALACION
    ```bash
    npm start
    ```
+
+## Contribuyentes de esta gran aplicacion
+
+
+![Contribuyentes](https://contrib.rocks/image?repo=LuuAlveal/No_Hackeamos_Ni_La_Puerta)

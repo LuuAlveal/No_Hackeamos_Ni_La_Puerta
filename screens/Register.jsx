@@ -102,8 +102,10 @@ export default function Register (props){
             alignItems: 'center'
         },
         form: {
-            margin: 20,
-            padding: '4rem',
+            
+            padding: 15,
+            paddingLeft: 30,
+            paddingRight: 30,
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
             borderRadius: 10,
             width: 'auto',

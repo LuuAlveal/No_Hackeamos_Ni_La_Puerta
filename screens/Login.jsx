@@ -20,7 +20,7 @@ export default function Login (props){
         } catch (error){
             console.log (error)
             Swal.fire({
-                title:'Usuario o contraseña incorrecto',
+                title:'Email o contraseña incorrecto',
                 icon: 'error'
             })
         }

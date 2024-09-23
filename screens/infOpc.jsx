@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Swal from 'sweetalert2';
 
 export default function infOpc() {
+  const navigation = useNavigation();
   const [mesa, setMesa] = useState({
     profesor: 'Juan Pérez',
     fecha: '15/11/2024',
@@ -11,10 +14,16 @@ export default function infOpc() {
   const [inscrito, setInscrito] = useState(false);
 
   const handleInscripcion = () => {
-    // Aquí implementarías la lógica para inscribir al usuario
-    // Por ejemplo, enviar una solicitud a un servidor
+   
     setInscrito(true);
-    alert('¡Te has inscrito correctamente!');
+    Swal.fire({
+      title: '¡Inscripción exitosa!',
+      text: 'Te has inscrito correctamente.',
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
+    }).then(() => {
+      navigation.navigate('');
+    });
   };
 
   return (
@@ -50,14 +59,14 @@ const styles = StyleSheet.create({
     height: '100vh',
     justifyContent: 'center',
     alignItems: 'center',
-},
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   infoContainer: {
-    backgroundColor: '#f9f9f9',
+    backgroundColor: 'rgba(249, 249, 249, 0.5)',
     padding: 20,
     borderRadius: 10,
     borderWidth: 1,
