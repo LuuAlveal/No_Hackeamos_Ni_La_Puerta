@@ -34,13 +34,15 @@ const styles = StyleSheet.create({
     },
     optionButton: {
       padding: 16,
-      textAlign: 'center',
-      borderRadius: 15,
-      marginVertical: 15,
+      borderRadius: 10,
+      marginVertical: 10,
       alignItems: 'center',
       width: '80%',
-      height: 60,
       backgroundColor: '#FFFAFA'
+    },
+    text: {
+        textAlign: 'center',
+        height: 38
     }
   });
 
@@ -75,7 +77,8 @@ export default function Ayuda () {
                     style={styles.optionButton}
                     onPress={DatosMateria}
                     >
-                    <Text>
+                    <Text
+                    style={styles.text}>
                     ¿Cómo puedo saber los datos de la materia a la que me quiero anotar?
                     </Text>    
                 </TouchableOpacity>
