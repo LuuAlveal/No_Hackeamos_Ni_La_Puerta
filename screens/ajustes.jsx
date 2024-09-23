@@ -7,4 +7,4 @@ export default function Ajustes (props) {
     return (
       <View><h1>hola</h1></View>
     )
-}
+};

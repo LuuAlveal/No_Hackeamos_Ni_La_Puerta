@@ -11,7 +11,7 @@ import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
 import Ayuda from '../screens/ayuda';
 import infOpc from '../screens/infOpc';
-import Ajustes from '../screens/Ajustes';
+import Ajustes from '../screens/ajustes';
 
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
