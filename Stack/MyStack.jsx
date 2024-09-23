@@ -116,6 +116,15 @@ export default function MyStack() {
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: '#304A6E'
+          },
+          headerRight: () => {
+            return (
+              <Button
+                onPress={() => navigation.navigate('Ajustes')}
+                title="Ajustes"
+                color="#304A6E"
+              />
+            );
           }
         }}
       />
