@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, ImageBackground  } from 'react-native';
 
 const styles = StyleSheet.create({
-   
     backgroundImage: {
         flex: 1,
         width: '100%',
@@ -10,7 +9,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
-   
     text: {
       color: 'white',
       flex: 1,
@@ -28,34 +26,32 @@ const styles = StyleSheet.create({
   });
 
 export default function Creditos () {
-    return (
-
+  return (
     <ImageBackground
         source={require('../assets/epet20fondo.png')}
         resizeMode={'cover'}
         style={styles.backgroundImage}
       >
-
-        <View style={styles.container}>
-           <Text style={styles.text}>
-           Esta aplicación fue diseñada por el mejor grupo galáctico, los mas copados, todo.
-           </Text>
-           <Text style={styles.text}>
+      <View style={styles.container}>
+          <Text style={styles.text}>
+            Esta aplicación fue diseñada por el mejor grupo galáctico, los mas copados, todo.
+          </Text>
+          <Text style={styles.text}>
             Marcos Ortega alias Odoo Bassignani 
-           </Text>
-           <Text style={styles.text}>
-           Luana Alveal alias la peor alumna 
-           </Text>
-           <Text style={styles.text}>
-           Lucas Bravo alias el mejor alumno
-           </Text>
-           <Text style={styles.text}>
-           Facundo Pichiman alias el bautista
-           </Text>
-           <Text style={styles.text}>
-           Nazareno Álvarez alias el búfalo
-           </Text>
-        </View>
+          </Text>
+          <Text style={styles.text}>
+            Luana Alveal alias la peor alumna 
+          </Text>
+          <Text style={styles.text}>
+            Lucas Bravo alias el VHS (vende humo supremo)
+          </Text>
+          <Text style={styles.text}>
+            Facundo Pichiman alias el bautista
+          </Text>
+          <Text style={styles.text}>
+            Nazareno Álvarez alias el búfalo
+          </Text>
+      </View>
     </ImageBackground>
-    )
+  )
 };
