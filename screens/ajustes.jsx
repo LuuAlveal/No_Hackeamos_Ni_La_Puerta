@@ -17,10 +17,10 @@ export default function Ajustes (props) {
    <View style={styles.container}>
     <View style={styles.Containerbutton}>
       <TouchableOpacity style={styles.Button} onPress={Ayuda}>
-        <Text>preguntas frecuentes</Text>
+        <Text>Preguntas Frecuentes</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.Button} onPress={Creditos}>
-        <Text>creditos</Text>
+        <Text>Creditos</Text>
       </TouchableOpacity>
     </View>
     <TouchableOpacity style={styles.Button} onPress={Ayuda}>
