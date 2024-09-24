@@ -21,16 +21,16 @@ export default function Opciones () {
           <Text>Programacion</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton} >
-          <Text>Opción 2</Text>
+          <Text>Programación Web Estatica</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton}>
-          <Text>Opción 3</Text>
+          <Text>Alvarado 😝</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton}>
-          <Text>Opción 4</Text>
+          <Text>Alejandro Cadera 👴</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton}>
-          <Text>Opción 5</Text>
+          <Text>Widi</Text>
         </TouchableOpacity>
       </View>
      </View>
