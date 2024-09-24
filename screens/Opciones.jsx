@@ -30,7 +30,7 @@ export default function Opciones () {
           <Text>Alejandro Cadera 👴</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton}>
-          <Text>Widi</Text>
+          <Text>Widi </Text>
         </TouchableOpacity>
       </View>
      </View>
