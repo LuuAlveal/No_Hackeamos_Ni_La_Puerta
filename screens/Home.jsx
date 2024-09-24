@@ -21,7 +21,7 @@ export default function Home(props) {
         button: {
             backgroundColor: '#4F76AC',
             borderRadius: 30,
-            paddingVertical: 10,
+            paddingVertical: 13,
             marginTop: 20,
             width: 250
         },

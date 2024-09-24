@@ -49,12 +49,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   Button: {
-    padding: 16,
+    padding: 20,
     borderRadius: 10,
     marginVertical: 10,
     alignItems: 'center',
-    width: '100%',
-    height: 50,
+    width: 250,
     backgroundColor: '#FFFAFA'
   }
 });
