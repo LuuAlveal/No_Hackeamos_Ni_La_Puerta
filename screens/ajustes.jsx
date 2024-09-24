@@ -1,5 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity,ImageBackground,} from 'react-native';
+import { Linking } from 'react-native';
+
+const PaginaEpet = () => {
+    Linking.openURL('https://epet20.edu.ar/');
+};
+
 export default function Ajustes (props) {
   const Ayuda= ()=> {
       props.navigation.navigate('Ayuda')
@@ -23,8 +29,8 @@ export default function Ajustes (props) {
         <Text>Creditos</Text>
       </TouchableOpacity>
     </View>
-    <TouchableOpacity style={styles.Button}>
-        <Text>Nuestra pagina oficial</Text>
+    <TouchableOpacity style={styles.Button} onPress={PaginaEpet}>
+        <Text>Pagina Oficial</Text>
       </TouchableOpacity>
    </View>
   </ImageBackground>
