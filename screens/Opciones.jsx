@@ -16,7 +16,7 @@ export default function Opciones (props) {
      <View style={styles.container}>
       <View style={styles.optionsContainer}>
         <TouchableOpacity style={styles.optionButton} onPress={infOpc}>
-          <Text>Opción 1</Text>
+          <Text>Programacion</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton} >
           <Text>Opción 2</Text>
