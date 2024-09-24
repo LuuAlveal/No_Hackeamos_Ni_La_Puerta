@@ -1,17 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity,ImageBackground,} from 'react-native';
 import { Linking } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 const PaginaEpet = () => {
     Linking.openURL('https://epet20.edu.ar/');
 };
 
-export default function Ajustes (props) {
+export default function Ajustes () {
+  const navigation = useNavigation();
   const Ayuda= ()=> {
-      props.navigation.navigate('Ayuda')
+      navigation.navigate('Ayuda')
   }
   const Creditos= ()=> {
-      props.navigation.navigate('Creditos')
+      navigation.navigate('Creditos')
   }
   
     return (

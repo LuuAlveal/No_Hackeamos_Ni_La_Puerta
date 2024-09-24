@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image,ImageBackground, fontSize } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,ImageBackground } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+export default function Opciones () {
+  const navigation = useNavigation();
 
-export default function Opciones (props) {
   const infOpc = ()=>{
-    props.navigation.navigate('infOpc')
-}
+    navigation.navigate('infOpc')
+  }
   return (
     <ImageBackground
         source={require ('../assets/epet20fondo.png')}

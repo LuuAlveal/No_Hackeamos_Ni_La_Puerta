@@ -1,12 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
-
-export default function Home(props) {
+import { useNavigation } from '@react-navigation/native';
+export default function Home() {
+    const navigation = useNavigation();
     const Opciones = () => {
-        props.navigation.navigate('Opciones')
-    }
-    const Ayuda = () => {
-        props.navigation.navigate('Ayuda')
+       navigation.navigate('Opciones')
     }
     const style = StyleSheet.create({
         container: {
