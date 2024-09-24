@@ -3,38 +3,35 @@ import { StyleSheet, Text, View, TouchableOpacity,ImageBackground,} from 'react-
 import { Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 const PaginaEpet = () => {
-    Linking.openURL('https://epet20.edu.ar/');
+  Linking.openURL('https://epet20.edu.ar/');
 };
 
 export default function Ajustes () {
   const navigation = useNavigation();
-  const Ayuda= ()=> {
-      navigation.navigate('Ayuda')
+  const Ayuda = ()=> {
+    navigation.navigate('Ayuda')
   }
-  const Creditos= ()=> {
-      navigation.navigate('Creditos')
+  const Creditos = ()=> {
+    navigation.navigate('Creditos')
   }
-  
-    return (
-      <ImageBackground
+  return (
+    <ImageBackground
       source={require ('../assets/epet20fondo.png')}
       resizeMode= {'cover'}
       style = {styles.backgroundImage}
-   > 
-   <View style={styles.container}>
-    <View style={styles.Containerbutton}>
-      <TouchableOpacity style={styles.Button} onPress={Ayuda}>
-        <Text>Preguntas Frecuentes</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.Button} onPress={Creditos}>
-        <Text>Creditos</Text>
-      </TouchableOpacity>
+    > 
+    <View style={styles.container}>
+        <TouchableOpacity style={styles.Button} onPress={Ayuda}>
+          <Text>Preguntas Frecuentes</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.Button} onPress={Creditos}>
+          <Text>Creditos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.Button} onPress={PaginaEpet}>
+          <Text>Pagina Oficial</Text>
+        </TouchableOpacity>
     </View>
-    <TouchableOpacity style={styles.Button} onPress={PaginaEpet}>
-        <Text>Pagina Oficial</Text>
-      </TouchableOpacity>
-   </View>
-  </ImageBackground>
+    </ImageBackground>
   );
 };
 
@@ -51,16 +48,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  Containerbutton: {
-    width: '500%',
-    alignItems: 'center',
-  },
   Button: {
-    padding: 20,
+    padding: 16,
     borderRadius: 10,
     marginVertical: 10,
     alignItems: 'center',
-    width: 250,
+    width: '160%',
     backgroundColor: '#FFFAFA'
   }
 });

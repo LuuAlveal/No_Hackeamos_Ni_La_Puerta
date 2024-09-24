@@ -11,7 +11,7 @@ import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
 import Ayuda from '../screens/Ayuda';
 import InfOpc from '../screens/infOpc';
-import Ajustes from '../screens/ajustes';
+import Ajustes from '../screens/Ajustes';
 import Creditos from '../screens/Creditos';
 
 const Stack = createStackNavigator();
