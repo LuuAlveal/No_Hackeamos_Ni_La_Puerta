@@ -10,7 +10,7 @@ import Home from '../screens/Home';
 import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
 import Ayuda from '../screens/ayuda';
-import infOpc from '../screens/infOpc';
+import InfOpc from '../screens/infOpc';
 import Ajustes from '../screens/ajustes';
 import Creditos from '../screens/Creditos';
 
@@ -122,7 +122,7 @@ export default function MyStack() {
       />
       <Stack.Screen
         name="infOpc"
-        component={infOpc}
+        component={InfOpc}
         options={{
           title: "E.P.E.T N 20",
           headerTintColor: 'white',

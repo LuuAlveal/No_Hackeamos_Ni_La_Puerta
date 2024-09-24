@@ -64,14 +64,8 @@ export default function Login (props){
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
             borderRadius: '10px',
             width: '90%',
-            shadowColor: '#000',
-            shadowOffset:{
-                width:10,
-                height:10,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius:6,
-            elevation:5,
+            boxShadow: '10px 10px 5px rgba(0, 0, 0, 0.5)', 
+            elevation: 5
         },
         cajaIng:{
             paddingVertical: 10,
