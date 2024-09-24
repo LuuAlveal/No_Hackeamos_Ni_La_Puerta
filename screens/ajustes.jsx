@@ -28,3 +28,30 @@ export default function Ajustes (props) {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100vh',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  Containerbutton: {
+    width: '500%',
+    alignItems: 'center',
+  },
+  Button: {
+    padding: 16,
+    borderRadius: 10,
+    marginVertical: 10,
+    alignItems: 'center',
+    width: '80%',
+    height: 50,
+    backgroundColor: '#FFFAFA'
+  }
+});
