@@ -9,7 +9,7 @@ import Login from '../screens/Login';
 import Home from '../screens/Home';
 import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
-import Ayuda from '../screens/ayuda';
+import Ayuda from '../screens/Ayuda';
 import InfOpc from '../screens/infOpc';
 import Ajustes from '../screens/ajustes';
 import Creditos from '../screens/Creditos';
