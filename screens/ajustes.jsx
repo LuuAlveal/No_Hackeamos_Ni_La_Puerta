@@ -23,7 +23,7 @@ export default function Ajustes (props) {
         <Text>Creditos</Text>
       </TouchableOpacity>
     </View>
-    <TouchableOpacity style={styles.Button} onPress={Ayuda}>
+    <TouchableOpacity style={styles.Button}>
         <Text>Nuestra pagina oficial</Text>
       </TouchableOpacity>
    </View>
