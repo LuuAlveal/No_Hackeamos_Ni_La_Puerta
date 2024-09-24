@@ -1,10 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image,ImageBackground, fontSize } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,ImageBackground,} from 'react-native';
 export default function Ajustes (props) {
-    const Ajustes= ()=>{
-      props.navigation.navigate('Ajustes')
+  const Ayuda= ()=> {
+      props.navigation.navigate('Ayuda')
   }
+  const Creditos= ()=> {
+      props.navigation.navigate('Creditos')
+  }
+  
     return (
-      <View><h1>hola</h1></View>
-    )
+      <ImageBackground
+      source={require ('../assets/epet20fondo.png')}
+      resizeMode= {'cover'}
+      style = {styles.backgroundImage}
+   > 
+   <View style={styles.container}>
+    <View style={styles.Containerbutton}>
+      <TouchableOpacity style={styles.Button} onPress={Ayuda}>
+        <Text>preguntas frecuentes</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.Button} onPress={Creditos}>
+        <Text>creditos</Text>
+      </TouchableOpacity>
+    </View>
+   </View>
+  </ImageBackground>
+  );
 };
+
