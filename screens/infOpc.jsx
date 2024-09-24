@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground } from
 import { useNavigation } from '@react-navigation/native';
 import Swal from 'sweetalert2';
 
-export default function infOpc() {
+export default function InfOpc() {
   const navigation = useNavigation();
   const [mesa, setMesa] = useState({
     profesor: 'Juan Pérez',

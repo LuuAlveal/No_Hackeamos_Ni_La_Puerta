@@ -1,15 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
-
-export default function Home(props) {
+import { useNavigation } from '@react-navigation/native';
+export default function Home() {
+    const navigation = useNavigation();
     const Opciones = () => {
-        props.navigation.navigate('Opciones')
-    }
-    const Ayuda = () => {
-        props.navigation.navigate('Ayuda')
-    }
-    const Creditos = () => {
-        props.navigation.navigate('Creditos') //Despues borrar linea 11, 12 y 13
+       navigation.navigate('Opciones')
     }
     const style = StyleSheet.create({
         container: {
@@ -24,7 +19,7 @@ export default function Home(props) {
         button: {
             backgroundColor: '#4F76AC',
             borderRadius: 30,
-            paddingVertical: 10,
+            paddingVertical: 13,
             marginTop: 20,
             width: 250
         },
@@ -73,17 +68,6 @@ export default function Home(props) {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View style = {style.containerButton}>
-                    <TouchableOpacity 
-                        style = {style.button}
-                        onPress={Creditos}
-                    >
-                    <Text style={style.textButton}>
-                        Creditos
-                    </Text>
-                    </TouchableOpacity>
-                </View>
-
             </View>
         </ImageBackground>
     );

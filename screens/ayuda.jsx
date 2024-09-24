@@ -18,43 +18,40 @@ const MaximoMaterias = () => {
     Linking.openURL('https://drive.google.com/file/d/1YLziNl5WJ8bm7OO64sU6lwXUX_GZfWYl/view?usp=drive_link');
 };
 const styles = StyleSheet.create({
-   
     backgroundImage: {
         flex: 1,
         width: '100%',
         height: '100vh',
         justifyContent: 'center',
         alignItems: 'center',
-      },
-   
+    },
+
     container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     optionButton: {
-      padding: 16,
-      borderRadius: 10,
-      marginVertical: 10,
-      alignItems: 'center',
-      width: '80%',
-      backgroundColor: '#FFFAFA'
+        padding: 16,
+        borderRadius: 10,
+        marginVertical: 10,
+        alignItems: 'center',
+        width: '80%',
+        backgroundColor: '#FFFAFA'
     },
     text: {
         textAlign: 'center',
         height: 38
     }
-  });
+});
 
 export default function Ayuda () {
     return (
-
         <ImageBackground
         source={require('../assets/epet20fondo.png')}
         resizeMode={'cover'}
         style={styles.backgroundImage}
-      >
-
+        >
         <View style={styles.container}>
             
                 <TouchableOpacity 

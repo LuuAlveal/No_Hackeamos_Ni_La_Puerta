@@ -9,9 +9,9 @@ import Login from '../screens/Login';
 import Home from '../screens/Home';
 import Register from '../screens/Register';
 import Opciones from '../screens/Opciones';
-import Ayuda from '../screens/ayuda';
-import infOpc from '../screens/infOpc';
-import Ajustes from '../screens/ajustes';
+import Ayuda from '../screens/Ayuda';
+import InfOpc from '../screens/infOpc';
+import Ajustes from '../screens/Ajustes';
 import Creditos from '../screens/Creditos';
 
 const Stack = createStackNavigator();
@@ -117,21 +117,12 @@ export default function MyStack() {
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: '#304A6E'
-          },
-          headerRight: () => {
-            return (
-              <Button
-                onPress={() => navigation.navigate('Ajustes')}
-                title="Ajustes"
-                color="#304A6E"
-              />
-            );
           }
         }}
       />
       <Stack.Screen
         name="infOpc"
-        component={infOpc}
+        component={InfOpc}
         options={{
           title: "E.P.E.T N 20",
           headerTintColor: 'white',
@@ -160,15 +151,6 @@ export default function MyStack() {
           headerStyle: {
             backgroundColor: '#304A6E',
           },
-          headerRight: () => {
-            return (
-              <Button
-                onPress={() => navigation.navigate('Ajustes')}
-                title="Ajustes"
-                color="#304A6E"
-              />
-            );
-          }
         }}   
       />
       <Stack.Screen

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert, ImageBackground} from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import appFirebase from '../firebase';
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
 import Swal from 'sweetalert2';
 const provider = new GoogleAuthProvider();
 const auth = getAuth (appFirebase)
-export default function Login (props){
-
+export default function Login (){
+    const navigation = useNavigation();
 
     //loguearse con email y contrasenia
     const [email, setEmail] = useState ()
@@ -16,7 +17,7 @@ export default function Login (props){
         e.preventDefault();
         try{
             await signInWithEmailAndPassword(auth, email, password)
-            props.navigation.navigate('Home')
+            navigation.navigate('Home')
         } catch (error){
             console.log (error)
             Swal.fire({
@@ -37,7 +38,7 @@ export default function Login (props){
           const user = result.user;
           // IdP data available using getAdditionalUserInfo(result)
           // ...
-          props.navigation.navigate('Home')
+          navigation.navigate('Home')
         }).catch((error) => {
           // Handle Errors here.
           const errorCode = error.code;
@@ -50,7 +51,7 @@ export default function Login (props){
         });
     }
     const Registrarse = () => {
-        props.navigation.navigate('Register');
+        navigation.navigate('Register');
     }
     const style = StyleSheet.create({
         container:{
@@ -64,14 +65,8 @@ export default function Login (props){
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
             borderRadius: '10px',
             width: '90%',
-            shadowColor: '#000',
-            shadowOffset:{
-                width:10,
-                height:10,
-            },
-            shadowOpacity: 0.5,
-            shadowRadius:6,
-            elevation:5,
+            boxShadow: '10px 10px 5px rgba(0, 0, 0, 0.5)', 
+            elevation: 5
         },
         cajaIng:{
             paddingVertical: 10,
