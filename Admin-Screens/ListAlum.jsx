@@ -6,7 +6,7 @@ import appFirebase from '../firebase';
 
 const BD = getFirestore(appFirebase);
 
-export default function ListAlum(props) {
+export default function ListAlum() {
     const [alumnos, setAlumnos] = useState([]);
 
     useEffect(() => {

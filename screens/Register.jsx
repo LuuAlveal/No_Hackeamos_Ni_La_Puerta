@@ -1,14 +1,16 @@
-import React, {useState} from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import appFirebase from '../firebase';
 import Swal from 'sweetalert2';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
-import { getFirestore, doc, setDoc} from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useNavigation } from '@react-navigation/native';
-const auth = getAuth (appFirebase)
+import { Picker } from '@react-native-picker/picker';
+const auth = getAuth(appFirebase)
 const BD = getFirestore(appFirebase)
 
-export default function Register (){
+export default function Register() {
+    const [selectedYear, setSelectedYear] = useState("default");
     const navigation = useNavigation();
     const [state, setState] = useState({
         nombre: "",
@@ -54,19 +56,26 @@ export default function Register (){
                 text: 'Ingrese una contraseña',
                 icon: 'error'
             })
+        } else if (selectedYear === 'default') {
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Seleccione un año',
+                icon: 'warning'
+            });
         }
         else {
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, state.email, state.password);
                 const user = userCredential.user;
 
-                await setDoc(doc(BD,'alumnos',user.uid),{
+                await setDoc(doc(BD, 'alumnos', user.uid), {
                     nombre: state.nombre,
                     apellido: state.apellido,
                     dni: state.dni,
                     email: state.email,
                     materiasPrevias: [],
                     rol: state.rol,
+                    year: selectedYear
                 });
                 Swal.fire({
                     title: 'Cuenta Creada Exitosamente',
@@ -100,38 +109,38 @@ export default function Register (){
 
     }
     const style = StyleSheet.create({
-        container:{
+        container: {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center'
         },
         form: {
-            
+
             padding: 15,
             paddingLeft: 30,
             paddingRight: 30,
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
             borderRadius: 10,
             width: 'auto',
-            boxShadow: '10px 10px 5px rgba(0, 0, 0, 0.5)', 
+            boxShadow: '10px 10px 5px rgba(0, 0, 0, 0.5)',
         },
-        cajaIng:{
+        cajaIng: {
             paddingVertical: 10,
             backgroundColor: 'white',
             borderRadius: 30,
             marginVertical: 10
         },
-        containerButton:{
-            alignItems: 'center' 
+        containerButton: {
+            alignItems: 'center'
         },
-        button:{
+        button: {
             backgroundColor: '#4F76AC',
             borderRadius: 30,
             paddingVertical: 10,
             marginTop: 20,
             width: 150
         },
-        textButton:{
+        textButton: {
             textAlign: 'center',
             color: 'white',
             fontFamily: 'sans-serif'
@@ -143,7 +152,7 @@ export default function Register (){
             justifyContent: 'center',
             alignItems: 'center'
         },
-        tituloRegistrarse:{
+        tituloRegistrarse: {
             textAlign: 'center',
             fontFamily: 'sans-serif',
             fontSize: '2em',
@@ -151,13 +160,13 @@ export default function Register (){
         }
     });
     return (
-        <ImageBackground 
-            source={require ('../assets/epet20fondo.png')}
-            resizeMode= {'cover'}
-            style = {style.backgroundImage}
+        <ImageBackground
+            source={require('../assets/epet20fondo.png')}
+            resizeMode={'cover'}
+            style={style.backgroundImage}
         >
-            <View style = {style.form}>
-                <Text style = {style.tituloRegistrarse}>REGISTRARSE</Text>
+            <View style={style.form}>
+                <Text style={style.tituloRegistrarse}>REGISTRARSE</Text>
 
                 <Text style={{ fontSize: 15 }}>Nombre</Text>
                 <View style={style.cajaIng}>
@@ -186,33 +195,48 @@ export default function Register (){
                         onChangeText={(value) => handleChangeText('dni', value)}
                     />
                 </View>
-                
-                <Text style = {{ fontSize: 15}}>E-Mail</Text>
-                <View style = {style.cajaIng}>
+
+                <Picker
+                    selectedValue={selectedYear}
+                    onValueChange={(itemValue, itemIndex) =>
+                        setSelectedYear(itemValue)
+                    }>
+                    <Picker.Item label="Seleccione su año" value="default" />
+                    <Picker.Item label="1°" value="1°" />
+                    <Picker.Item label="2°" value="2°" />
+                    <Picker.Item label="3°" value="3°" />
+                    <Picker.Item label="4°" value="4°" />
+                    <Picker.Item label="5°" value="5°" />
+                    <Picker.Item label="6°" value="6°" />
+                    <Picker.Item label="Egresado" value="Egresado" />
+                </Picker>
+
+                <Text style={{ fontSize: 15 }}>E-Mail</Text>
+                <View style={style.cajaIng}>
                     <TextInput
                         placeholder='TuCorreo@example.com'
-                        style = {{paddingHorizontal:15, outline:0}}
+                        style={{ paddingHorizontal: 15, outline: 0 }}
                         onChangeText={(value) => handleChangeText('email', value)}
                     />
                 </View>
 
 
-                <Text style = {{ fontSize: 15}}>Password</Text>
-                <View style = {style.cajaIng}>
+                <Text style={{ fontSize: 15 }}>Password</Text>
+                <View style={style.cajaIng}>
                     <TextInput
                         placeholder='Password'
                         secureTextEntry={true}
                         onChangeText={(value) => handleChangeText('password', value)}
-                        style = {{paddingHorizontal:15, outline:0}}
+                        style={{ paddingHorizontal: 15, outline: 0 }}
                     />
                 </View>
 
-                <View style = {style.containerButton}>
-                    <TouchableOpacity 
-                        style = {style.button}
-                        onPress={ handleCreateAccount }
+                <View style={style.containerButton}>
+                    <TouchableOpacity
+                        style={style.button}
+                        onPress={handleCreateAccount}
                     >
-                        
+
                         <Text style={style.textButton}>
                             Registrarse
                         </Text>
@@ -220,7 +244,7 @@ export default function Register (){
                 </View>
 
             </View>
-            </ImageBackground>
+        </ImageBackground>
     );
-    
+
 }
