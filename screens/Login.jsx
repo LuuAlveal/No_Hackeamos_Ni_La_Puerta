@@ -3,9 +3,11 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackgr
 import { useNavigation } from '@react-navigation/native';
 import appFirebase from '../firebase';
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
+import { getFirestore, getDoc, doc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 const provider = new GoogleAuthProvider();
 const auth = getAuth (appFirebase)
+const BD = getFirestore(appFirebase)
 export default function Login (){
     const navigation = useNavigation();
 
@@ -15,16 +17,30 @@ export default function Login (){
     
     const logueo = async (e) => {
         e.preventDefault();
-        try{
-            await signInWithEmailAndPassword(auth, email, password)
-            navigation.navigate('Home')
-        } catch (error){
-            console.log (error)
-            Swal.fire({
-                title:'Email o contraseña incorrecto',
-                icon: 'error'
+        await signInWithEmailAndPassword(auth, email, password)
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                const docRef = doc(BD, 'alumnos', user.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const userData = docSnap.data();
+                    const rol = userData.rol;
+                    if (rol === '1') {
+                        navigation.navigate('Admin');
+                    } else if (rol === '2') {
+                        navigation.navigate('Home')
+                    }
+                } else {
+                    console.log("No se encontró el documento del usuario");
+                }
             })
-        }
+            .catch((error) => {
+                console.log(error)
+                Swal.fire({
+                    title: 'Email o contraseña incorrecto',
+                    icon: 'error'
+                })
+            })
     }
     //Loguearse con google
     const LogueoGoogle =  async (e) =>{

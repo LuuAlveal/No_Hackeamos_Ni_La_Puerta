@@ -15,7 +15,8 @@ export default function Register (){
         apellido: "",
         dni: "",
         email: "",
-        password: ""
+        password: "",
+        rol: "2"
     })
 
     const handleChangeText = (name, value) => {
@@ -64,7 +65,8 @@ export default function Register (){
                     apellido: state.apellido,
                     dni: state.dni,
                     email: state.email,
-                    materiasPrevias: []
+                    materiasPrevias: [],
+                    rol: state.rol,
                 });
                 Swal.fire({
                     title: 'Cuenta Creada Exitosamente',
