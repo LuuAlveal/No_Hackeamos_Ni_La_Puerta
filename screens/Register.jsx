@@ -170,6 +170,13 @@ export default function Register() {
             flexDirection:'row',
             alignItems: 'center',
             paddingHorizontal: 15
+        },
+        picker:{
+            height: 45,
+            marginBottom: 5,
+            borderColor: '#fff',
+            borderWidth: 1,
+            borderRadius: 10
         }
     });
     return (
@@ -213,14 +220,16 @@ export default function Register() {
                     selectedValue={selectedYear}
                     onValueChange={(itemValue, itemIndex) =>
                         setSelectedYear(itemValue)
-                    }>
+                    }
+                    style={style.picker}
+                >
                     <Picker.Item label="Seleccione su año" value="default" />
-                    <Picker.Item label="1°" value="1°" />
-                    <Picker.Item label="2°" value="2°" />
-                    <Picker.Item label="3°" value="3°" />
-                    <Picker.Item label="4°" value="4°" />
-                    <Picker.Item label="5°" value="5°" />
-                    <Picker.Item label="6°" value="6°" />
+                    <Picker.Item label="1° año" value="1°" />
+                    <Picker.Item label="2° año" value="2°" />
+                    <Picker.Item label="3° año" value="3°" />
+                    <Picker.Item label="4° año" value="4°" />
+                    <Picker.Item label="5° año" value="5°" />
+                    <Picker.Item label="6° año" value="6°" />
                     <Picker.Item label="Egresado" value="Egresado" />
                 </Picker>
 
