@@ -14,6 +14,7 @@ import InfOpc from '../screens/infOpc';
 import Ajustes from '../screens/Ajustes';
 import Creditos from '../screens/Creditos';
 import Admin from '../Admin-Screens/Admin';
+import ListAlum from '../Admin-Screens/ListAlum';
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
 
@@ -168,6 +169,18 @@ export default function MyStack() {
       <Stack.Screen
         name="Admin"
         component={Admin}
+        options={{
+          title: "E.P.E.T N 20 - Admins",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          }
+        }}
+      />
+      <Stack.Screen
+        name="ListAlum"
+        component={ListAlum}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',
