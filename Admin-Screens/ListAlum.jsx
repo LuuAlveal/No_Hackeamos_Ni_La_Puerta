@@ -14,12 +14,13 @@ export default function ListAlum() {
         const Alumnos = onSnapshot(alumnosCollection, (querySnapshot) => {
             const alumnos = [];
             querySnapshot.forEach((doc) => {
-                const { nombre, apellido, dni } = doc.data();
+                const { nombre, apellido, dni,year } = doc.data();
                 alumnos.push({
                     id: doc.id,
                     nombre,
                     apellido,
-                    dni
+                    dni,
+                    year
                 });
             });
             setAlumnos(alumnos);
@@ -56,9 +57,10 @@ export default function ListAlum() {
             alignItems: 'center'
         },
         modificarAlumno: {
-            fontSize: 18,
+            fontSize: 20,
             fontFamily: 'sans-serif',
-            textAlign: 'center'
+            textAlign: 'center',
+            marginBottom:5
         }
     });
 
@@ -76,7 +78,7 @@ export default function ListAlum() {
                             <ListItem key={alumno.id} bottomDivider >
                                 <ListItem.Chevron />
                                 <ListItem.Content>
-                                    <ListItem.Title>{alumno.nombre} {alumno.apellido}</ListItem.Title>
+                                    <ListItem.Title>{alumno.nombre} {alumno.apellido} - Año {alumno.year}</ListItem.Title>
                                     <ListItem.Subtitle>{alumno.dni}</ListItem.Subtitle>
                                 </ListItem.Content>
                             </ListItem>
