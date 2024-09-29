@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import appFirebase from '../firebase';
-import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getFirestore, getDoc, doc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 const provider = new GoogleAuthProvider();
@@ -12,9 +13,13 @@ export default function Login (){
     const navigation = useNavigation();
 
     //loguearse con email y contrasenia
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState ()
     const [password, setPassword] = useState ()
     
+    const verPassword = () => {
+        setPasswordVisible(!passwordVisible);
+    };
     const logueo = async (e) => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
@@ -90,6 +95,21 @@ export default function Login (){
             borderRadius: 30,
             marginVertical: 10
         },
+        cajaIng: {
+            paddingVertical: 10,
+            backgroundColor: 'white',
+            borderRadius: 30,
+            marginVertical: 10,
+            flexDirection:'row',
+            alignItems: 'center',
+            paddingHorizontal: 15
+        },        
+        cajaIngCorreo:{
+            paddingVertical: 10,
+            backgroundColor: 'white',
+            borderRadius: 30,
+            marginVertical: 10
+        },
         containerButton:{
             alignItems: 'center' 
         },
@@ -150,7 +170,7 @@ export default function Login (){
 
             <View style = {style.form}>
                 <Text style = {{ fontSize: 15}}>E-Mail</Text>
-                <View style = {style.cajaIng}>
+                <View style = {style.cajaIngCorreo}>
                     <TextInput
                         placeholder='TuCorreo@example.com'
                         style = {{paddingHorizontal:15, outline:0}}
@@ -159,12 +179,15 @@ export default function Login (){
                 </View>
                 <Text style = {{ fontSize: 15}}>Password</Text>
                 <View style = {style.cajaIng}>
-                    <TextInput
-                        placeholder='Password'
-                        secureTextEntry={true}
-                        onChangeText={(text)=>setPassword(text)}
-                        style = {{paddingHorizontal:15, outline:0}}
-                    />
+                        <TextInput
+                            placeholder='Password'
+                            secureTextEntry={!passwordVisible}
+                            onChangeText={(text) => setPassword(text)}
+                            style={{ outline: 0,flex:1 }}
+                        />
+                        <TouchableOpacity onPress={verPassword}>
+                            <Icon name={passwordVisible ? 'eye-off' : 'eye'} size={24} />
+                        </TouchableOpacity>
                 </View>
 
                 <View style = {style.containerButton}>
