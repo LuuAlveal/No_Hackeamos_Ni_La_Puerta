@@ -6,12 +6,14 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const auth = getAuth(appFirebase)
 const BD = getFirestore(appFirebase)
 
 export default function Register() {
     const [selectedYear, setSelectedYear] = useState("default");
     const navigation = useNavigation();
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const [state, setState] = useState({
         nombre: "",
         apellido: "",
@@ -20,7 +22,9 @@ export default function Register() {
         password: "",
         rol: "2"
     })
-
+    const verPassword = () => {
+        setPasswordVisible(!passwordVisible);
+    };
     const handleChangeText = (name, value) => {
         setState({ ...state, [name]: value })
     }
@@ -157,6 +161,15 @@ export default function Register() {
             fontFamily: 'sans-serif',
             fontSize: '2em',
             paddingBottom: 25
+        },
+        cajaIngPass: {
+            paddingVertical: 10,
+            backgroundColor: 'white',
+            borderRadius: 30,
+            marginVertical: 10,
+            flexDirection:'row',
+            alignItems: 'center',
+            paddingHorizontal: 15
         }
     });
     return (
@@ -222,13 +235,16 @@ export default function Register() {
 
 
                 <Text style={{ fontSize: 15 }}>Password</Text>
-                <View style={style.cajaIng}>
+                <View style={style.cajaIngPass}>
                     <TextInput
                         placeholder='Password'
-                        secureTextEntry={true}
+                        secureTextEntry={!passwordVisible}
                         onChangeText={(value) => handleChangeText('password', value)}
-                        style={{ paddingHorizontal: 15, outline: 0 }}
+                        style={{ flex:1, outline: 0 }}
                     />
+                    <TouchableOpacity onPress={verPassword}>
+                        <Icon name={passwordVisible ? 'eye-off' : 'eye'} size={24} />
+                    </TouchableOpacity>
                 </View>
 
                 <View style={style.containerButton}>
