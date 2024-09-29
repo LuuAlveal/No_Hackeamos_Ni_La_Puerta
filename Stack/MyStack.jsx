@@ -141,7 +141,7 @@ export default function MyStack() {
           }
         }}
       />
-     <Stack.Screen
+      <Stack.Screen
         name="Ajustes"
         component={Ajustes}
         options={{
@@ -151,7 +151,7 @@ export default function MyStack() {
           headerStyle: {
             backgroundColor: '#304A6E',
           },
-        }}   
+        }}
       />
       <Stack.Screen
         name="Creditos"
@@ -165,7 +165,19 @@ export default function MyStack() {
           }
         }}
       />
-          </Stack.Navigator>
+      <Stack.Screen
+        name="Admin"
+        component={Admin}
+        options={{
+          title: "E.P.E.T N 20 - Admins",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          }
+        }}
+      />
+    </Stack.Navigator>
   );
 
 }
