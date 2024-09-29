@@ -13,7 +13,7 @@ import Ayuda from '../screens/Ayuda';
 import InfOpc from '../screens/infOpc';
 import Ajustes from '../screens/Ajustes';
 import Creditos from '../screens/Creditos';
-
+import Admin from '../Admin-Screens/Admin';
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
 
