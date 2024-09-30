@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity} from 'react-native';
 import { getFirestore,addDoc, collection   } from 'firebase/firestore';
 import appFirebase from '../firebase';
-
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Swal from 'sweetalert2';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 const BD = getFirestore(appFirebase);
 
 export default function AgregarMaterias() {
@@ -14,12 +15,16 @@ export default function AgregarMaterias() {
     const [state, setState] = useState({
         nombre: "",
         profesor: "",
-        fecha: ""
+        fecha: new Date()
     })
+    const [startDate, setStartDate] = useState(new Date());
+    const handleDateChange = (date) => {
+        setStartDate(date);
+        setState({ ...state, fecha: date });
+    };
     const handleChangeText = (name, value) => {
         setState({ ...state, [name]: value })
     }
-
     const handleCreateMateria = async () => {
         if (state.nombre === '') {
             Swal.fire({
@@ -94,6 +99,12 @@ export default function AgregarMaterias() {
             height: '100vh',
             justifyContent: 'center',
             alignItems: 'center'
+        },
+        modificarAlumno: {
+            fontSize: 20,
+            fontFamily: 'sans-serif',
+            textAlign: 'center',
+            marginBottom:5
         },        
         cajaIng: {
             paddingVertical: 10,
@@ -115,6 +126,10 @@ export default function AgregarMaterias() {
             textAlign: 'center',
             color: 'white',
             fontFamily: 'sans-serif'
+        },
+        datePicker: {
+            width: '100%',
+            marginBottom: 10,
         }
     });
 
@@ -146,16 +161,18 @@ export default function AgregarMaterias() {
                         />
                     </View>
 
-                    <Text style={{ fontSize: 15 }}>fecha</Text>
+                    <Text style={{ fontSize: 15 }}>Fecha</Text>
                     <View style={style.cajaIng}>
-                        <TextInput
-                            placeholder='Fecha de la mesa Ej: 12-03-24'
-                            style={{ paddingHorizontal: 15, outline: 0 }}
-                            maxLength={8}
-                            onChangeText={(value) => handleChangeText('fecha', value)}
-                        />
+                        <DatePicker
+                            selected={startDate}
+                            onChange={handleDateChange}
+                            dateFormat="dd/MM/YYYY" 
+                            
+                            />
                     </View>
 
+                    <Text style={{ fontSize: 15 }}>Año</Text>
+                    <View style={style.cajaIng}>
                     <Picker
                         selectedValue={selectedYear}
                         onValueChange={(itemValue, itemIndex) =>
@@ -171,6 +188,7 @@ export default function AgregarMaterias() {
                         <Picker.Item label="5° año" value="5°" />
                         <Picker.Item label="6° año" value="6°" />
                     </Picker>
+                    </View>
 
                     <View style={style.containerButton}>
                         <TouchableOpacity
