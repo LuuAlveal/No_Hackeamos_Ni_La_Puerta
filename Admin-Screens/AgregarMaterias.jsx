@@ -20,7 +20,7 @@ export default function AgregarMaterias() {
     const [startDate, setStartDate] = useState(new Date());
     const handleDateChange = (date) => {
         setStartDate(date);
-        setState({ ...state, fecha: date });
+        setState({...state, fecha: date });
     };
     const handleChangeText = (name, value) => {
         setState({ ...state, [name]: value })
@@ -100,17 +100,19 @@ export default function AgregarMaterias() {
             justifyContent: 'center',
             alignItems: 'center'
         },
-        modificarAlumno: {
+        agregarMateria: {
             fontSize: 20,
             fontFamily: 'sans-serif',
             textAlign: 'center',
-            marginBottom:5
+            marginBottom: 20
         },        
         cajaIng: {
             paddingVertical: 10,
             backgroundColor: 'white',
             borderRadius: 30,
-            marginVertical: 10
+            marginBottom: 10,
+            marginTop: 2,
+            borderColor: 'white'
         },
         containerButton: {
             alignItems: 'center'
@@ -126,22 +128,18 @@ export default function AgregarMaterias() {
             textAlign: 'center',
             color: 'white',
             fontFamily: 'sans-serif'
-        },
-        datePicker: {
-            width: '100%',
-            marginBottom: 10,
         }
     });
 
     return (
         <ImageBackground
-            source={require('../assets/epet20fondo.png')}
+            source={require('../assets/FondoEpetHome.jpeg')}
             resizeMode={'cover'}
             style={style.backgroundImage}
         >
             <View style={style.container}>
                 <View style={style.form}>
-                    <Text style={style.modificarAlumno}>Agregar Materia</Text>
+                    <Text style={style.agregarMateria}>Agregar Materia</Text>
 
                     <Text style={{ fontSize: 15 }}>Nombre</Text>
                     <View style={style.cajaIng}>
@@ -166,9 +164,9 @@ export default function AgregarMaterias() {
                         <DatePicker
                             selected={startDate}
                             onChange={handleDateChange}
-                            dateFormat="dd/MM/YYYY" 
-                            
-                            />
+                            dateFormat="dd/MM/YY"
+                            style={{ paddingHorizontal: 15, borderWidth: 0}}
+                        />
                     </View>
 
                     <Text style={{ fontSize: 15 }}>Año</Text>
@@ -178,7 +176,7 @@ export default function AgregarMaterias() {
                         onValueChange={(itemValue, itemIndex) =>
                             setSelectedYear(itemValue)
                         }
-                        style={style.picker}
+                        style={{ paddingHorizontal: 15, borderColor: 'white'}}
                     >
                         <Picker.Item label="Seleccione el año de la materia" value="default" />
                         <Picker.Item label="1° año" value="1°" />
