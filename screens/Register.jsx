@@ -119,7 +119,6 @@ export default function Register() {
             alignItems: 'center'
         },
         form: {
-
             padding: 15,
             paddingLeft: 30,
             paddingRight: 30,
@@ -132,7 +131,8 @@ export default function Register() {
             paddingVertical: 10,
             backgroundColor: 'white',
             borderRadius: 30,
-            marginVertical: 10
+            marginBottom: 10,
+            marginTop: 2
         },
         containerButton: {
             alignItems: 'center'
@@ -159,14 +159,15 @@ export default function Register() {
         tituloRegistrarse: {
             textAlign: 'center',
             fontFamily: 'sans-serif',
-            fontSize: '2em',
-            paddingBottom: 25
+            fontSize: '1em',
+            paddingBottom: 10
         },
         cajaIngPass: {
             paddingVertical: 10,
             backgroundColor: 'white',
             borderRadius: 30,
-            marginVertical: 10,
+            marginTop: 2,
+            marginBottom: 10,
             flexDirection:'row',
             alignItems: 'center',
             paddingHorizontal: 15
@@ -188,7 +189,7 @@ export default function Register() {
             <View style={style.form}>
                 <Text style={style.tituloRegistrarse}>REGISTRARSE</Text>
 
-                <Text style={{ fontSize: 15 }}>Nombre</Text>
+                <Text style={{ fontSize: 12 }}>Nombre</Text>
                 <View style={style.cajaIng}>
                     <TextInput
                         placeholder='Nombre'
@@ -197,7 +198,7 @@ export default function Register() {
                     />
                 </View>
 
-                <Text style={{ fontSize: 15 }}>Apellido</Text>
+                <Text style={{ fontSize: 12 }}>Apellido</Text>
                 <View style={style.cajaIng}>
                     <TextInput
                         placeholder='Apellido'
@@ -206,7 +207,7 @@ export default function Register() {
                     />
                 </View>
 
-                <Text style={{ fontSize: 15 }}>DNI</Text>
+                <Text style={{ fontSize: 12 }}>DNI</Text>
                 <View style={style.cajaIng}>
                     <TextInput
                         placeholder='DNI'
@@ -216,12 +217,13 @@ export default function Register() {
                     />
                 </View>
 
+                <Text style={{ fontSize: 12 }}>Año</Text>
                 <Picker
                     selectedValue={selectedYear}
                     onValueChange={(itemValue, itemIndex) =>
                         setSelectedYear(itemValue)
                     }
-                    style={style.picker}
+                    style={style.cajaIng}
                 >
                     <Picker.Item label="Seleccione su año" value="default" />
                     <Picker.Item label="1° año" value="1°" />
@@ -233,7 +235,7 @@ export default function Register() {
                     <Picker.Item label="Egresado" value="Egresado" />
                 </Picker>
 
-                <Text style={{ fontSize: 15 }}>E-Mail</Text>
+                <Text style={{ fontSize: 12 }}>E-Mail</Text>
                 <View style={style.cajaIng}>
                     <TextInput
                         placeholder='TuCorreo@example.com'
@@ -243,10 +245,10 @@ export default function Register() {
                 </View>
 
 
-                <Text style={{ fontSize: 15 }}>Password</Text>
+                <Text style={{ fontSize: 12 }}>Contraseña</Text>
                 <View style={style.cajaIngPass}>
                     <TextInput
-                        placeholder='Password'
+                        placeholder='Contraseña'
                         secureTextEntry={!passwordVisible}
                         onChangeText={(value) => handleChangeText('password', value)}
                         style={{ flex:1, outline: 0 }}
