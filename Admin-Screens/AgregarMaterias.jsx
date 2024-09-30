@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity} from 'react-native';
 import { getFirestore,addDoc, collection   } from 'firebase/firestore';
 import appFirebase from '../firebase';
+
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Swal from 'sweetalert2';
