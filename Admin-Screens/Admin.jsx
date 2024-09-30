@@ -6,6 +6,9 @@ export default function Admin() {
     const ListAlum = () => {
         navigation.navigate('ListAlum')
     }
+    const ListMaterias = ()=>{
+        navigation.navigate('ListMaterias')
+    }
     const style = StyleSheet.create({
         container: {
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -56,9 +59,10 @@ export default function Admin() {
                 <View style={style.containerButton}>
                     <TouchableOpacity
                         style={style.button}
+                        onPress={ListMaterias}
                     >
                         <Text style={style.textButton}>
-                            Agregar Materia
+                            LISTA DE MATERIAS
                         </Text>
                     </TouchableOpacity>
                 </View>

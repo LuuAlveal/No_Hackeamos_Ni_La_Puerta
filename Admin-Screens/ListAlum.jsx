@@ -75,7 +75,7 @@ export default function ListAlum() {
                     <Text style={style.modificarAlumno}>LISTAS DE ALUMNOS</Text>
                     <View>
                         {alumnos.map((alumno) => (
-                            <ListItem key={alumno.id} bottomDivider >
+                            <ListItem key={alumno.id} bottomDivider>
                                 <ListItem.Chevron />
                                 <ListItem.Content>
                                     <ListItem.Title>{alumno.nombre} {alumno.apellido} - Año {alumno.year}</ListItem.Title>
