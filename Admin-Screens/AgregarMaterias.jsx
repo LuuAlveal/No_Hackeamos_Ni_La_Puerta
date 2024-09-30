@@ -18,13 +18,22 @@ export default function AgregarMaterias() {
         fecha: new Date()
     })
     const [startDate, setStartDate] = useState(new Date());
-    const handleDateChange = (date) => {
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}/${month}/${year}`;
+      }
+      const handleDateChange = (date) => {
         setStartDate(date);
-        setState({...state, fecha: date });
+        setState({ ...state, fecha: formatDate(date) });
+      };
+    const isDateValid = (date) => {
+        return date >= new Date();
     };
     const handleChangeText = (name, value) => {
         setState({ ...state, [name]: value })
-    }
+    };
     const handleCreateMateria = async () => {
         if (state.nombre === '') {
             Swal.fire({
@@ -160,14 +169,14 @@ export default function AgregarMaterias() {
                     </View>
 
                     <Text style={{ fontSize: 15 }}>Fecha</Text>
-                    <View style={style.cajaIng}>
                         <DatePicker
                             selected={startDate}
                             onChange={handleDateChange}
                             dateFormat="dd/MM/YY"
+                            minDate={new Date()}
+                            filterDate={isDateValid}
                             style={{ paddingHorizontal: 15, borderWidth: 0}}
                         />
-                    </View>
 
                     <Text style={{ fontSize: 15 }}>Año</Text>
                     <View style={style.cajaIng}>
