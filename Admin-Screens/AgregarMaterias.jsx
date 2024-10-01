@@ -11,6 +11,7 @@ const BD = getFirestore(appFirebase);
 
 export default function AgregarMaterias() {
     const navigation = useNavigation();
+    const [selectedName, setSelectedName] = useState("default");
     const [selectedYear, setSelectedYear] = useState("default");
     const [state, setState] = useState({
         nombre: "",
@@ -35,7 +36,7 @@ export default function AgregarMaterias() {
         setState({ ...state, [name]: value })
     };
     const handleCreateMateria = async () => {
-        if (state.nombre === '') {
+        if (selectedName === 'default') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el nombre de la Materia',
@@ -63,7 +64,7 @@ export default function AgregarMaterias() {
         else {
             try {
                 await addDoc(collection(BD, 'materias'), {
-                    nombre: state.nombre,
+                    nombre: selectedName,
                     profesor: state.profesor,
                     fecha: state.fecha,
                     year: selectedYear
@@ -152,11 +153,21 @@ export default function AgregarMaterias() {
 
                     <Text style={{ fontSize: 15 }}>Nombre</Text>
                     <View style={style.cajaIng}>
-                        <TextInput
-                            placeholder='Nombre de la Materia'
-                            style={{ paddingHorizontal: 15, outline: 0 }}
-                            onChangeText={(value) => handleChangeText('nombre', value)}
-                        />
+                    <Picker
+                        selectedValue={selectedName}
+                        onValueChange={(itemValue, itemIndex) =>
+                            setSelectedName(itemValue)
+                        }
+                        style={{ paddingHorizontal: 15, borderColor: 'white'}}
+                    >
+                        <Picker.Item label="Nombre de la materia" value="default" />
+                        <Picker.Item label="Matematicas I - II - III" value="Matematicas" />
+                        <Picker.Item label="Analisis Matematico" value="Analisis Matematico" />
+                        <Picker.Item label="Educacion Fisica" value="Educacion Fisica" />
+                        <Picker.Item label="Historia I - II - III" value="Historia" />
+                        <Picker.Item label="Geografia I - II" value="Geografia" />
+                        <Picker.Item label="Fisica I - II" value="Fisica" />
+                    </Picker>
                     </View>
 
                     <Text style={{ fontSize: 15 }}>Profesor</Text>
