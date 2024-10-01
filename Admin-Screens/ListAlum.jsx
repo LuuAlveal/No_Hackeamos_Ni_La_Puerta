@@ -5,13 +5,14 @@ import { collection, onSnapshot, getFirestore } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import ModificarAlumno from './ModificarAlumno';
 const BD = getFirestore(appFirebase);
 
 export default function ListAlum() {
     const [alumnos, setAlumnos] = useState([]);
     const navigation = useNavigation();
-    const AgregarMaterias = ()=>{
-        navigation.navigate('AgregarMaterias')
+    const ModificarAlumno = ()=>{
+        navigation.navigate('ModificarAlumno')
     };
 
     useEffect(() => {
@@ -84,7 +85,7 @@ export default function ListAlum() {
                     <Text style={style.modificarAlumno}>LISTAS DE ALUMNOS</Text>
                     <View style={style.scrollView}>
                         <TouchableOpacity
-                            onPress={AgregarMaterias}
+                            onPress={ModificarAlumno}
                         >
                         {alumnos.map((alumno) => (
                             <ListItem key={alumno.id} bottomDivider>

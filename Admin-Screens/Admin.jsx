@@ -1,13 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
 export default function Admin() {
     const navigation = useNavigation();
     const ListAlum = () => {
         navigation.navigate('ListAlum')
     }
-    const ListMaterias = ()=>{
+    const ListMaterias = () => {
         navigation.navigate('ListMaterias')
+    }
+    const ModificarAlumno = () => {
+        navigation.navigate('ModificarAlumno')
     }
     const style = StyleSheet.create({
         container: {
