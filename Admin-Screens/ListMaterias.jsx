@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { collection, onSnapshot, getFirestore } from 'firebase/firestore';
 import appFirebase from '../firebase';
@@ -79,6 +79,10 @@ export default function ListMaterias() {
             textAlign: 'center',
             color: 'white',
             fontFamily: 'sans-serif'
+        },
+        scrollView: {
+            height: 300,
+            overflowY: 'auto'
         }
     });
 
@@ -91,7 +95,7 @@ export default function ListMaterias() {
             <View style={style.container}>
                 <View style={style.form}>
                     <Text style={style.modificarmateria}>LISTAS DE MATERIAS</Text>
-                    <View>
+                    <ScrollView style={style.scrollView}>
                         {materias.map((materia) => (
                             <ListItem key={materia.id} bottomDivider >
                                 <ListItem.Chevron />
@@ -101,7 +105,7 @@ export default function ListMaterias() {
                                 </ListItem.Content>
                             </ListItem>
                         ))}
-                    </View>
+                    </ScrollView>
                 </View>
                 <View style={style.containerButton}>
                     <TouchableOpacity
