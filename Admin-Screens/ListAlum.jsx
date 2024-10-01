@@ -3,11 +3,16 @@ import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { collection, onSnapshot, getFirestore } from 'firebase/firestore';
 import appFirebase from '../firebase';
-
+import { TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 const BD = getFirestore(appFirebase);
 
 export default function ListAlum() {
     const [alumnos, setAlumnos] = useState([]);
+    const navigation = useNavigation();
+    const AgregarMaterias = ()=>{
+        navigation.navigate('AgregarMaterias')
+    };
 
     useEffect(() => {
         const alumnosCollection = collection(BD, 'alumnos');
@@ -61,6 +66,10 @@ export default function ListAlum() {
             fontFamily: 'sans-serif',
             textAlign: 'center',
             marginBottom:5
+        },
+        scrollView: {
+            height: 300,
+            overflowY: 'auto'
         }
     });
 
@@ -73,7 +82,10 @@ export default function ListAlum() {
             <View style={style.container}>
                 <View style={style.form}>
                     <Text style={style.modificarAlumno}>LISTAS DE ALUMNOS</Text>
-                    <View>
+                    <View style={style.scrollView}>
+                        <TouchableOpacity
+                            onPress={AgregarMaterias}
+                        >
                         {alumnos.map((alumno) => (
                             <ListItem key={alumno.id} bottomDivider>
                                 <ListItem.Chevron />
@@ -83,6 +95,7 @@ export default function ListAlum() {
                                 </ListItem.Content>
                             </ListItem>
                         ))}
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

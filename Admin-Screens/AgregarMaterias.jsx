@@ -24,11 +24,11 @@ export default function AgregarMaterias() {
         const month = String(date.getMonth() + 1).padStart(2, '0'); 
         const day = String(date.getDate()).padStart(2, '0');
         return `${day}/${month}/${year}`;
-      }
-      const handleDateChange = (date) => {
+    }
+    const handleDateChange = (date) => {
         setStartDate(date);
         setState({ ...state, fecha: formatDate(date) });
-      };
+    };
     const isDateValid = (date) => {
         return date >= new Date();
     };

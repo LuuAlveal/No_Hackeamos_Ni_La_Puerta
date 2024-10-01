@@ -11,7 +11,7 @@ export default function ListMaterias() {
     const navigation = useNavigation();
     const AgregarMaterias = ()=>{
         navigation.navigate('AgregarMaterias')
-    }
+    };
     useEffect(() => {
         const materiasCollection = collection(BD, 'materias');
         const materias = onSnapshot(materiasCollection, (querySnapshot) => {
