@@ -111,7 +111,7 @@ export default function ListAlum() {
                     <Text style={style.modificarAlumno}>LISTA DE ALUMNOS</Text>
                     <View style={style.scrollView}>
                         {alumnos.map((alumno) => (
-                            <View>
+                            <View style={style.alumnoContainer}>
                                 <ListItem bottomDivider key={alumno.id}
                                     onPress={() =>
                                         navigation.navigate('ModificarAlumno', {
