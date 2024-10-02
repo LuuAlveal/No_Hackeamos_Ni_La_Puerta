@@ -15,14 +15,17 @@ export default function ListAlum() {
         const Alumnos = onSnapshot(alumnosCollection, (querySnapshot) => {
             const alumnos = [];
             querySnapshot.forEach((doc) => {
-                const { nombre, apellido, dni, year } = doc.data();
-                alumnos.push({
-                    id: doc.id,
-                    nombre,
-                    apellido,
-                    dni,
-                    year
-                });
+                const { nombre, apellido, dni, year, rol } = doc.data();
+                if (rol === '2') { // Solo carga los alumnos con rol 2
+                    alumnos.push({
+                        id: doc.id,
+                        nombre,
+                        apellido,
+                        dni,
+                        year,
+                        rol
+                    });
+                }
             });
             setAlumnos(alumnos);
         });
