@@ -82,7 +82,7 @@ export default function ListAlum() {
         >
             <View style={style.container}>
                 <View style={style.form}>
-                    <Text style={style.modificarAlumno}>LISTAS DE ALUMNOS</Text>
+                    <Text style={style.modificarAlumno}>LISTA DE ALUMNOS</Text>
                     <View style={style.scrollView}>
                         <TouchableOpacity
                             onPress={ModificarAlumno}

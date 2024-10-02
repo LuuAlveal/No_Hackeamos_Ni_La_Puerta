@@ -219,7 +219,7 @@ export default function MyStack() {
       />
             <Stack.Screen
         name="ModificarAlumno"
-        component={ListMaterias}
+        component={ModificarAlumno}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',

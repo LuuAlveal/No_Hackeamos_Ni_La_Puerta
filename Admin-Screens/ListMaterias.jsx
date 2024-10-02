@@ -94,7 +94,7 @@ export default function ListMaterias() {
         >
             <View style={style.container}>
                 <View style={style.form}>
-                    <Text style={style.modificarmateria}>LISTAS DE MATERIAS</Text>
+                    <Text style={style.modificarmateria}>LISTA DE MATERIAS</Text>
                     <ScrollView style={style.scrollView}>
                         {materias.map((materia) => (
                             <ListItem key={materia.id} bottomDivider >

@@ -151,6 +151,25 @@ export default function AgregarMaterias() {
                 <View style={style.form}>
                     <Text style={style.agregarMateria}>Agregar Materia</Text>
 
+                    <Text style={{ fontSize: 15 }}>Año</Text>
+                    <View style={style.cajaIng}>
+                    <Picker
+                        selectedValue={selectedYear}
+                        onValueChange={(itemValue, itemIndex) =>
+                            setSelectedYear(itemValue)
+                        }
+                        style={{ paddingHorizontal: 15, borderColor: 'white'}}
+                    >
+                        <Picker.Item label="Seleccione el año de la materia" value="default" />
+                        <Picker.Item label="1° año" value="1°" />
+                        <Picker.Item label="2° año" value="2°" />
+                        <Picker.Item label="3° año" value="3°" />
+                        <Picker.Item label="4° año" value="4°" />
+                        <Picker.Item label="5° año" value="5°" />
+                        <Picker.Item label="6° año" value="6°" />
+                    </Picker>
+                    </View>
+
                     <Text style={{ fontSize: 15 }}>Nombre</Text>
                     <View style={style.cajaIng}>
                     <Picker
@@ -188,25 +207,6 @@ export default function AgregarMaterias() {
                             filterDate={isDateValid}
                             style={{ paddingHorizontal: 15, borderWidth: 0}}
                         />
-
-                    <Text style={{ fontSize: 15 }}>Año</Text>
-                    <View style={style.cajaIng}>
-                    <Picker
-                        selectedValue={selectedYear}
-                        onValueChange={(itemValue, itemIndex) =>
-                            setSelectedYear(itemValue)
-                        }
-                        style={{ paddingHorizontal: 15, borderColor: 'white'}}
-                    >
-                        <Picker.Item label="Seleccione el año de la materia" value="default" />
-                        <Picker.Item label="1° año" value="1°" />
-                        <Picker.Item label="2° año" value="2°" />
-                        <Picker.Item label="3° año" value="3°" />
-                        <Picker.Item label="4° año" value="4°" />
-                        <Picker.Item label="5° año" value="5°" />
-                        <Picker.Item label="6° año" value="6°" />
-                    </Picker>
-                    </View>
 
                     <View style={style.containerButton}>
                         <TouchableOpacity
