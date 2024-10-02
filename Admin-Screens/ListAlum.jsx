@@ -3,24 +3,19 @@ import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { collection, onSnapshot, getFirestore } from 'firebase/firestore';
 import appFirebase from '../firebase';
-import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import ModificarAlumno from './ModificarAlumno';
 const BD = getFirestore(appFirebase);
-
 export default function ListAlum() {
     const [alumnos, setAlumnos] = useState([]);
     const navigation = useNavigation();
-    const ModificarAlumno = ()=>{
-        navigation.navigate('ModificarAlumno')
-    };
+
 
     useEffect(() => {
         const alumnosCollection = collection(BD, 'alumnos');
         const Alumnos = onSnapshot(alumnosCollection, (querySnapshot) => {
             const alumnos = [];
             querySnapshot.forEach((doc) => {
-                const { nombre, apellido, dni,year } = doc.data();
+                const { nombre, apellido, dni, year } = doc.data();
                 alumnos.push({
                     id: doc.id,
                     nombre,
@@ -66,7 +61,7 @@ export default function ListAlum() {
             fontSize: 20,
             fontFamily: 'sans-serif',
             textAlign: 'center',
-            marginBottom:5
+            marginBottom: 5
         },
         scrollView: {
             height: 300,
@@ -84,11 +79,14 @@ export default function ListAlum() {
                 <View style={style.form}>
                     <Text style={style.modificarAlumno}>LISTA DE ALUMNOS</Text>
                     <View style={style.scrollView}>
-                        <TouchableOpacity
-                            onPress={ModificarAlumno}
-                        >
                         {alumnos.map((alumno) => (
-                            <ListItem key={alumno.id} bottomDivider>
+                            <ListItem key={alumno.id} bottomDivider
+                                onPress={() =>
+                                    navigation.navigate('ModificarAlumno', {
+                                        idAlumno: alumno.id
+                                    })
+                                }
+                            >
                                 <ListItem.Chevron />
                                 <ListItem.Content>
                                     <ListItem.Title>{alumno.nombre} {alumno.apellido} - Año {alumno.year}</ListItem.Title>
@@ -96,7 +94,6 @@ export default function ListAlum() {
                                 </ListItem.Content>
                             </ListItem>
                         ))}
-                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

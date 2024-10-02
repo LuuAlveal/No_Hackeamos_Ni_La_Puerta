@@ -35,6 +35,8 @@ export default function MyStack() {
 
   return (
     <Stack.Navigator>
+      {/*
+
       <Stack.Screen
         name="Login"
         component={Login}
@@ -169,6 +171,7 @@ export default function MyStack() {
           }
         }}
       />
+            */}
       <Stack.Screen
         name="Admin"
         component={Admin}

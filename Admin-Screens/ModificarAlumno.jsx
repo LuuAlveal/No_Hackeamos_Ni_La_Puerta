@@ -1,71 +1,28 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity} from 'react-native';
-import { getFirestore,addDoc, collection   } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react'; 
+import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
+import { doc, getDoc, getFirestore } from 'firebase/firestore'; 
 import appFirebase from '../firebase';
-import { Picker } from '@react-native-picker/picker';
-import { useNavigation } from '@react-navigation/native';
-import Swal from 'sweetalert2';
+
 const BD = getFirestore(appFirebase);
 
-export default function ModificarAlumno() {
-    const navigation = useNavigation();
-    const [selectedName, setSelectedName] = useState("default");
-    const [selectedYear, setSelectedYear] = useState("default");
-    const [state, setState] = useState({
-        nombre: "",
-        profesor: "",
-        fecha: new Date()
-    })
-    const handleChangeText = (name, value) => {
-        setState({ ...state, [name]: value })
-    };
-    const handleCreateMateria = async () => {
-        if (selectedName === 'default') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese el nombre de la Materia',
-                icon: 'warning'
-            })
-        } else if (state.profesor === '') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese el profesor',
-                icon: 'warning'
-            })
-        } else if (state.fecha === '') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese la fecha',
-                icon: 'error'
-            })
-        } else if (selectedYear === 'default') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese su email',
-                icon: 'error'
-            })
-        }
-        else {
-            try {
-                await addDoc(collection(BD, 'alumnos'), {
-                    nombre: selectedName,
-                    profesor: state.profesor,
-                    fecha: state.fecha,
-                    year: selectedYear
-                });
-                Swal.fire({
-                    title: 'Materia Creada Exitosamente',
-                    icon: 'success',
-                    timer: '2000'
-                })
-                navigation.navigate('ListAlum');
-            }
-            catch (error) {
-                console.log(error)
-            };
-        }
+export default function ModificarAlumno(props) {
+    const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '' }); 
 
-    }
+    const getAlumnoById = async (id) => {
+        const alumnoRef = doc(BD, 'alumnos', id);
+        const docSnap = await getDoc(alumnoRef);
+        if (docSnap.exists()) {
+            setAlumno(docSnap.data());
+        }else {
+            console.log("No se encontró el documento del usuario");
+        }
+    };
+
+    useEffect(() => {
+        if (props.route.params.idAlumno) {
+            getAlumnoById(props.route.params.idAlumno);
+        }
+    }, [props.route.params.idAlumno]);
 
     const style = StyleSheet.create({
         container: {
@@ -90,15 +47,13 @@ export default function ModificarAlumno() {
         backgroundImage: {
             flex: 1,
             width: '100%',
-            height: '100vh',
             justifyContent: 'center',
             alignItems: 'center'
         },
         modificarAlumno: {
-            fontSize: 20,
+            fontSize: 18,
             fontFamily: 'sans-serif',
-            textAlign: 'center',
-            marginBottom: 20
+            textAlign: 'center'
         },        
         cajaIng: {
             paddingVertical: 10,
@@ -127,13 +82,45 @@ export default function ModificarAlumno() {
 
     return (
         <ImageBackground
-            source={require('../assets/FondoEpetHome.jpeg')}
+            source={require('../assets/epet20fondo.png')}
             resizeMode={'cover'}
             style={style.backgroundImage}
         >
-            <View style={style.container}>
-                <View style={style.form}>
-                    <Text style={style.modificarAlumno}>MODIFICAR ALUMNO</Text>
+            <View style={style.form}>
+                <Text style={style.modificarAlumno}>Modificar Alumno</Text>
+
+                <Text style={{ fontSize: 15 }}>Nombre</Text>
+                <View style={style.cajaIng}>
+                    <TextInput
+                        value={alumno.nombre}
+                        style={{ paddingHorizontal: 15, outline: 0 }}
+                        onChangeText={(value) => setAlumno({ ...alumno, nombre: value })}
+                    />
+                </View>
+
+                <Text style={{ fontSize: 15 }}>Apellido</Text>
+                <View style={style.cajaIng}>
+                    <TextInput
+                        value={alumno.apellido}
+                        style={{ paddingHorizontal: 15, outline: 0 }}
+                        onChangeText={(value) => setAlumno({ ...alumno, apellido: value })}
+                    />
+                </View>
+
+                <Text style={{ fontSize: 15 }}>DNI</Text>
+                <View style={style.cajaIng}>
+                    <TextInput
+                        value={alumno.dni}
+                        style={{ paddingHorizontal: 15, outline: 0 }}
+                        maxLength={8}
+                        onChangeText={(value) => setAlumno({ ...alumno, dni: value })}
+                    />
+                </View>
+                
+                <View style={style.containerButton}>
+                    <TouchableOpacity style={style.button}>
+                        <Text style={style.textButton}>Modificar</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </ImageBackground>

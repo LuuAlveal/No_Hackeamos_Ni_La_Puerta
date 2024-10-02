@@ -182,13 +182,13 @@ export default function AgregarMaterias() {
                 text: `No hay materias disponibles para ${selectedYear} año.`,
                 icon: 'info',
             });
-            return; // Prevent further processing if no subjects available
+            return; 
         }
         try {
             await addDoc(collection(BD, 'materias'), {
                 nombre: selectedName,
                 profesor: state.profesor,
-                fecha: state.fecha.toString(), // Convert date to string for storage
+                fecha: state.fecha.toString(), 
                 year: selectedYear,
             });
             Swal.fire({
