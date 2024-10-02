@@ -8,6 +8,101 @@ import Swal from 'sweetalert2';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 const BD = getFirestore(appFirebase);
+const materiasPorAño = {
+    '1°': [
+        { label: 'Biología', value: 'Biología' },
+        { label: 'Construccion de la Ciudadanía', value: 'Construccion de la Ciudadanía' },
+        { label: 'Dibujo Técnico I', value: 'Dibujo Técnico I' },
+        { label: 'Educación Física', value: 'Educación Física' },
+        { label: 'ESI I', value: 'ESI I' },
+        { label: 'Filosofía I', value: 'Filosofía I' },
+        { label: 'Fisicoquímica', value: 'Fisicoquímica' },
+        { label: 'Geografía I', value: 'Geografía I' },
+        { label: 'Historia I', value: 'Historia I' },
+        { label: 'Informatica I', value: 'Informatica I' },
+        { label: 'Ingles I', value: 'Ingles I' },
+        { label: 'Lengua I', value: 'Lengua I' },
+        { label: 'Literatura I', value: 'Literatura I' },
+        { label: 'Matemática I', value: 'Matemática I' },
+        { label: 'Música', value: 'Música' },
+        { label: 'Taller', value: 'Taller' },
+        { label: 'Teatro', value: 'Teatro' }
+    ],
+    '2°': [
+        { label: 'Biología e Higiene', value: 'Biología e Higiene' },
+        { label: 'Dibujo Técnico II', value: 'Dibujo Técnico II' },
+        { label: 'Economía II', value: 'Economía II' },
+        { label: 'Educación Cívica', value: 'Educación Cívica' },
+        { label: 'Educación Física', value: 'Educación Física' },
+        { label: 'ESI II', value: 'ESI II' },
+        { label: 'Filosofía II', value: 'Filosofía II' },
+        { label: 'Física II', value: 'Física II' },
+        { label: 'Geografía II', value: 'Geografía II' },
+        { label: 'Historia II', value: 'Historia II' },
+        { label: 'Informática II', value: 'Informática II' },
+        { label: 'Inglés II', value: 'Inglés II' },
+        { label: 'Lengua II', value: 'Lengua II' },
+        { label: 'Literatura II', value: 'Literatura II' },
+        { label: 'Matemática II', value: 'Matemática II' },
+        { label: 'Taller', value: 'Taller' },
+        { label: 'Teatro II', value: 'Teatro II' }
+    ],
+    '3°': [
+        { label: 'Dibujo Tecnico III', value: 'Dibujo Tecnico III' },
+        { label: 'Educación Cívica II', value: 'Educación Cívica II' },
+        { label: 'Educación Física', value: 'Educación Física' },
+        { label: 'Física III', value: 'Física III' },
+        { label: 'Geografía III', value: 'Geografía III' },
+        { label: 'Historia III', value: 'Historia III' },
+        { label: 'Inglés III', value: 'Inglés III' },
+        { label: 'Lengua y Literatura', value: 'Lengua y Literatura' },
+        { label: 'Matemática III', value: 'Matemática III' },
+        { label: 'Química', value: 'Química' },
+        { label: 'Taller', value: 'Taller' }
+    ],
+    '4°': [
+        { label: 'Análisis Matemático', value: 'Análisis Matemático' },
+        { label: 'Educación Física', value: 'Educación Física' },
+        { label: 'Física IV', value: 'Física IV' },
+        { label: 'Inglés Técnico I', value: 'Inglés Técnico I' },
+        { label: 'Instruccion Civica', value: 'Instruccion Civica' },
+        { label: 'Introducción a la Base de Datos', value: 'Introducción a la Base de Datos' },
+        { label: 'Introducción a la Programación', value: 'Introducción a la Programación' },
+        { label: 'Literatura IV', value: 'Literatura IV' },
+        { label: 'Lógica', value: 'Lógica' },
+        { label: 'Química Aplicada', value: 'Química Aplicada' },
+        { label: 'Taller ', value: 'Taller ' },
+    ],
+    '5°': [
+        { label: 'Ciencia - Tecnologia e Informacion', value: 'Ciencia - Tecnologia e Informacion' },
+        { label: 'Educación Física', value: 'Educación Física' },
+        { label: 'Estadística y Probabilidad', value: 'Estadística y Probabilidad' },
+        { label: 'Inglés Técnico II', value: 'Inglés Técnico II' },
+        { label: 'Organización y Arquitectura I', value: 'Organización y Arquitectura I' },
+        { label: 'Practicas Profesionalizantes', value: 'Practicas Profesionalizantes' }, //PREGUNTAR EL NOMBRE CORRECTO
+        { label: 'Principios de Testing', value: 'Principios de Testing' },
+        { label: 'Programación Web Estática y Laboratorio Web', value: 'Programación Web Estática y Laboratorio Web' },
+        { label: 'Sistemas Operativos I', value: 'Sistemas Operativos I' },
+        { label: 'Taller', value: 'Taller' },
+        { label: 'Técnicas Avanzadas de Programación', value: 'Técnicas Avanzadas de Programación' },
+        { label: 'Tecnología de Redes I', value: 'Tecnología de Redes I' },
+    ],
+    '6°': [
+        { label: 'Computación Gráfica', value: 'Computación Gráfica' },
+        { label: 'Educación Física', value: 'Educación Física' },
+        { label: 'Etica y Deontologia Profesional', value: 'Etica y Deontologia Profesional' },
+        { label: 'Ingles Tecnico III', value: 'Ingles Tecnico III' },
+        { label: 'Introducción a la Automatización y Control', value: 'Introducción a la Automatización y Control' },
+        { label: 'Organización y Arquitectura II', value: 'Organización y Arquitectura II' },
+        { label: 'Programación Web Dinámica', value: 'Programación Web Dinámica' },
+        { label: 'Seguridad Informática', value: 'Seguridad Informática' },
+        { label: 'Sistemas de Gestión de Calidad de Software', value: 'Sistemas de Gestión de Calidad de Software' },
+        { label: 'Sistemas Operativos II', value: 'Sistemas Operativos II' },
+        { label: 'Taller', value: 'Taller' },
+        { label: 'Tecnología de Redes II', value: 'Tecnología de Redes II' }
+    ]
+};
+
 
 export default function AgregarMaterias() {
     const navigation = useNavigation();
@@ -60,8 +155,7 @@ export default function AgregarMaterias() {
                 text: 'Ingrese su email',
                 icon: 'error'
             })
-        }
-        else {
+        }else {
             try {
                 await addDoc(collection(BD, 'materias'), {
                     nombre: selectedName,
@@ -81,7 +175,32 @@ export default function AgregarMaterias() {
             };
         }
 
-    }
+        const subjectOptions = materiasPorAño[selectedYear] || [];
+        if (!subjectOptions.length) {
+            Swal.fire({
+                title: 'Materias no Disponibles',
+                text: `No hay materias disponibles para ${selectedYear} año.`,
+                icon: 'info',
+            });
+            return; // Prevent further processing if no subjects available
+        }
+        try {
+            await addDoc(collection(BD, 'materias'), {
+                nombre: selectedName,
+                profesor: state.profesor,
+                fecha: state.fecha.toString(), // Convert date to string for storage
+                year: selectedYear,
+            });
+            Swal.fire({
+                title: 'Materia Creada Exitosamente',
+                icon: 'success',
+                timer: '2000',
+            });
+            navigation.navigate('ListMaterias');
+        } catch (error) {
+        console.log(error);
+        }
+    };
 
     const style = StyleSheet.create({
         container: {
@@ -155,12 +274,13 @@ export default function AgregarMaterias() {
                     <View style={style.cajaIng}>
                     <Picker
                         selectedValue={selectedYear}
-                        onValueChange={(itemValue, itemIndex) =>
+                        onValueChange={(itemValue, itemIndex) => {
                             setSelectedYear(itemValue)
-                        }
+                            setSelectedName('default')
+                        }}
                         style={{ paddingHorizontal: 15, borderColor: 'white'}}
                     >
-                        <Picker.Item label="Seleccione el año de la materia" value="default" />
+                        <Picker.Item label="Seleccione el año de la materia" value="default"/>
                         <Picker.Item label="1° año" value="1°" />
                         <Picker.Item label="2° año" value="2°" />
                         <Picker.Item label="3° año" value="3°" />
@@ -180,12 +300,9 @@ export default function AgregarMaterias() {
                         style={{ paddingHorizontal: 15, borderColor: 'white'}}
                     >
                         <Picker.Item label="Nombre de la materia" value="default" />
-                        <Picker.Item label="Matematicas I - II - III" value="Matematicas" />
-                        <Picker.Item label="Analisis Matematico" value="Analisis Matematico" />
-                        <Picker.Item label="Educacion Fisica" value="Educacion Fisica" />
-                        <Picker.Item label="Historia I - II - III" value="Historia" />
-                        <Picker.Item label="Geografia I - II" value="Geografia" />
-                        <Picker.Item label="Fisica I - II" value="Fisica" />
+                        {selectedYear !== 'default' && materiasPorAño[selectedYear].map((subject) => (
+                        <Picker.Item key={subject.value} label={subject.label} value={subject.value} />
+                        ))}
                     </Picker>
                     </View>
 
