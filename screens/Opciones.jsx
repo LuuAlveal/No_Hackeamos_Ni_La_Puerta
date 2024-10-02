@@ -24,13 +24,13 @@ export default function Opciones () {
           <Text>Programación Web Estatica</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton}>
-          <Text>Alvarado 😝</Text>
+          <Text>ingles</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton}>
-          <Text>Alejandro Cadera 👴</Text>
+          <Text>automatización y control</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.optionButton}>
-          <Text>Widi </Text>
+          <Text>Sistema de gestion de calidad </Text>
         </TouchableOpacity>
       </View>
      </View>

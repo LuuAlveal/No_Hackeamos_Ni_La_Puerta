@@ -18,22 +18,25 @@ export default function ListAlum() {
     useEffect(() => {
         const alumnosCollection = collection(BD, 'alumnos');
         const Alumnos = onSnapshot(alumnosCollection, (querySnapshot) => {
-            const alumnos = [];
-            querySnapshot.forEach((doc) => {
-                const { nombre, apellido, dni,year } = doc.data();
-                alumnos.push({
-                    id: doc.id,
-                    nombre,
-                    apellido,
-                    dni,
-                    year
-                });
-            });
-            setAlumnos(alumnos);
+          const alumnos = [];
+          querySnapshot.forEach((doc) => {
+            const { nombre, apellido, dni, year, rol } = doc.data();
+            if (rol === '2') { // Solo carga los alumnos con rol 2
+              alumnos.push({
+                id: doc.id,
+                nombre,
+                apellido,
+                dni,
+                year,
+                rol
+              });
+            }
+          });
+          setAlumnos(alumnos);
         });
-
+      
         return () => Alumnos();
-    }, []);
+      }, []);
 
     const style = StyleSheet.create({
         container: {
