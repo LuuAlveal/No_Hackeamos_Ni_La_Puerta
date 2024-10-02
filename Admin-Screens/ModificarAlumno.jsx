@@ -1,28 +1,55 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import { doc, getDoc, getFirestore } from 'firebase/firestore'; 
+import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore'; 
 import appFirebase from '../firebase';
-
+import { Picker } from '@react-native-picker/picker';
+import Swal from 'sweetalert2';
 const BD = getFirestore(appFirebase);
 
 export default function ModificarAlumno(props) {
-    const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '' }); 
-
+    const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '',year:'' });
+    const [selectedYear, setSelectedYear] = useState("default");
+    //Leer el document del alumno
     const getAlumnoById = async (id) => {
         const alumnoRef = doc(BD, 'alumnos', id);
         const docSnap = await getDoc(alumnoRef);
         if (docSnap.exists()) {
             setAlumno(docSnap.data());
-        }else {
+            setSelectedYear(docSnap.data().year);
+        } else {
             console.log("No se encontró el documento del usuario");
         }
     };
 
+    //Recuperar el Id del alumno
     useEffect(() => {
         if (props.route.params.idAlumno) {
             getAlumnoById(props.route.params.idAlumno);
         }
     }, [props.route.params.idAlumno]);
+
+    //Act. Alumno funcion
+    const ActAlum = async () => {
+        const alumnoRef = doc(BD, 'alumnos', props.route.params.idAlumno);
+        try {
+            await updateDoc(alumnoRef, {
+                nombre: alumno.nombre,
+                apellido: alumno.apellido,
+                dni: alumno.dni,
+                year: selectedYear
+            });
+            Swal.fire({
+                title: 'Alumno actualizado exitosamente',
+                icon: 'success'
+            })
+        } catch (error) {
+            Swal.fire({
+                error: 'Error',
+                title:'Alumno actualizado exitosamente',
+                icon: 'success'
+            })
+        }
+    };
 
     const style = StyleSheet.create({
         container: {
@@ -54,24 +81,27 @@ export default function ModificarAlumno(props) {
             fontSize: 18,
             fontFamily: 'sans-serif',
             textAlign: 'center'
-        },        
+        },
         cajaIng: {
             paddingVertical: 10,
             backgroundColor: 'white',
             borderRadius: 30,
             marginBottom: 10,
             marginTop: 2,
-            borderColor: 'white'
+            borderColor: 'white',
         },
         containerButton: {
-            alignItems: 'center'
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            width: '100%'
         },
         button: {
             backgroundColor: '#4F76AC',
             borderRadius: 30,
             paddingVertical: 10,
             marginTop: 20,
-            width: 150
+            width: 150,
+            marginHorizontal: 10
         },
         textButton: {
             textAlign: 'center',
@@ -116,10 +146,31 @@ export default function ModificarAlumno(props) {
                         onChangeText={(value) => setAlumno({ ...alumno, dni: value })}
                     />
                 </View>
-                
+
+                <Text style={{ fontSize: 15 }}>Año</Text>
+                <Picker
+                    selectedValue={selectedYear}
+                    onValueChange={(itemValue, itemIndex) =>
+                        setSelectedYear(itemValue)
+                    }
+                    style={style.cajaIng}
+                >
+                    <Picker.Item label="Seleccione su año" value="default" />
+                    <Picker.Item label="1° año" value="1°" />
+                    <Picker.Item label="2° año" value="2°" />
+                    <Picker.Item label="3° año" value="3°" />
+                    <Picker.Item label="4° año" value="4°" />
+                    <Picker.Item label="5° año" value="5°" />
+                    <Picker.Item label="6° año" value="6°" />
+                    <Picker.Item label="Egresado" value="Egresado" />
+                </Picker>
+
                 <View style={style.containerButton}>
-                    <TouchableOpacity style={style.button}>
+                    <TouchableOpacity style={style.button} onPress={ActAlum}>
                         <Text style={style.textButton}>Modificar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={style.button}>
+                        <Text style={style.textButton}>Asignar Materia</Text>
                     </TouchableOpacity>
                 </View>
             </View>
