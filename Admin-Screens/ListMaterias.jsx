@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { collection, onSnapshot, getFirestore } from 'firebase/firestore';
+import { collection, onSnapshot, getFirestore, doc, deleteDoc } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const BD = getFirestore(appFirebase);
 
 export default function ListMaterias() {
@@ -31,6 +32,12 @@ export default function ListMaterias() {
 
         return () => materias();
     }, []);
+
+    const eliminarMateria = async (id) => {
+        const materiaRef = doc(BD, 'materias', id);
+        await deleteDoc(materiaRef);
+        setmaterias(materias.filter((materia) => materia.id !== id));
+    };
 
     const style = StyleSheet.create({
         container: {
@@ -83,41 +90,67 @@ export default function ListMaterias() {
         scrollView: {
             height: 300,
             overflowY: 'auto'
+        },
+        alumnoContainer: {
+            width: '100%',
+            position: 'relative'
+        },
+        basura: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: [{ translateX: -12 }, { translateY: -12 }],
+            width: 24,
+            height: 24
         }
     });
 
-    return (
-        <ImageBackground
-            source={require('../assets/FondoEpetHome.jpeg')}
-            resizeMode={'cover'}
-            style={style.backgroundImage}
-        >
-            <View style={style.container}>
-                <View style={style.form}>
-                    <Text style={style.modificarmateria}>LISTA DE MATERIAS</Text>
-                    <ScrollView style={style.scrollView}>
-                        {materias.map((materia) => (
-                            <ListItem key={materia.id} bottomDivider >
-                                <ListItem.Chevron />
-                                <ListItem.Content>
-                                    <ListItem.Title>{materia.nombre} {materia.fecha} - Año {materia.year}</ListItem.Title>
-                                    <ListItem.Subtitle>{materia.profesor}</ListItem.Subtitle>
-                                </ListItem.Content>
-                            </ListItem>
-                        ))}
-                    </ScrollView>
-                </View>
-                <View style={style.containerButton}>
-                    <TouchableOpacity
-                        style={style.button}
-                        onPress={AgregarMaterias}
-                    >
-                        <Text style={style.textButton}>
-                            Agregar Materia
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+   
+return (
+    <ImageBackground
+    source={require('../assets/FondoEpetHome.jpeg')}
+    resizeMode={'cover'}
+    style={style.backgroundImage}
+>
+    <View style={style.container}>
+        <View style={style.form}>
+            <Text style={style.modificarmateria}>LISTA DE MATERIAS</Text>
+            <View style={style.scrollView}>
+                {materias.map((materia) => (
+                    <View style={style.alumnoContainer}>
+                        <ListItem bottomDivider key={materia.id}
+                            onPress={() =>
+                                navigation.navigate('ModificarMateria', {
+                                    idMateria: materia.id
+                                })
+                            }
+                        >
+                            <ListItem.Chevron />
+                            <ListItem.Content>
+                                <ListItem.Title>{materia.nombre} {materia.fecha} - Año {materia.year}</ListItem.Title>
+                                <ListItem.Subtitle>{materia.profesor}</ListItem.Subtitle>
+                            </ListItem.Content>
+                            <TouchableOpacity
+                                onPress={() => eliminarMateria(materia.id)}
+                            >
+                                <Icon name="trash" size={24} color="#FF0000" style={style.basura} />
+                            </TouchableOpacity>
+                        </ListItem>
+                    </View>
+                ))}
             </View>
-        </ImageBackground>
-    );
+        </View>
+        <View style={style.containerButton}>
+            <TouchableOpacity
+                style={style.button}
+                onPress={AgregarMaterias}
+                >
+                    <Text style={style.textButton}>
+                        Agregar Materia
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    </ImageBackground>
+);
 }
