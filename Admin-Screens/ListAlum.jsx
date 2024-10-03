@@ -108,8 +108,8 @@ export default function ListAlum() {
                     <Text style={style.modificarAlumno}>LISTA DE ALUMNOS</Text>
                     <View style={style.scrollView}>
                         {alumnos.map((alumno) => (
-                            <View style={style.alumnoContainer}>
-                                <ListItem bottomDivider key={alumno.id}
+                            <View style={style.alumnoContainer} key={alumno.id}>
+                                <ListItem bottomDivider 
                                     onPress={() =>
                                         navigation.navigate('ModificarAlumno', {
                                             idAlumno: alumno.id

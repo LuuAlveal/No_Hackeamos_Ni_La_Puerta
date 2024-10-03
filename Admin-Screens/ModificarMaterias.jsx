@@ -133,7 +133,7 @@ export default function ModificarMaterias(props) {
                     <TextInput
                         value={materias.profesor}
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setmaterias({ ...materias, apellido: value })}
+                        onChangeText={(value) => setmaterias({ ...materias, profesor: value })}
                     />
                 </View>
 

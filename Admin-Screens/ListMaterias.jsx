@@ -117,11 +117,11 @@ return (
             <Text style={style.modificarmateria}>LISTA DE MATERIAS</Text>
             <View style={style.scrollView}>
                 {materias.map((materia) => (
-                    <View style={style.alumnoContainer}>
-                        <ListItem bottomDivider key={materia.id}
+                    <View style={style.alumnoContainer} key={materia.id}>
+                        <ListItem bottomDivider 
                             onPress={() =>
-                                navigation.navigate('ModificarMateria', {
-                                    idMateria: materia.id
+                                navigation.navigate('ModificarMaterias', {
+                                    idmaterias: materia.id
                                 })
                             }
                         >
