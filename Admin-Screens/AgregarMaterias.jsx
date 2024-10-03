@@ -12,6 +12,7 @@ const BD = getFirestore(appFirebase);
 export default function AgregarMaterias() {
     const navigation = useNavigation();
     const [selectedName, setSelectedName] = useState("default");
+    const [selectedProfesor, setSelectedProfesor] = useState("default");
     const [selectedYear, setSelectedYear] = useState("default");
     const [state, setState] = useState({
         nombre: "",
@@ -113,6 +114,34 @@ export default function AgregarMaterias() {
             { label: 'Tecnología de Redes II', value: 'Tecnología de Redes II' }
         ]
     };
+    const profesorPorMateria = {
+        'Biología' : [
+            { label: 'Liliana Aquito', value: 'Liliana Aquito' },
+            { label: 'Mariana Navoni', value: 'Mariana Navoni' }
+        ],
+        'Construccion de la Ciudadanía' : [
+            { label: 'Nazareno Miles', value: 'Nazareno Miles' },
+            { label: 'Rodriguez Barozi', value: 'Rodriguez Barozi' }
+        ],
+        'Dibujo Técnico I' : [
+            { label: 'Leonardo Solalinde', value: 'Leonardo Solalinde' },
+            { label: 'Romina Maldonado', value: 'Romina Maldonado' },
+            { label: 'Rocio Infante', value: 'Rocio Infante' }
+        ],
+        'Educacion Fisica' : [
+            { label: 'Jorge Cardenas', value: 'Jorge Cardenas' },
+            { label: 'Graciana Franzoni', value: 'Graciana Franzoni' },
+            { label: 'Alejandra Prado', value: 'Alejandra Prado' }
+        ],
+        'ESI I' : [
+            { label: 'Sabrina Olmedo', value: 'Sabrina Olmedo' },
+            { label: 'Erika Cuello', value: 'Erika Cuello' }
+        ],
+        'Filosofía I' : [
+            { label: 'Maria Nidia Heit', value: 'Maria Nidia Heit' },
+            { label: 'Jessica Miranda', value: 'Jessica Miranda' }
+        ] 
+    };
     const formatDate = (date) => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0'); 
@@ -134,7 +163,7 @@ export default function AgregarMaterias() {
         try {
             await addDoc(collection(BD, 'materias'), {
                 nombre: selectedName,
-                profesor: state.profesor,
+                profesor: selectedProfesor,
                 fecha: state.fecha.toString(), 
                 year: selectedYear,
             });
@@ -161,7 +190,7 @@ export default function AgregarMaterias() {
                 text: 'Ingrese el nombre de la Materia',
                 icon: 'warning'
             })
-        }else if (state.profesor === '') {
+        }else if (selectedProfesor === '') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el profesor',
@@ -177,7 +206,7 @@ export default function AgregarMaterias() {
             try {
                 await addDoc(collection(BD, 'materias'), {
                     nombre: selectedName,
-                    profesor: state.profesor,
+                    profesor: selectedProfesor,
                     fecha: state.fecha,
                     year: selectedYear
                 });
@@ -285,9 +314,10 @@ export default function AgregarMaterias() {
                     <View style={style.cajaIng}>
                     <Picker
                         selectedValue={selectedName}
-                        onValueChange={(itemValue, itemIndex) =>
+                        onValueChange={(itemValue, itemIndex) => {
                             setSelectedName(itemValue)
-                        }
+                            setSelectedProfesor('default')
+                        }}
                         style={{ paddingHorizontal: 15, borderColor: 'white'}}
                     >
                         <Picker.Item label="Nombre de la materia" value="default" />
@@ -299,11 +329,18 @@ export default function AgregarMaterias() {
 
                     <Text style={{ fontSize: 15 }}>Profesor</Text>
                     <View style={style.cajaIng}>
-                        <TextInput
-                            placeholder='Profesor de la materia'
-                            style={{ paddingHorizontal: 15, outline: 0 }}
-                            onChangeText={(value) => handleChangeText('profesor', value)}
-                        />
+                    <Picker
+                        selectedValue={selectedProfesor}
+                        onValueChange={(itemValue, itemIndex) =>
+                            setSelectedProfesor(itemValue)
+                        }
+                        style={{ paddingHorizontal: 15, borderColor: 'white'}}
+                    >
+                        <Picker.Item label="Nombre de la materia" value="default" />
+                        {selectedName !== 'default' && profesorPorMateria[selectedName].map((subject) => (
+                        <Picker.Item key={subject.value} label={subject.label} value={subject.value} />
+                        ))}
+                    </Picker>
                     </View>
 
                     <Text style={{ fontSize: 15 }}>Fecha</Text>
