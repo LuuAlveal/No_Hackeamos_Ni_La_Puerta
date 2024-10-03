@@ -198,8 +198,11 @@ export default function AgregarMaterias() {
         return `${day}/${month}/${year}`;
     };
     const handleDateChange = (date) => {
-        setStartDate(date);
-        setState({ ...state, fecha: formatDate(date) });
+        const isWeekday = date.getDay() >= 1 && date.getDay() <= 5;
+        if (isWeekday) {
+            setStartDate(date);
+            setState({ ...state, fecha: formatDate(date) });
+        }
     };
     const isDateValid = (date) => {
         return date >= new Date();
