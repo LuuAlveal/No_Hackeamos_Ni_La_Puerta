@@ -105,13 +105,12 @@ export default function ListMaterias() {
         }
     });
 
-   
 return (
     <ImageBackground
     source={require('../assets/FondoEpetHome.jpeg')}
     resizeMode={'cover'}
     style={style.backgroundImage}
->
+    >
     <View style={style.container}>
         <View style={style.form}>
             <Text style={style.modificarmateria}>LISTA DE MATERIAS</Text>

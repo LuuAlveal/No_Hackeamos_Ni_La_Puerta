@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity, FlatList} from 'react-native';
 import { getFirestore,addDoc, collection   } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { Picker } from '@react-native-picker/picker';
@@ -19,12 +19,6 @@ export default function AgregarMaterias() {
         fecha: new Date()
     })
     const [startDate, setStartDate] = useState(new Date());
-    const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); 
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${day}/${month}/${year}`;
-    }
     const materiasPorAño = {
         '1°': [
             { label: 'Biología', value: 'Biología' },
@@ -118,6 +112,12 @@ export default function AgregarMaterias() {
             { label: 'Taller', value: 'Taller' },
             { label: 'Tecnología de Redes II', value: 'Tecnología de Redes II' }
         ]
+    };
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${day}/${month}/${year}`;
     };
     const handleDateChange = (date) => {
         setStartDate(date);
