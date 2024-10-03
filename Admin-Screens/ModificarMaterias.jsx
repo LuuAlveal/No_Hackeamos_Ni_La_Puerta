@@ -6,46 +6,45 @@ import { Picker } from '@react-native-picker/picker';
 import Swal from 'sweetalert2';
 const BD = getFirestore(appFirebase);
 
-export default function ModificarAlumno(props) {
-    const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '',year:'' });
+export default function ModificarMaterias(props) {
+    const [materias, setmaterias] = useState({ nombre: '', profesor: '',year:'' });
     const [selectedYear, setSelectedYear] = useState("default");
-    //Leer el document del alumno
-    const getAlumnoById = async (id) => {
-        const alumnoRef = doc(BD, 'alumnos', id);
-        const docSnap = await getDoc(alumnoRef);
+    //Leer el document de la materia
+    const getmateriasById = async (id) => {
+        const materiasRef = doc(BD, 'materias', id);
+        const docSnap = await getDoc(materiasRef);
         if (docSnap.exists()) {
-            setAlumno(docSnap.data());
+            setmaterias(docSnap.data());
             setSelectedYear(docSnap.data().year);
         } else {
             console.log("No se encontró el documento del usuario");
         }
     };
 
-    //Recuperar el Id del alumno
+    //Recuperar el Id de la materia
     useEffect(() => {
-        if (props.route.params.idAlumno) {
-            getAlumnoById(props.route.params.idAlumno);
+        if (props.route.params.idmaterias) {
+            getmateriasById(props.route.params.idmaterias);
         }
-    }, [props.route.params.idAlumno]);
+    }, [props.route.params.idmaterias]);
 
-    //Act. Alumno funcion
-    const ActAlum = async () => {
-        const alumnoRef = doc(BD, 'alumnos', props.route.params.idAlumno);
+    //Act. Materia funcion
+    const ActMateria = async () => {
+        const materiasRef = doc(BD, 'materias', props.route.params.idmaterias);
         try {
-            await updateDoc(alumnoRef, {
-                nombre: alumno.nombre,
-                apellido: alumno.apellido,
-                dni: alumno.dni,
+            await updateDoc(materiasRef, {
+                nombre: materias.nombre,
+                profesor: materias.profesor,
                 year: selectedYear
             });
             Swal.fire({
-                title: 'Alumno actualizado exitosamente',
+                title: 'Materia actualizado exitosamente',
                 icon: 'success'
             })
         } catch (error) {
             Swal.fire({
                 error: 'Error',
-                title:'No se pudo modificar el alumno',
+                title:'No se pudo modificar la materia',
                 icon: 'error'
             })
             console.log(error)
@@ -78,7 +77,7 @@ export default function ModificarAlumno(props) {
             justifyContent: 'center',
             alignItems: 'center'
         },
-        modificarAlumno: {
+        modificarmaterias: {
             fontSize: 18,
             fontFamily: 'sans-serif',
             textAlign: 'center'
@@ -118,33 +117,23 @@ export default function ModificarAlumno(props) {
             style={style.backgroundImage}
         >
             <View style={style.form}>
-                <Text style={style.modificarAlumno}>Modificar Alumno</Text>
+                <Text style={style.modificarmaterias}>Modificar materias</Text>
 
                 <Text style={{ fontSize: 15 }}>Nombre</Text>
                 <View style={style.cajaIng}>
                     <TextInput
-                        value={alumno.nombre}
+                        value={materias.nombre}
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setAlumno({ ...alumno, nombre: value })}
+                        onChangeText={(value) => setmaterias({ ...materias, nombre: value })}
                     />
                 </View>
 
-                <Text style={{ fontSize: 15 }}>Apellido</Text>
+                <Text style={{ fontSize: 15 }}>Profesor</Text>
                 <View style={style.cajaIng}>
                     <TextInput
-                        value={alumno.apellido}
+                        value={materias.profesor}
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setAlumno({ ...alumno, apellido: value })}
-                    />
-                </View>
-
-                <Text style={{ fontSize: 15 }}>DNI</Text>
-                <View style={style.cajaIng}>
-                    <TextInput
-                        value={alumno.dni}
-                        style={{ paddingHorizontal: 15, outline: 0 }}
-                        maxLength={8}
-                        onChangeText={(value) => setAlumno({ ...alumno, dni: value })}
+                        onChangeText={(value) => setmaterias({ ...materias, apellido: value })}
                     />
                 </View>
 
@@ -163,15 +152,11 @@ export default function ModificarAlumno(props) {
                     <Picker.Item label="4° año" value="4°" />
                     <Picker.Item label="5° año" value="5°" />
                     <Picker.Item label="6° año" value="6°" />
-                    <Picker.Item label="Egresado" value="Egresado" />
                 </Picker>
 
                 <View style={style.containerButton}>
-                    <TouchableOpacity style={style.button} onPress={ActAlum}>
+                    <TouchableOpacity style={style.button} onPress={ActMateria}>
                         <Text style={style.textButton}>Modificar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={style.button}>
-                        <Text style={style.textButton}>Asignar Materia</Text>
                     </TouchableOpacity>
                 </View>
             </View>

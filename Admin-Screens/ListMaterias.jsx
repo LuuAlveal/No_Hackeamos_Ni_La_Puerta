@@ -9,7 +9,7 @@ const BD = getFirestore(appFirebase);
 export default function ListMaterias() {
     const [materias, setmaterias] = useState([]);
     const navigation = useNavigation();
-    const AgregarMaterias = ()=>{
+    const AgregarMaterias = () => {
         navigation.navigate('AgregarMaterias')
     };
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function ListMaterias() {
         const materias = onSnapshot(materiasCollection, (querySnapshot) => {
             const materias = [];
             querySnapshot.forEach((doc) => {
-                const { nombre, profesor, fecha,year } = doc.data();
+                const { nombre, profesor, fecha, year } = doc.data();
                 materias.push({
                     id: doc.id,
                     nombre,
@@ -63,7 +63,7 @@ export default function ListMaterias() {
             fontSize: 20,
             fontFamily: 'sans-serif',
             textAlign: 'center',
-            marginBottom:5
+            marginBottom: 5
         },
         containerButton: {
             alignItems: 'center'
@@ -97,7 +97,11 @@ export default function ListMaterias() {
                     <Text style={style.modificarmateria}>LISTA DE MATERIAS</Text>
                     <ScrollView style={style.scrollView}>
                         {materias.map((materia) => (
-                            <ListItem key={materia.id} bottomDivider >
+                            <ListItem key={materia.id} bottomDivider onPress={() =>
+                                navigation.navigate('ModificarMaterias', {
+                                    idmaterias: materia.id
+                                })
+                            } >
                                 <ListItem.Chevron />
                                 <ListItem.Content>
                                     <ListItem.Title>{materia.nombre} {materia.fecha} - Año {materia.year}</ListItem.Title>

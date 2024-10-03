@@ -12,9 +12,6 @@ const BD = getFirestore(appFirebase);
 export default function ListAlum() {
     const [alumnos, setAlumnos] = useState([]);
     const navigation = useNavigation();
-    const ModificarAlumno = () => {
-        navigation.navigate('ModificarAlumno')
-    };
 
     useEffect(() => {
         const alumnosCollection = collection(BD, 'alumnos');
