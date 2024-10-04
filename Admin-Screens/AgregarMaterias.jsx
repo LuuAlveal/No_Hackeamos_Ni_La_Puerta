@@ -128,7 +128,7 @@ export default function AgregarMaterias() {
             { label: 'Romina Maldonado', value: 'Romina Maldonado' },
             { label: 'Rocio Infante', value: 'Rocio Infante' }
         ],
-        'Educacion Fisica' : [
+        'Educación Física' : [
             { label: 'Jorge Cardenas', value: 'Jorge Cardenas' },
             { label: 'Graciana Franzoni', value: 'Graciana Franzoni' },
             { label: 'Alejandra Prado', value: 'Alejandra Prado' }
@@ -140,6 +140,55 @@ export default function AgregarMaterias() {
         'Filosofía I' : [
             { label: 'Maria Nidia Heit', value: 'Maria Nidia Heit' },
             { label: 'Jessica Miranda', value: 'Jessica Miranda' }
+        ],
+        'Fisicoquímica' : [
+            { label: 'Carla Parada', value: 'Carla Parada' },
+            { label: 'Juan Jose Romero', value: 'Juan Jose Romero' }
+        ],
+        'Geografía I' : [
+            { label: 'Ludmila Pereira', value: 'Ludmila Pereira' },
+            { label: 'Ludmila Sena', value: 'Ludmila Sena' },
+            { label: 'Lorena Apablaza', value: 'Lorena Apablaza' }
+        ],
+        'Historia I' : [
+            { label: 'Hector Oriz', value: 'Hector Oriz' },
+            { label: 'Lucas Martilano', value: 'Lucas Martilano' }
+        ],
+        'Informatica I' : [
+            { label: 'Daniel Gualda', value: 'Daniel Gualda' },
+            { label: 'Giselle Balboa', value: 'Giselle Balboa' }
+        ],
+        'Ingles I' : [
+            { label: 'Sofia Katz', value: 'Sofia Katz' },
+            { label: 'Florencia Castro', value: 'Florencia Castro' },
+            { label: 'Carolina Salinas', value: 'Carolina Salinas' }
+        ],
+        'Lengua I' : [
+            { label: 'Fabiana Ferreyra', value: 'Fabiana Ferreyra' },
+            { label: 'Florencia Beltran', value: 'Florencia Beltran' },
+            { label: 'Luciana Chazarreta', value: 'Luciana Chazarreta' }
+        ],
+        'Literatura I' : [
+            { label: 'Fabiana Ferreyra', value: 'Fabiana Ferreyra' },
+            { label: 'Florencia Beltran', value: 'Florencia Beltran' },
+            { label: 'Luciana Chazarreta', value: 'Luciana Chazarreta' }
+        ],
+        'Matemática I' : [
+            { label: 'Vanesa Merkel', value: 'Vanesa Merkel' },
+            { label: 'Lilen Garcia Guilbert', value: 'Lilen Garcia Guilbert' },
+            { label: 'Belen Gerez', value: 'Belen Gerez' }
+        ],
+        'Música' : [
+            { label: 'Pablo Barcena', value: 'Pablo Barcena' }
+        ],
+        'Taller' : [
+            { label: '', value: '' },
+            { label: '', value: '' },
+            { label: '', value: '' }
+        ],
+        'Teatro' : [
+            { label: 'Victoria Romero', value: 'Victoria Romero' },
+            { label: 'Daniela Jaime Flores', value: 'Daniela Jaime Flores' }
         ] 
     };
     const formatDate = (date) => {
@@ -149,8 +198,11 @@ export default function AgregarMaterias() {
         return `${day}/${month}/${year}`;
     };
     const handleDateChange = (date) => {
-        setStartDate(date);
-        setState({ ...state, fecha: formatDate(date) });
+        const isWeekday = date.getDay() >= 1 && date.getDay() <= 5;
+        if (isWeekday) {
+            setStartDate(date);
+            setState({ ...state, fecha: formatDate(date) });
+        }
     };
     const isDateValid = (date) => {
         return date >= new Date();
@@ -190,7 +242,7 @@ export default function AgregarMaterias() {
                 text: 'Ingrese el nombre de la Materia',
                 icon: 'warning'
             })
-        }else if (selectedProfesor === '') {
+        }else if (selectedProfesor === 'default') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el profesor',
