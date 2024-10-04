@@ -112,11 +112,25 @@ export default function AsigMatAlum(props) {
     });
 
     return (
+        
         <ImageBackground
             source={require('../assets/epet20fondo.png')}
             resizeMode={'cover'}
             style={style.backgroundImage}
         >
+                <Text style={{ fontSize: 15 }}>Cantidad de materias</Text>
+                <Picker
+                    style={style.cajaIng}
+                >
+                    <Picker.Item label="Seleccione las materias" value="default" />
+                    <Picker.Item label="1" value="1" />
+                    <Picker.Item label="2" value="2" />
+                    <Picker.Item label="3" value="3" />
+                    <Picker.Item label="4" value="4" />
+                    <Picker.Item label="5" value="5" />
+                    <Picker.Item label="6" value="6" />
+                </Picker>
+
             <View style={style.form}>
                 <Text style={style.modificarAlumno}>Asignar MATERIAS</Text>
 
