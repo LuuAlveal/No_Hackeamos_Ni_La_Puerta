@@ -4,13 +4,11 @@ import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { Picker } from '@react-native-picker/picker';
 import Swal from 'sweetalert2';
-import { useNavigation } from '@react-navigation/native';
 const BD = getFirestore(appFirebase);
 
-export default function ModificarAlumno(props) {
-    const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '',year:'' });
+export default function AsigMatAlum(props) {
+ /*   const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '',year:'' });
     const [selectedYear, setSelectedYear] = useState("default");
-    const navigation = useNavigation();
     //Leer el document del alumno
     const getAlumnoById = async (id) => {
         const alumnoRef = doc(BD, 'alumnos', id);
@@ -53,7 +51,7 @@ export default function ModificarAlumno(props) {
             console.log(error)
         }
     };
-
+*/
     const style = StyleSheet.create({
         container: {
             flex: 1,
@@ -120,59 +118,11 @@ export default function ModificarAlumno(props) {
             style={style.backgroundImage}
         >
             <View style={style.form}>
-                <Text style={style.modificarAlumno}>Modificar Alumno</Text>
+                <Text style={style.modificarAlumno}>Asignar MATERIAS</Text>
 
-                <Text style={{ fontSize: 15 }}>Nombre</Text>
-                <View style={style.cajaIng}>
-                    <TextInput
-                        value={alumno.nombre}
-                        style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setAlumno({ ...alumno, nombre: value })}
-                    />
-                </View>
-
-                <Text style={{ fontSize: 15 }}>Apellido</Text>
-                <View style={style.cajaIng}>
-                    <TextInput
-                        value={alumno.apellido}
-                        style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setAlumno({ ...alumno, apellido: value })}
-                    />
-                </View>
-
-                <Text style={{ fontSize: 15 }}>DNI</Text>
-                <View style={style.cajaIng}>
-                    <TextInput
-                        value={alumno.dni}
-                        style={{ paddingHorizontal: 15, outline: 0 }}
-                        maxLength={8}
-                        onChangeText={(value) => setAlumno({ ...alumno, dni: value })}
-                    />
-                </View>
-
-                <Text style={{ fontSize: 15 }}>Año</Text>
-                <Picker
-                    selectedValue={selectedYear}
-                    onValueChange={(itemValue, itemIndex) =>
-                        setSelectedYear(itemValue)
-                    }
-                    style={style.cajaIng}
-                >
-                    <Picker.Item label="Seleccione su año" value="default" />
-                    <Picker.Item label="1° año" value="1°" />
-                    <Picker.Item label="2° año" value="2°" />
-                    <Picker.Item label="3° año" value="3°" />
-                    <Picker.Item label="4° año" value="4°" />
-                    <Picker.Item label="5° año" value="5°" />
-                    <Picker.Item label="6° año" value="6°" />
-                    <Picker.Item label="Egresado" value="Egresado" />
-                </Picker>
-
+        
                 <View style={style.containerButton}>
-                    <TouchableOpacity style={style.button} onPress={ActAlum}>
-                        <Text style={style.textButton}>Modificar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AsigMatAlum')} >
+                    <TouchableOpacity style={style.button}  >
                         <Text style={style.textButton}>Asignar Materia</Text>
                     </TouchableOpacity>
                 </View>
