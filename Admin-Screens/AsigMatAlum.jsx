@@ -118,7 +118,13 @@ export default function AsigMatAlum(props) {
             resizeMode={'cover'}
             style={style.backgroundImage}
         >
-                <Text style={{ fontSize: 15 }}>Cantidad de materias</Text>
+                
+
+            <View style={style.form}>
+                <Text style={style.modificarAlumno}>Asignar MATERIAS</Text>
+                
+                <Text style={{ fontSize: 15 }}>     Cantidad de materias</Text>
+
                 <Picker
                     style={style.cajaIng}
                 >
@@ -131,9 +137,19 @@ export default function AsigMatAlum(props) {
                     <Picker.Item label="6" value="6" />
                 </Picker>
 
-            <View style={style.form}>
-                <Text style={style.modificarAlumno}>Asignar MATERIAS</Text>
-
+                <Text style={{ fontSize: 15 }}>Seleccione las materias que va a rendir</Text>
+                
+                <Picker
+                    style={style.cajaIng}
+                >
+                    <Picker.Item label="valor predeterminado" value="default" />
+                    <Picker.Item label="Matematica" value="Matematica" />
+                    <Picker.Item label="Lengua y literatura" value="Lengua y literatura" />
+                    <Picker.Item label="Civica" value="Civica" />
+                    <Picker.Item label="Historia" value="Historia" />
+                    <Picker.Item label="Fisica" value="Fisica" />
+                    <Picker.Item label="Logica" value="Logica" />
+                </Picker>
         
                 <View style={style.containerButton}>
                     <TouchableOpacity style={style.button}  >
