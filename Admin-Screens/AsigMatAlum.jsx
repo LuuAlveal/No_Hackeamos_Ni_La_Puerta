@@ -132,12 +132,10 @@ export default function AsigMatAlum(props) {
                     <Picker.Item label="1" value="1" />
                     <Picker.Item label="2" value="2" />
                     <Picker.Item label="3" value="3" />
-                    <Picker.Item label="4" value="4" />
-                    <Picker.Item label="5" value="5" />
-                    <Picker.Item label="6" value="6" />
+                    
                 </Picker>
 
-                <Text style={{ fontSize: 15 }}>Seleccione las materias</Text>
+                <Text style={{ fontSize: 15 }}>Seleccione </Text>
                 
                 <Picker
                     style={style.cajaIng}
@@ -175,42 +173,7 @@ export default function AsigMatAlum(props) {
                     <Picker.Item label="Logica" value="Logica" />
                 </Picker>
 
-                <Picker
-                    style={style.cajaIng}
-                >
-                    <Picker.Item label="Ninguna materia seleccionada" value="default" />
-                    <Picker.Item label="Matematica" value="Matematica" />
-                    <Picker.Item label="Lengua y literatura" value="Lengua y literatura" />
-                    <Picker.Item label="Civica" value="Civica" />
-                    <Picker.Item label="Historia" value="Historia" />
-                    <Picker.Item label="Fisica" value="Fisica" />
-                    <Picker.Item label="Logica" value="Logica" />
-                </Picker>
-
-                <Picker
-                    style={style.cajaIng}
-                >
-                    <Picker.Item label="Ninguna materia seleccionada" value="default" />
-                    <Picker.Item label="Matematica" value="Matematica" />
-                    <Picker.Item label="Lengua y literatura" value="Lengua y literatura" />
-                    <Picker.Item label="Civica" value="Civica" />
-                    <Picker.Item label="Historia" value="Historia" />
-                    <Picker.Item label="Fisica" value="Fisica" />
-                    <Picker.Item label="Logica" value="Logica" />
-                </Picker>
-
-                <Picker
-                    style={style.cajaIng}
-                >
-                    <Picker.Item label="Ninguna materia seleccionada" value="default" />
-                    <Picker.Item label="Matematica" value="Matematica" />
-                    <Picker.Item label="Lengua y literatura" value="Lengua y literatura" />
-                    <Picker.Item label="Civica" value="Civica" />
-                    <Picker.Item label="Historia" value="Historia" />
-                    <Picker.Item label="Fisica" value="Fisica" />
-                    <Picker.Item label="Logica" value="Logica" />
-                </Picker>
-        
+                
                 <View style={style.containerButton}>
                     <TouchableOpacity style={style.button}  >
                         <Text style={style.textButton}>Asignar Materia</Text>
