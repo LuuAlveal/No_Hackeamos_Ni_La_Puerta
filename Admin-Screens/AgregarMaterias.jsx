@@ -283,6 +283,7 @@ export default function AgregarMaterias() {
         form: {
             margin: 20,
             padding: 40,
+            width: 400,
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
             borderRadius: 10,
             shadowColor: '#000',
@@ -309,6 +310,7 @@ export default function AgregarMaterias() {
         },        
         cajaIng: {
             paddingVertical: 10,
+            paddingHorizontal: 18,
             backgroundColor: 'white',
             borderRadius: 30,
             marginBottom: 10,
