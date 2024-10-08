@@ -48,6 +48,7 @@ export default function ListMaterias() {
         form: {
             margin: 20,
             padding: 40,
+            width: 400,
             backgroundColor: 'rgba(255, 255, 255, 0.8)',
             borderRadius: 10,
             shadowColor: '#000',
