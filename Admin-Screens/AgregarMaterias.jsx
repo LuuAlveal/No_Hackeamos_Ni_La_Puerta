@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity, FlatList} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, ImageBackground,  TextInput, TouchableOpacity} from 'react-native';
 import { getFirestore,addDoc, collection   } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Swal from 'sweetalert2';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import dayjs from 'dayjs';
 const BD = getFirestore(appFirebase);
 
 export default function AgregarMaterias() {
@@ -338,12 +340,10 @@ export default function AgregarMaterias() {
         <ImageBackground
             source={require('../assets/FondoEpetHome.jpeg')}
             resizeMode={'cover'}
-            style={style.backgroundImage}
-        >
+            style={style.backgroundImage}>
             <View style={style.container}>
                 <View style={style.form}>
                     <Text style={style.agregarMateria}>Agregar Materia</Text>
-
                     <Text style={{ fontSize: 15 }}>Año</Text>
                     <View style={style.cajaIng}>
                     <Picker
@@ -397,15 +397,9 @@ export default function AgregarMaterias() {
                     </Picker>
                     </View>
 
-                    <Text style={{ fontSize: 15 }}>Fecha</Text>
-                        <DatePicker
-                            selected={startDate}
-                            onChange={handleDateChange}
-                            dateFormat="dd/MM/YY"
-                            minDate={new Date()}
-                            filterDate={isDateValid}
-                            style={{ paddingHorizontal: 15, borderWidth: 0}}
-                        />
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DateTimePicker/>
+                    </LocalizationProvider>
 
                     <View style={style.containerButton}>
                         <TouchableOpacity
