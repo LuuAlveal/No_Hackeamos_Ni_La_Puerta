@@ -149,8 +149,8 @@ return (
                         Agregar Materia
                     </Text>
                 </TouchableOpacity>
-            </View>
         </View>
+    </View>
     </ImageBackground>
 );
 }

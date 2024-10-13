@@ -10,6 +10,12 @@ export default function Admin() {
     const ListMaterias = () => {
         navigation.navigate('ListMaterias')
     }
+    const ListaProfesores = () => {
+        navigation.navigate('ListaProfesores')
+    }
+    const ListaMaterias = () => {
+        navigation.navigate('ListaMaterias')
+    }
     const ModificarAlumno = () => {
         navigation.navigate('ModificarAlumno')
     }
@@ -64,6 +70,26 @@ export default function Admin() {
                     <TouchableOpacity
                         style={style.button}
                         onPress={ListMaterias}
+                    >
+                        <Text style={style.textButton}>
+                            LISTA DE MESAS
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={style.containerButton}>
+                    <TouchableOpacity
+                        style={style.button}
+                        onPress={ListaProfesores}
+                    >
+                        <Text style={style.textButton}>
+                            LISTA DE PROFESORES
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={style.containerButton}>
+                    <TouchableOpacity
+                        style={style.button}
+                        onPress={ListaMaterias}
                     >
                         <Text style={style.textButton}>
                             LISTA DE MATERIAS

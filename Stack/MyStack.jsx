@@ -20,6 +20,9 @@ import ListMaterias from '../Admin-Screens/ListMaterias';
 import ModificarAlumno from '../Admin-Screens/ModificarAlumno';
 import ModificarMaterias from '../Admin-Screens/ModificarMaterias';
 import AsigMatAlum from '../Admin-Screens/AsigMatAlum';
+import ListaProfesores from '../Admin-Screens/ListaProfesores';
+import AgregarProfesores from '../Admin-Screens/AgregarProfesores';
+import ListaMaterias from '../Admin-Screens/ListaMaterias';
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
 
@@ -50,7 +53,6 @@ export default function MyStack() {
           }
         }}
       />
-
       <Stack.Screen
         name="Register"
         component={Register}
@@ -63,7 +65,6 @@ export default function MyStack() {
           }
         }}
       />
-
       <Stack.Screen
         name="Home"
         component={Home}
@@ -172,7 +173,6 @@ export default function MyStack() {
           }
         }}
       />
-
       <Stack.Screen
         name="Admin"
         component={Admin}
@@ -248,6 +248,42 @@ export default function MyStack() {
       <Stack.Screen
         name="AsigMatAlum"
         component={AsigMatAlum}
+        options={{
+          title: "E.P.E.T N 20 - Admins",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          }
+        }}
+      />
+      <Stack.Screen
+        name="ListaProfesores"
+        component={ListaProfesores}
+        options={{
+          title: "E.P.E.T N 20 - Admins",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          }
+        }}
+      />
+      <Stack.Screen
+        name="AgregarProfesores"
+        component={AgregarProfesores}
+        options={{
+          title: "E.P.E.T N 20 - Admins",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          }
+        }}
+      />
+      <Stack.Screen
+        name="ListaMaterias"
+        component={ListaMaterias}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',
