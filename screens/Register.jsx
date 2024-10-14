@@ -15,7 +15,7 @@ export default function Register() {
     const [selectedYear, setSelectedYear] = useState("default");
     //Constante para usar navigate 
     const navigation = useNavigation();
-    //Constante para el estado de la contraseña
+    //Constante para el estado de la contraseña (ver/ocultar)
     const [passwordVisible, setPasswordVisible] = useState(false);
     //Almacena los valores ingresados
     const [state, setState] = useState({
@@ -263,7 +263,7 @@ export default function Register() {
                         onChangeText={(value) => handleChangeText('password', value)}
                         style={{ flex:1, outline: 0 }}
                     />
-                    {/*Mostrar boton para ver el icono del ojo*/}
+                    {/*boton para ver el icono del ojo*/}
                     <TouchableOpacity onPress={verPassword}>
                         <Icon name={passwordVisible ? 'eye-off' : 'eye'} size={24} /> 
                     </TouchableOpacity>
