@@ -22,6 +22,7 @@ import ModificarMesas from '../Admin-Screens/ModificarMesas';
 import AsigMatAlum from '../Admin-Screens/AsigMatAlum';
 import ListaProfesores from '../Admin-Screens/ListaProfesores';
 import AgregarProfesores from '../Admin-Screens/AgregarProfesores';
+import AgregarMaterias from '../Admin-Screens/AgregarMaterias';
 import ListaMaterias from '../Admin-Screens/ListaMaterias';
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
@@ -293,6 +294,18 @@ export default function MyStack() {
       <Stack.Screen
         name="ListaMaterias"
         component={ListaMaterias}
+        options={{
+          title: "E.P.E.T N 20 - Admins",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          }
+        }}
+      />
+      <Stack.Screen
+        name="AgregarMaterias"
+        component={AgregarMaterias}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',

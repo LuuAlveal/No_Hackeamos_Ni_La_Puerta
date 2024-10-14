@@ -22,7 +22,7 @@ export default function AgregarMesas() {
         fecha: new Date()
     })
     const [startDate, setStartDate] = useState(new Date());
-    const materiasPorAño = {
+    const mesasPorAño = {
         '1°': [
             { label: 'Biología', value: 'Biología' },
             { label: 'Construccion de la Ciudadanía', value: 'Construccion de la Ciudadanía' },
@@ -116,7 +116,7 @@ export default function AgregarMesas() {
             { label: 'Tecnología de Redes II', value: 'Tecnología de Redes II' }
         ]
     };
-    const profesorPorMateria = {
+    const profesorPorMesas = {
         'Biología' : [
             { label: 'Liliana Aquito', value: 'Liliana Aquito' },
             { label: 'Mariana Navoni', value: 'Mariana Navoni' }
@@ -212,26 +212,26 @@ export default function AgregarMesas() {
     const handleChangeText = (name, value) => {
         setState({ ...state, [name]: value })
     };
-    const handleMateriasAño = async () => {
-        const subjectOptions = materiasPorAño[selectedYear] || [];
+    const handleMesasAño = async () => {
+        const subjectOptions = mesasPorAño[selectedYear] || [];
         try {
-            await addDoc(collection(BD, 'materias'), {
+            await addDoc(collection(BD, 'mesas'), {
                 nombre: selectedName,
                 profesor: selectedProfesor,
                 fecha: state.fecha.toString(), 
                 year: selectedYear,
             });
             Swal.fire({
-                title: 'Materia Creada Exitosamente',
+                title: 'Mesa Agregada Exitosamente',
                 icon: 'success',
                 timer: '2000',
             });
-            navigation.navigate('ListMaterias');
+            navigation.navigate('ListaMesas');
         } catch (error) {
         console.log(error);
         }
     };
-    const handleCreateMateria = async () => {
+    const handleCreateMesas = async () => {
         if (selectedYear === 'default') {
             Swal.fire({
                 title: 'ERROR',
@@ -258,18 +258,18 @@ export default function AgregarMesas() {
             })
         }else {
             try {
-                await addDoc(collection(BD, 'materias'), {
+                await addDoc(collection(BD, 'mesas'), {
                     nombre: selectedName,
                     profesor: selectedProfesor,
                     fecha: state.fecha,
                     year: selectedYear
                 });
                 Swal.fire({
-                    title: 'Materia Creada Exitosamente',
+                    title: 'Mesa Creada Exitosamente',
                     icon: 'success',
                     timer: '2000'
                 })
-                navigation.navigate('ListMaterias');
+                navigation.navigate('ListaMesas');
             }
             catch (error) {
                 console.log(error)
@@ -304,7 +304,7 @@ export default function AgregarMesas() {
             justifyContent: 'center',
             alignItems: 'center'
         },
-        agregarMateria: {
+        agregarMesa: {
             fontSize: 20,
             fontFamily: 'sans-serif',
             textAlign: 'center',
@@ -343,7 +343,7 @@ export default function AgregarMesas() {
             style={style.backgroundImage}>
             <View style={style.container}>
                 <View style={style.form}>
-                    <Text style={style.agregarMateria}>Agregar Materia</Text>
+                    <Text style={style.agregarMesa}>Agregar Mesa</Text>
                     <Text style={{ fontSize: 15 }}>Año</Text>
                     <View style={style.cajaIng}>
                     <Picker
@@ -375,7 +375,7 @@ export default function AgregarMesas() {
                         style={{ paddingHorizontal: 15, borderColor: 'white'}}
                     >
                         <Picker.Item label="Nombre de la materia" value="default" />
-                        {selectedYear !== 'default' && materiasPorAño[selectedYear].map((subject) => (
+                        {selectedYear !== 'default' && mesasPorAño[selectedYear].map((subject) => (
                         <Picker.Item key={subject.value} label={subject.label} value={subject.value} />
                         ))}
                     </Picker>
@@ -390,8 +390,8 @@ export default function AgregarMesas() {
                         }
                         style={{ paddingHorizontal: 15, borderColor: 'white'}}
                     >
-                        <Picker.Item label="Nombre de la materia" value="default" />
-                        {selectedName !== 'default' && profesorPorMateria[selectedName].map((subject) => (
+                        <Picker.Item label="Nombre de la mesa" value="default" />
+                        {selectedName !== 'default' && profesorPorMesas[selectedName].map((subject) => (
                         <Picker.Item key={subject.value} label={subject.label} value={subject.value} />
                         ))}
                     </Picker>
@@ -404,10 +404,10 @@ export default function AgregarMesas() {
                     <View style={style.containerButton}>
                         <TouchableOpacity
                             style={style.button}
-                            onPress={handleCreateMateria}
+                            onPress={handleCreateMesas}
                         >
                             <Text style={style.textButton}>
-                                Agregar Materia
+                                Agregar Mesa
                             </Text>
                         </TouchableOpacity>
                     </View>
