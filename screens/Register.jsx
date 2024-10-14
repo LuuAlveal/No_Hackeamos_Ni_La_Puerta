@@ -11,9 +11,13 @@ const auth = getAuth(appFirebase)
 const BD = getFirestore(appFirebase)
 
 export default function Register() {
+    //Estado para el picker de seleccionar año
     const [selectedYear, setSelectedYear] = useState("default");
+    //Constante para usar navigate 
     const navigation = useNavigation();
+    //Constante para el estado de la contraseña
     const [passwordVisible, setPasswordVisible] = useState(false);
+    //Almacena los valores ingresados
     const [state, setState] = useState({
         nombre: "",
         apellido: "",
@@ -22,14 +26,17 @@ export default function Register() {
         password: "",
         rol: "2"
     })
+    //Funcion para alternar entre ver/ocultar contraseña
     const verPassword = () => {
         setPasswordVisible(!passwordVisible);
     };
+    //Captura el texto ingresado y actualiza a el estado de la constante donde se almacenan los valores
     const handleChangeText = (name, value) => {
         setState({ ...state, [name]: value })
     }
-
+    //Funcion para crear cuenta
     const handleCreateAccount = async () => {
+        //Alertas dependiendo del estado de los campos (Si es que estan vacios o por defecto.)
         if (state.nombre === '') {
             Swal.fire({
                 title: 'ERROR',
@@ -67,11 +74,13 @@ export default function Register() {
                 icon: 'warning'
             });
         }
+        //Si los campos estan bien pasa esto
         else {
             try {
+                //Crea el usuario con la contraseña en firebase
                 const userCredential = await createUserWithEmailAndPassword(auth, state.email, state.password);
                 const user = userCredential.user;
-
+                //Guadra los datos del usuario en un documento de la coleccion de alumnos
                 await setDoc(doc(BD, 'alumnos', user.uid), {
                     nombre: state.nombre,
                     apellido: state.apellido,
@@ -89,6 +98,7 @@ export default function Register() {
                 navigation.navigate('Login')
             }
             catch (error) {
+                //Por si hay algun error con la auth de firebase, muestra el error al usuario.
                 const CodigoError = error.code;
                 if (CodigoError == 'auth/email-already-in-use')
                     Swal.fire({
@@ -249,12 +259,13 @@ export default function Register() {
                 <View style={style.cajaIngPass}>
                     <TextInput
                         placeholder='Contraseña'
-                        secureTextEntry={!passwordVisible}
+                        secureTextEntry={!passwordVisible} //Dependiendo del estado se va a ver/ocultar la contraseña
                         onChangeText={(value) => handleChangeText('password', value)}
                         style={{ flex:1, outline: 0 }}
                     />
+                    {/*Mostrar boton para ver el icono del ojo*/}
                     <TouchableOpacity onPress={verPassword}>
-                        <Icon name={passwordVisible ? 'eye-off' : 'eye'} size={24} />
+                        <Icon name={passwordVisible ? 'eye-off' : 'eye'} size={24} /> 
                     </TouchableOpacity>
                 </View>
 
