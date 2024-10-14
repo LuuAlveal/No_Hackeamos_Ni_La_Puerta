@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Admin() {
     const navigation = useNavigation();
-    const ListAlum = () => {
-        navigation.navigate('ListAlum')
+    const ListaAlumnos = () => {
+        navigation.navigate('ListaAlumnos')
     }
-    const ListMaterias = () => {
-        navigation.navigate('ListMaterias')
+    const ListaMesas = () => {
+        navigation.navigate('ListaMesas')
     }
     const ListaProfesores = () => {
         navigation.navigate('ListaProfesores')
@@ -59,7 +59,7 @@ export default function Admin() {
                 <View style={style.containerButton}>
                     <TouchableOpacity
                         style={style.button}
-                        onPress={ListAlum}
+                        onPress={ListaAlumnos}
                     >
                         <Text style={style.textButton}>
                             LISTA DE ALUMNOS
@@ -69,7 +69,7 @@ export default function Admin() {
                 <View style={style.containerButton}>
                     <TouchableOpacity
                         style={style.button}
-                        onPress={ListMaterias}
+                        onPress={ListaMesas}
                     >
                         <Text style={style.textButton}>
                             LISTA DE MESAS

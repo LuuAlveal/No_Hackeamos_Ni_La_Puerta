@@ -6,7 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 import Swal from 'sweetalert2';
 const BD = getFirestore(appFirebase);
 
-export default function ModificarMaterias(props) {
+export default function ModificarMesas(props) {
     const [materias, setmaterias] = useState({ nombre: '', profesor: '',year:'' });
     const [selectedYear, setSelectedYear] = useState("default");
     //Leer el document de la materia
@@ -77,7 +77,7 @@ export default function ModificarMaterias(props) {
             justifyContent: 'center',
             alignItems: 'center'
         },
-        modificarmaterias: {
+        modificarMesas: {
             fontSize: 18,
             fontFamily: 'sans-serif',
             textAlign: 'center'
@@ -117,7 +117,7 @@ export default function ModificarMaterias(props) {
             style={style.backgroundImage}
         >
             <View style={style.form}>
-                <Text style={style.modificarmaterias}>Modificar materias</Text>
+                <Text style={style.modificarMesas}>Modificar materias</Text>
 
                 <Text style={{ fontSize: 15 }}>Nombre</Text>
                 <View style={style.cajaIng}>

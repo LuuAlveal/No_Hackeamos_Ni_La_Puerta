@@ -10,8 +10,8 @@ const BD = getFirestore(appFirebase);
 export default function ListMaterias() {
     const [materias, setmaterias] = useState([]);
     const navigation = useNavigation();
-    const AgregarMaterias = () => {
-        navigation.navigate('AgregarMaterias')
+    const AgregarMesas = () => {
+        navigation.navigate('AgregarMesas')
     };
     useEffect(() => {
         const materiasCollection = collection(BD, 'materias');
@@ -67,7 +67,7 @@ export default function ListMaterias() {
             justifyContent: 'center',
             alignItems: 'center'
         },
-        modificarmateria: {
+        modificarMesas: {
             fontSize: 20,
             fontFamily: 'sans-serif',
             textAlign: 'center',
@@ -114,13 +114,13 @@ return (
     >
     <View style={style.container}>
         <View style={style.form}>
-            <Text style={style.modificarmateria}>LISTA DE MATERIAS</Text>
+            <Text style={style.modificarMesas}>LISTA DE MESAS</Text>
             <View style={style.scrollView}>
                 {materias.map((materia) => (
                     <View style={style.alumnoContainer} key={materia.id}>
                         <ListItem bottomDivider 
                             onPress={() =>
-                                navigation.navigate('ModificarMaterias', {
+                                navigation.navigate('ModificarMesas', {
                                     idmaterias: materia.id
                                 })
                             }
@@ -143,7 +143,7 @@ return (
         <View style={style.containerButton}>
             <TouchableOpacity
                 style={style.button}
-                onPress={AgregarMaterias}
+                onPress={AgregarMesas}
                 >
                     <Text style={style.textButton}>
                         Agregar Materia

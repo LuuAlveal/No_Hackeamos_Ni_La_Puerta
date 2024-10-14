@@ -11,7 +11,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 const BD = getFirestore(appFirebase);
 
-export default function AgregarMaterias() {
+export default function AgregarMesas() {
     const navigation = useNavigation();
     const [selectedName, setSelectedName] = useState("default");
     const [selectedProfesor, setSelectedProfesor] = useState("default");
