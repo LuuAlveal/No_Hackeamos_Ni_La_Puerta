@@ -182,6 +182,15 @@ export default function MyStack() {
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: '#304A6E'
+          },
+          headerLeft: () => {
+            return (
+              <Button
+                onPress={CerrarSesion}
+                title="Salir"
+                color="#304A6E"
+              />
+            );
           }
         }}
       />
