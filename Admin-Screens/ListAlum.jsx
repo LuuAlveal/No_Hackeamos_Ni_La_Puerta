@@ -85,7 +85,12 @@ export default function ListAlum() {
         },
         alumnoContainer: {
             width: '100%',
-            position: 'relative'
+            position: 'relative',
+            display: 'flex',
+            flexDirection:'column',
+            alignCenter: 'center',
+            justifyContent: 'center',
+            height: '100vh',
         },
         basura: {
             position: 'absolute',
