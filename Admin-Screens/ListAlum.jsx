@@ -90,7 +90,7 @@ export default function ListAlum() {
             flexDirection:'column',
             alignCenter: 'center',
             justifyContent: 'center',
-            height: '100vh',
+            height: '12vh',
         },
         basura: {
             position: 'absolute',
