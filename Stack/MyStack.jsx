@@ -14,14 +14,15 @@ import InfOpc from '../screens/infOpc';
 import Ajustes from '../screens/Ajustes';
 import Creditos from '../screens/Creditos';
 import Admin from '../Admin-Screens/Admin';
-import ListAlum from '../Admin-Screens/ListAlum';
-import AgregarMaterias from '../Admin-Screens/AgregarMaterias';
-import ListMaterias from '../Admin-Screens/ListMaterias';
+import ListaAlumnos from '../Admin-Screens/ListaAlumnos';
+import AgregarMesas from '../Admin-Screens/AgregarMesas';
+import ListaMesas from '../Admin-Screens/ListaMesas';
 import ModificarAlumno from '../Admin-Screens/ModificarAlumno';
-import ModificarMaterias from '../Admin-Screens/ModificarMaterias';
+import ModificarMesas from '../Admin-Screens/ModificarMesas';
 import AsigMatAlum from '../Admin-Screens/AsigMatAlum';
 import ListaProfesores from '../Admin-Screens/ListaProfesores';
 import AgregarProfesores from '../Admin-Screens/AgregarProfesores';
+import AgregarMaterias from '../Admin-Screens/AgregarMaterias';
 import ListaMaterias from '../Admin-Screens/ListaMaterias';
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
@@ -182,12 +183,21 @@ export default function MyStack() {
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: '#304A6E'
+          },
+          headerLeft: () => {
+            return (
+              <Button
+                onPress={CerrarSesion}
+                title="Salir"
+                color="#304A6E"
+              />
+            );
           }
         }}
       />
       <Stack.Screen
-        name="ListAlum"
-        component={ListAlum}
+        name="ListaAlumnos"
+        component={ListaAlumnos}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',
@@ -198,8 +208,8 @@ export default function MyStack() {
         }}
       />
       <Stack.Screen
-        name="AgregarMaterias"
-        component={AgregarMaterias}
+        name="AgregarMesas"
+        component={AgregarMesas}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',
@@ -210,8 +220,8 @@ export default function MyStack() {
         }}
       />
       <Stack.Screen
-        name="ListMaterias"
-        component={ListMaterias}
+        name="ListaMesas"
+        component={ListaMesas}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',
@@ -234,8 +244,8 @@ export default function MyStack() {
         }}
       />
       <Stack.Screen
-        name="ModificarMaterias"
-        component={ModificarMaterias}
+        name="ModificarMesas"
+        component={ModificarMesas}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',
@@ -284,6 +294,18 @@ export default function MyStack() {
       <Stack.Screen
         name="ListaMaterias"
         component={ListaMaterias}
+        options={{
+          title: "E.P.E.T N 20 - Admins",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          }
+        }}
+      />
+      <Stack.Screen
+        name="AgregarMaterias"
+        component={AgregarMaterias}
         options={{
           title: "E.P.E.T N 20 - Admins",
           headerTintColor: 'white',

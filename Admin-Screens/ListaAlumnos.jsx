@@ -9,7 +9,7 @@ import ModificarAlumno from './ModificarAlumno';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const BD = getFirestore(appFirebase);
 
-export default function ListAlum() {
+export default function ListaAlumnos() {
     const [alumnos, setAlumnos] = useState([]);
     const navigation = useNavigation();
 

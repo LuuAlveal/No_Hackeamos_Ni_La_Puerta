@@ -17,11 +17,11 @@ export default function ListaMaterias() {
         const Materias = onSnapshot(materiasCollection, (querySnapshot) => {
             const materias = [];
             querySnapshot.forEach((doc) => {
-                const { nombre, año } = doc.data();
+                const { nombre, id } = doc.data();
                     materias.push({
                         id: doc.id,
                         nombre,
-                        año
+                        id
                     });
             });
             setMaterias(materias);
@@ -29,7 +29,7 @@ export default function ListaMaterias() {
 
         return () => Materias();
     }, []);
-    const AgregarMaterias = () => {
+    const AgregarMateria = () => {
         navigation.navigate('AgregarMaterias')
     };
     const eliminarMaterias = async (id) => {
@@ -130,7 +130,7 @@ export default function ListaMaterias() {
                                     <ListItem.Chevron />
                                     <ListItem.Content>
                                         <ListItem.Title>{materias.nombre}</ListItem.Title>
-                                        <ListItem.Subtitle>{materias.año}</ListItem.Subtitle>
+                                        <ListItem.Subtitle>{materias.id} {"°"}</ListItem.Subtitle>
                                     </ListItem.Content>
                                     <TouchableOpacity
                                         onPress={() => eliminarMaterias(materias.id)}
@@ -144,9 +144,9 @@ export default function ListaMaterias() {
                     <View style={style.containerButton}>
                         <TouchableOpacity
                             style={style.button}
-                            onPress={"/"}>
+                            onPress={AgregarMateria}>
                             <Text style={style.textButton}>
-                                Agregar
+                                Agregar Materia
                             </Text>
                         </TouchableOpacity>
                     </View>

@@ -6,30 +6,33 @@ import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopu
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getFirestore, getDoc, doc } from "firebase/firestore";
 import Swal from 'sweetalert2';
-const provider = new GoogleAuthProvider();
+const provider = new GoogleAuthProvider(); //Provedor de google
 const auth = getAuth (appFirebase)
 const BD = getFirestore(appFirebase)
 export default function Login (){
     const navigation = useNavigation();
-
-    //loguearse con email y contrasenia
+    //Constante para ver el estado de la contraseña (ver/ocultar)
     const [passwordVisible, setPasswordVisible] = useState(false);
+    //loguearse con email y contrasenia
     const [email, setEmail] = useState ()
     const [password, setPassword] = useState ()
-    
+    //Funcion para alternar entre ver/ocultar contraseña
     const verPassword = () => {
         setPasswordVisible(!passwordVisible);
     };
+    //Login para con email y contraseña
     const logueo = async (e) => {
         e.preventDefault();
+        //Inicia sesion con el email y contraseña
         await signInWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
-                const user = userCredential.user;
-                const docRef = doc(BD, 'alumnos', user.uid);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    const userData = docSnap.data();
-                    const rol = userData.rol;
+                const user = userCredential.user;//recupera las credenciales del usuario
+                const docRef = doc(BD, 'alumnos', user.uid);//busca el docuemnto del usuario por su uid
+                const docSnap = await getDoc(docRef);//recupera el docuemnto
+                if (docSnap.exists()) { //se corrobora si el documento existe
+                    const userData = docSnap.data();//se obtiene los datos del usuario
+                    const rol = userData.rol;//se obtiene el rol del usuario
+                    //dependiendo del rol es a donde va a ser rediccionado el usuario
                     if (rol === '1') {
                         navigation.navigate('Admin');
                     } else if (rol === '2') {
@@ -40,6 +43,7 @@ export default function Login (){
                 }
             })
             .catch((error) => {
+                //En caso de haber algun error
                 console.log(error)
                 Swal.fire({
                     title: 'Email o contraseña incorrecto',
@@ -71,6 +75,7 @@ export default function Login (){
           // ...
         });
     }
+    //Constante para navegar hacia el register
     const Registrarse = () => {
         navigation.navigate('Register');
     }
@@ -181,10 +186,11 @@ export default function Login (){
                 <View style = {style.cajaIng}>
                         <TextInput
                             placeholder='Password'
-                            secureTextEntry={!passwordVisible}
-                            onChangeText={(text) => setPassword(text)}
+                            secureTextEntry={!passwordVisible} //Dependiendo del estado se va a ver/ocultar la contraseña
+                            onChangeText={(text) => setPassword(text)} 
                             style={{ outline: 0,flex:1 }}
                         />
+                    {/*boton para ver el icono del ojo*/}
                         <TouchableOpacity onPress={verPassword}>
                             <Icon name={passwordVisible ? 'eye-off' : 'eye'} size={24} />
                         </TouchableOpacity>
