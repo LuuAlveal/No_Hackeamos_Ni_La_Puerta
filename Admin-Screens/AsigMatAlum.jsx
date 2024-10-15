@@ -154,15 +154,13 @@ export default function AsigMatAlum(props) {
         alert("Por favor, seleccione la cantidad de materias, el año y la materia.");
         return;
     }
-        // Aquí iría la lógica para asignar la materia al alumno
+
     console.log(`Asignando ${numberOfSubjects} materia(s): ${selectedSubject} de ${selectedYear} año`);    
-        // Aquí podrías agregar la lógica para guardar esta información en tu base de datos
-        // Por ejemplo, usando Firebase/Firestore    
-        // Después de asignar, podrías resetear los estados
+
     setNumberOfSubjects("default");
     setSelectedYear("default");
     setSelectedSubject("default");
-        // Y mostrar un mensaje de éxito
+
     alert("Materia(s) asignada(s) con éxito");
     };
     const style = StyleSheet.create({
