@@ -47,7 +47,9 @@ export default function Login (){
                 console.log(error)
                 Swal.fire({
                     title: 'Email o contraseña incorrecto',
-                    icon: 'error'
+                    icon: 'error',
+                    backdrop: false, 
+                    allowOutsideClick: false 
                 })
             })
     }
