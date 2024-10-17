@@ -41,37 +41,49 @@ export default function Register() {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese su nombre',
-                icon: 'warning'
+                icon: 'warning',
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } else if (state.apellido === '') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese su apellido',
-                icon: 'warning'
+                icon: 'warning',
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } else if (state.dni === '') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese su dni',
-                icon: 'error'
+                icon: 'error',
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } else if (state.email === '') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese su email',
-                icon: 'error'
+                icon: 'error',
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } else if (state.password === '') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese una contraseña',
-                icon: 'error'
+                icon: 'error',
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } else if (selectedYear === 'default') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Seleccione un año',
-                icon: 'warning'
+                icon: 'warning',
+                backdrop: false, 
+                allowOutsideClick: false 
             });
         }
         //Si los campos estan bien pasa esto
@@ -93,7 +105,9 @@ export default function Register() {
                 Swal.fire({
                     title: 'Cuenta Creada Exitosamente',
                     icon: 'success',
-                    timer: '2000'
+                    timer: '2000',
+                    backdrop: false, 
+                    allowOutsideClick: false 
                 })
                 navigation.navigate('Login')
             }
@@ -104,19 +118,25 @@ export default function Register() {
                     Swal.fire({
                         title: 'Error',
                         text: 'El Email ya esta en uso',
-                        icon: 'error'
+                        icon: 'error',
+                        backdrop: false, 
+                        allowOutsideClick: false 
                     })
                 else if (CodigoError == 'auth/invalid-email')
                     Swal.fire({
                         title: 'Error',
                         text: 'Email Invalido. Ejemplo de email requerido: TuCorreo@example.com',
-                        icon: 'error'
+                        icon: 'error',
+                        backdrop: false, 
+                        allowOutsideClick: false 
                     })
                 else if (CodigoError == 'auth/weak-password')
                     Swal.fire({
                         title: 'Error ',
                         text: 'La contraseña debe tener minimo 6 digitos',
-                        icon: 'warning'
+                        icon: 'warning',
+                        backdrop: false, 
+                        allowOutsideClick: false 
                     })
             };
         }
