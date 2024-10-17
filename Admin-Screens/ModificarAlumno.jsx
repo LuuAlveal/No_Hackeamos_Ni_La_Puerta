@@ -42,13 +42,17 @@ export default function ModificarAlumno(props) {
             });
             Swal.fire({
                 title: 'Alumno actualizado exitosamente',
-                icon: 'success'
+                icon: 'success',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } catch (error) {
             Swal.fire({
                 error: 'Error',
                 title:'No se pudo modificar el alumno',
-                icon: 'error'
+                icon: 'error',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
             console.log(error)
         }

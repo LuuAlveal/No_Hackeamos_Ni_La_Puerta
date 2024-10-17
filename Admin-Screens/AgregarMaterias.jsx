@@ -22,13 +22,17 @@ export default function AgregarMaterias() {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el nombre de la Materia',
-                icon: 'warning'
+                icon: 'warning',                   
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         }else if (selectedAño === 'default') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el año de la Materia',
-                icon: 'warning'
+                icon: 'warning',                   
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         }else {
             try {
@@ -39,7 +43,9 @@ export default function AgregarMaterias() {
                 Swal.fire({
                     title: 'Materia Creada Exitosamente',
                     icon: 'success',
-                    timer: '2000',
+                    timer: '2000',                 
+                    backdrop: false, 
+                    allowOutsideClick: false 
                 });
                 navigation.navigate('ListaMaterias');
             } catch (error) {

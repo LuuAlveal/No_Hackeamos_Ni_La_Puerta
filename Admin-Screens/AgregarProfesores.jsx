@@ -21,19 +21,25 @@ export default function AgregarProfesores() {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el nombre del profesor',
-                icon: 'warning'
+                icon: 'warning',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         }else if (state.apellido === '') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el apellido del profesor',
-                icon: 'warning'
+                icon: 'warning',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         }else if (state.materia === '') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese la materia del profesor',
-                icon: 'warning'
+                icon: 'warning',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         }else {
             try {
@@ -45,7 +51,9 @@ export default function AgregarProfesores() {
                 Swal.fire({
                     title: 'Profesor Agregado Exitosamente',
                     icon: 'success',
-                    timer: '2000'
+                    timer: '2000',                 
+                    backdrop: false, 
+                    allowOutsideClick: false 
                 })
                 navigation.navigate('ListaProfesores');
             }

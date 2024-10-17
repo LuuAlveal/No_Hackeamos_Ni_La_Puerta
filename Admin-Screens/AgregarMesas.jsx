@@ -224,7 +224,9 @@ export default function AgregarMesas() {
             Swal.fire({
                 title: 'Mesa Agregada Exitosamente',
                 icon: 'success',
-                timer: '2000',
+                timer: '2000',               
+                backdrop: false, 
+                allowOutsideClick: false 
             });
             navigation.navigate('ListaMesas');
         } catch (error) {
@@ -236,25 +238,33 @@ export default function AgregarMesas() {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Debe seleccionar un año',
-                icon: 'error'
+                icon: 'error',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } else if (selectedName === 'default') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el nombre de la Materia',
-                icon: 'warning'
+                icon: 'warning',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         }else if (selectedProfesor === 'default') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el profesor',
-                icon: 'warning'
+                icon: 'warning',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } else if (state.fecha === '') {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese la fecha',
-                icon: 'error'
+                icon: 'error',                 
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         }else {
             try {
@@ -267,7 +277,9 @@ export default function AgregarMesas() {
                 Swal.fire({
                     title: 'Mesa Creada Exitosamente',
                     icon: 'success',
-                    timer: '2000'
+                    timer: '2000',                 
+                    backdrop: false, 
+                    allowOutsideClick: false 
                 })
                 navigation.navigate('ListaMesas');
             }
