@@ -149,6 +149,11 @@ export default function AsigMatAlum(props) {
         { label: 'Tecnología de Redes II', value: 'Tecnología de Redes II' }
     ]
     };
+    const añosPorMateria = {
+        '1': ['1°'],
+        '2': ['1°', '2°'],
+        '3': ['1°', '2°', '3°'],
+    };
     const asignarMateria = () => {
     if (numberOfSubjects === "default" || selectedYear === "default" || selectedSubject === "default") {
         alert("Por favor, seleccione la cantidad de materias, el año y la materia.");
@@ -229,34 +234,40 @@ export default function AsigMatAlum(props) {
             style={style.backgroundImage}>                
             <View style={style.form}>
                 <Text style={style.modificarAlumno}>Asignar MATERIAS</Text>
-
-                <Text style={{ fontSize: 15 }}> Cuantas materias va a rendir</Text>
+    
+                <Text style={{ fontSize: 15 }}>Cuantas materias va a rendir</Text>
                 <Picker
                     selectedValue={numberOfSubjects}
-                    onValueChange={(itemValue) => setNumberOfSubjects(itemValue)}
+                    onValueChange={(itemValue) => {
+                        setNumberOfSubjects(itemValue);
+                        setSelectedYear("default"); // Resetear año al cambiar la cantidad de materias
+                        setSelectedSubject("default"); // Resetear materia al cambiar la cantidad de materias
+                    }}
                     style={style.cajaIng}>
                     <Picker.Item label="Seleccione las materias" value="default" />
                     <Picker.Item label="1" value="1" />
                     <Picker.Item label="2" value="2" />
                     <Picker.Item label="3" value="3" />
                 </Picker>
-
-                <Text style={{ fontSize: 15 }}>Año</Text>
-                <Picker 
-                    selectedValue={selectedYear}
-                    onValueChange={(itemValue) => {
-                        setSelectedYear(itemValue);
-                        setSelectedSubject("default");
-                    }}
-                    style={style.cajaIng}>
-                    <Picker.Item label="Seleccione el año de la materia" value="default"/>
-                    <Picker.Item label="1° año" value="1°" />
-                    <Picker.Item label="2° año" value="2°" />
-                    <Picker.Item label="3° año" value="3°" />
-                    <Picker.Item label="4° año" value="4°" />
-                    <Picker.Item label="5° año" value="5°" />
-                    <Picker.Item label="6° año" value="6°" />
-                </Picker>
+    
+                {numberOfSubjects !== "default" && (
+                    <>
+                        <Text style={{ fontSize: 15 }}>Año</Text>
+                        <Picker 
+                            selectedValue={selectedYear}
+                            onValueChange={(itemValue) => {
+                                setSelectedYear(itemValue);
+                                setSelectedSubject("default");
+                            }}
+                            style={style.cajaIng}>
+                            <Picker.Item label="Seleccione el año de la materia" value="default"/>
+                            {añosPorMateria[numberOfSubjects].map((year) => (
+                                <Picker.Item key={year} label={`${year} año`} value={year} />
+                            ))}
+                        </Picker>
+                    </>
+                )}
+    
                 {selectedYear !== "default" && (
                     <>
                         <Text style={{ fontSize: 15 }}>Materia</Text>
@@ -271,6 +282,7 @@ export default function AsigMatAlum(props) {
                         </Picker>
                     </>
                 )}
+    
                 <View style={style.containerButton}>
                     <TouchableOpacity style={style.button} onPress={asignarMateria}>
                         <Text style={style.textButton}>Asignar Materia</Text>
