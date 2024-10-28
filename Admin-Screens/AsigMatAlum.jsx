@@ -7,50 +7,6 @@ import Swal from 'sweetalert2';
 const BD = getFirestore(appFirebase);
 
 export default function AsigMatAlum(props) {
-/*   const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '',year:'' });
-    const [selectedYear, setSelectedYear] = useState("default");
-    //Leer el document del alumno
-    const getAlumnoById = async (id) => {
-        const alumnoRef = doc(BD, 'alumnos', id);
-        const docSnap = await getDoc(alumnoRef);
-        if (docSnap.exists()) {
-            setAlumno(docSnap.data());
-            setSelectedYear(docSnap.data().year);
-        } else {
-            console.log("No se encontró el documento del usuario");
-        }
-    };
-
-    //Recuperar el Id del alumno
-    useEffect(() => {
-        if (props.route.params.idAlumno) {
-            getAlumnoById(props.route.params.idAlumno);
-        }
-    }, [props.route.params.idAlumno]);
-
-    //Act. Alumno funcion
-    const ActAlum = async () => {
-        const alumnoRef = doc(BD, 'alumnos', props.route.params.idAlumno);
-        try {
-            await updateDoc(alumnoRef, {
-                nombre: alumno.nombre,
-                apellido: alumno.apellido,
-                dni: alumno.dni,
-                year: selectedYear
-            });
-            Swal.fire({
-                title: 'Alumno actualizado exitosamente',
-                icon: 'success'
-            })
-        } catch (error) {
-            Swal.fire({
-                error: 'Error',
-                title:'No se pudo modificar el alumno',
-                icon: 'error'
-            })
-            console.log(error)
-        }
-    };*/
 
     const [selectedYear, setSelectedYear] = useState("default");
     const [selectedSubject, setSelectedSubject] = useState("default");
