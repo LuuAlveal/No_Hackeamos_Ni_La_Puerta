@@ -7,10 +7,16 @@ import Swal from 'sweetalert2';
 const BD = getFirestore(appFirebase);
 
 export default function AsigMatAlum(props) {
-
+    
     const [selectedYear, setSelectedYear] = useState("default");
     const [selectedSubject, setSelectedSubject] = useState("default");
     const [numberOfSubjects, setNumberOfSubjects] = useState("default");
+    const [selectedYear1, setSelectedYear1] = useState("default");
+    const [selectedYear2, setSelectedYear2] = useState("default");
+    const [selectedYear3, setSelectedYear3] = useState("default");
+    const [selectedSubject1, setSelectedSubject1] = useState("default");
+    const [selectedSubject2, setSelectedSubject2] = useState("default");
+    const [selectedSubject3, setSelectedSubject3] = useState("default");
     const materiasPorAño = {
     '1°': [
         { label: 'Biología', value: 'Biología' },
@@ -105,23 +111,49 @@ export default function AsigMatAlum(props) {
         { label: 'Tecnología de Redes II', value: 'Tecnología de Redes II' }
     ]
     };
+
     const añosPorMateria = {
         '1': ['1°'],
         '2': ['1°', '2°'],
         '3': ['1°', '2°', '3°'],
     };
     const asignarMateria = () => {
-    if (numberOfSubjects === "default" || selectedYear === "default" || selectedSubject === "default") {
-        alert("Por favor, seleccione la cantidad de materias, el año y la materia.");
-        return;
-    }
+        if (numberOfSubjects === "default") {
+            alert("Por favor, seleccione la cantidad de materias");
+            return;
+        }
+
+        let materiasSeleccionadas = [];
+        
+        if (selectedYear1 !== "default" && selectedSubject1 !== "default") {
+            materiasSeleccionadas.push({año: selectedYear1, materia: selectedSubject1});
+        }
+        
+        if (numberOfSubjects >= "2" && selectedYear2 !== "default" && selectedSubject2 !== "default") {
+            materiasSeleccionadas.push({año: selectedYear2, materia: selectedSubject2});
+        }
+        
+        if (numberOfSubjects === "3" && selectedYear3 !== "default" && selectedSubject3 !== "default") {
+            materiasSeleccionadas.push({año: selectedYear3, materia: selectedSubject3});
+        }
+
+        if (materiasSeleccionadas.length !== parseInt(numberOfSubjects)) {
+            alert("Por favor, complete todas las selecciones de año y materia");
+            return;
+        }
 
     console.log(`Asignando ${numberOfSubjects} materia(s): ${selectedSubject} de ${selectedYear} año`);    
 
     setNumberOfSubjects("default");
     setSelectedYear("default");
     setSelectedSubject("default");
-
+    setNumberOfSubjects("default");
+        setSelectedYear1("default");
+        setSelectedYear2("default");
+        setSelectedYear3("default");
+        setSelectedSubject1("default");
+        setSelectedSubject2("default");
+        setSelectedSubject3("default");
     alert("Materia(s) asignada(s) con éxito");
     };
     const style = StyleSheet.create({
@@ -130,6 +162,8 @@ export default function AsigMatAlum(props) {
         justifyContent: 'center',
         alignItems: 'center'
     },
+
+    
     form: {
         margin: 20,
         padding: 40,
@@ -207,37 +241,93 @@ export default function AsigMatAlum(props) {
                 </Picker>
     
                 {numberOfSubjects !== "default" && (
-                    <>
-                        <Text style={{ fontSize: 15 }}>Año</Text>
-                        <Picker 
-                            selectedValue={selectedYear}
-                            onValueChange={(itemValue) => {
-                                setSelectedYear(itemValue);
-                                setSelectedSubject("default");
-                            }}
-                            style={style.cajaIng}>
-                            <Picker.Item label="Seleccione el año de la materia" value="default"/>
-                            {añosPorMateria[numberOfSubjects].map((year) => (
-                                <Picker.Item key={year} label={`${year} año`} value={year} />
-                            ))}
-                        </Picker>
-                    </>
-                )}
+    <>
+        <Text style={{ fontSize: 15 }}>Año</Text>
+        <Picker 
+            selectedValue={selectedYear1}
+            onValueChange={(itemValue) => {
+                setSelectedYear1(itemValue);
+                setSelectedSubject1("default");
+            }}
+            style={style.cajaIng}>
+            <Picker.Item label="Seleccione el año de la materia" value="default"/>
+            {añosPorMateria[numberOfSubjects].map((year) => (
+                <Picker.Item key={year} label={`${year} año`} value={year} />
+            ))}
+        </Picker>
+
+        {numberOfSubjects >= "2" && (
+            <Picker 
+                selectedValue={selectedYear2}
+                onValueChange={(itemValue) => {
+                    setSelectedYear2(itemValue);
+                    setSelectedSubject2("default");
+                }}
+                style={style.cajaIng}>
+                <Picker.Item label="Seleccione el año de la materia" value="default"/>
+                {añosPorMateria[numberOfSubjects].map((year) => (
+                    <Picker.Item key={year} label={`${year} año`} value={year} />
+                ))}
+            </Picker>
+        )}
+
+        {numberOfSubjects === "3" && (
+            <Picker 
+                selectedValue={selectedYear3}
+                onValueChange={(itemValue) => {
+                    setSelectedYear3(itemValue);
+                    setSelectedSubject3("default");
+                }}
+                style={style.cajaIng}>
+                <Picker.Item label="Seleccione el año de la materia" value="default"/>
+                {añosPorMateria[numberOfSubjects].map((year) => (
+                    <Picker.Item key={year} label={`${year} año`} value={year} />
+                ))}
+            </Picker>
+        )}
+    </>
+)}
     
-                {selectedYear !== "default" && (
-                    <>
-                        <Text style={{ fontSize: 15 }}>Materia</Text>
-                        <Picker
-                            selectedValue={selectedSubject}
-                            onValueChange={(itemValue) => setSelectedSubject(itemValue)}
-                            style={style.cajaIng}>
-                            <Picker.Item label="Seleccione la materia" value="default" />
-                            {materiasPorAño[selectedYear].map((materia) => (
-                                <Picker.Item key={materia.value} label={materia.label} value={materia.value} />
-                            ))}
-                        </Picker>
-                    </>
-                )}
+    {(selectedYear1 !== "default" || selectedYear2 !== "default" || selectedYear3 !== "default") && (
+    <>
+        <Text style={{ fontSize: 15 }}>Materia</Text>
+        {selectedYear1 !== "default" && (
+            <Picker
+                selectedValue={selectedSubject1}
+                onValueChange={(itemValue) => setSelectedSubject1(itemValue)}
+                style={style.cajaIng}>
+                <Picker.Item label="Seleccione la materia" value="default" />
+                {materiasPorAño[selectedYear1].map((materia) => (
+                    <Picker.Item key={materia.value} label={materia.label} value={materia.value} />
+                ))}
+            </Picker>
+        )}
+        
+        {selectedYear2 !== "default" && numberOfSubjects >= "2" && (
+            <Picker
+                selectedValue={selectedSubject2}
+                onValueChange={(itemValue) => setSelectedSubject2(itemValue)}
+                style={style.cajaIng}>
+                <Picker.Item label="Seleccione la materia" value="default" />
+                {materiasPorAño[selectedYear2].map((materia) => (
+                    <Picker.Item key={materia.value} label={materia.label} value={materia.value} />
+                ))}
+            </Picker>
+        )}
+
+        {selectedYear3 !== "default" && numberOfSubjects === "3" && (
+            <Picker
+                selectedValue={selectedSubject3}
+                onValueChange={(itemValue) => setSelectedSubject3(itemValue)}
+                style={style.cajaIng}>
+                <Picker.Item label="Seleccione la materia" value="default" />
+                {materiasPorAño[selectedYear3].map((materia) => (
+                    <Picker.Item key={materia.value} label={materia.label} value={materia.value} />
+                ))}
+            </Picker>
+        )}
+    </>
+)}
     
                 <View style={style.containerButton}>
                     <TouchableOpacity style={style.button} onPress={asignarMateria}>
