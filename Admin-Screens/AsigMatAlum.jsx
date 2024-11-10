@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import { doc, getDoc, getFirestore, updateDoc, query, collection, where, getDocs} from 'firebase/firestore';
+import { doc, getDoc, getFirestore, updateDoc, query, collection, where, getDocs } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { Picker } from '@react-native-picker/picker';
 import Swal from 'sweetalert2';
@@ -21,9 +21,12 @@ export default function AsigMatAlum(props) {
     useEffect(() => {
         //obtener materias según el año
         const recuperarMaterias = async (year) => {
-            const q = query(collection(BD, "mesas"), where("year", "==", year.toString())); //convertir el año para leerlo
-            const querySnapshot = await getDocs(q);
+            //consulta para obtener la materia segun el año
+            const consulta = query(collection(BD, "mesas"), where("year", "==", year.toString())); //convertir el año para leerlo
+            const querySnapshot = await getDocs(consulta);
+            //mapeo de materias para que solo salga el nombre en el dropdown, y mandamos su id como value
             const materias = querySnapshot.docs.map((doc) => ({ label: doc.data().nombre, value: doc.id }));
+            //dependiendo el año se setea las materias que correspondan
             setMateriasOptions((prev) => ({ ...prev, [year]: materias }));
         };
 
@@ -40,31 +43,76 @@ export default function AsigMatAlum(props) {
 
     }, [selectedYear1, selectedYear2, selectedYear3, props.route.params.idAlumno]);
 
-    const asignarMateria = () => {
-        if (numberOfSubjects === "default") {
-            alert("Por favor, seleccione la cantidad de materias");
-            return;
-        }
-
+    //asignar materias al alumno
+    const asignarMateria = async () => {
+        //almacenar las materias seleccionadas en un array
         let materiasSeleccionadas = [];
 
+        //verifica y agrega las materias seleccionadas
         if (selectedYear1 !== "default" && selectedSubject1 !== "default") {
             materiasSeleccionadas.push({ año: selectedYear1, materia: selectedSubject1 });
         }
-
         if (numberOfSubjects >= "2" && selectedYear2 !== "default" && selectedSubject2 !== "default") {
             materiasSeleccionadas.push({ año: selectedYear2, materia: selectedSubject2 });
         }
-
         if (numberOfSubjects === "3" && selectedYear3 !== "default" && selectedSubject3 !== "default") {
             materiasSeleccionadas.push({ año: selectedYear3, materia: selectedSubject3 });
         }
-
+        //si la cantidad de materias seleccionadas no coincide con la cantidad de materias a asignar, muestra lo siguiente
         if (materiasSeleccionadas.length !== parseInt(numberOfSubjects)) {
-            alert("Por favor, complete todas las selecciones de año y materia");
+            Swal.fire({
+                title: 'Error',
+                text: "Complete todas las selecciones de año y materia",
+                icon: 'error',
+                backdrop: false,
+                allowOutsideClick: false
+            });
             return;
         }
+        try {
+            //obtenemos el documento del alumno por el id pasado por parametro
+            const alumnoRef = doc(BD, "alumnos", props.route.params.idAlumno);
+            //snapshot del documento del alumno para acceder a sus datos actuales
+            const alumnoSnapshot = await getDoc(alumnoRef);
+            //obtenemos las materias ya existentes del alumno o si no tiene hacemos un array vacio
+            let materiasExistentes = alumnoSnapshot.data().materias || [];
+            //agregamos las materias seleccionadas con las materias ya existentes, si hay duplicadas se eliminan
+            materiasExistentes = [...new Set([...materiasExistentes, ...materiasSeleccionadas])];
 
+            //si el alumno tiene mas de 3 materias en total, muestra una alerta y limita la lista a 3
+            if (materiasExistentes.length > 3) {
+                materiasExistentes = materiasExistentes.slice(0, 3);
+                return Swal.fire({
+                    title: 'Cantidad máxima de previas',
+                    text: "El alumno tiene la cantidad máxima de materias previas",
+                    icon: 'error',
+                    backdrop: false,
+                    allowOutsideClick: false
+                });
+            }
+
+            //act. el documento del alumno con la lista de materias actualizada
+            await updateDoc(alumnoRef, {
+                materias: materiasExistentes
+            });
+
+            Swal.fire({
+                title: 'Materia/s asignada/s con exito',
+                icon: 'success',
+                backdrop: false,
+                allowOutsideClick: false
+            });
+
+        } catch (error) {
+            //en caso si hay algun error muestra esta alerta
+            console.error(error);
+            Swal.fire({
+                title: 'Error al asignar materias',
+                icon: 'error',
+                backdrop: false,
+                allowOutsideClick: false
+            });
+        }
     };
     const style = StyleSheet.create({
         container: {
@@ -134,7 +182,6 @@ export default function AsigMatAlum(props) {
             style={style.backgroundImage}>
             <View style={style.form}>
                 <Text style={style.modificarAlumno}>Asignar Materia</Text>
-
                 <Text style={{ fontSize: 15 }}>Cantidad de materias</Text>
                 <Picker
                     selectedValue={numberOfSubjects}
