@@ -11,7 +11,7 @@ export default function ModificarAlumno(props) {
     const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '',year:'' });
     const [selectedYear, setSelectedYear] = useState("default");
     const navigation = useNavigation();
-    //Leer el document del alumno
+    //Leer el documento del alumno
     const getAlumnoById = async (id) => {
         const alumnoRef = doc(BD, 'alumnos', id);
         const docSnap = await getDoc(alumnoRef);
@@ -176,7 +176,7 @@ export default function ModificarAlumno(props) {
                     <TouchableOpacity style={style.button} onPress={ActAlum}>
                         <Text style={style.textButton}>Modificar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AsigMatAlum')} >
+                    <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AsigMatAlum', {diAlumno: props.route.params.idAlumno})} >
                         <Text style={style.textButton}>Asignar Materia</Text>
                     </TouchableOpacity>
                 </View>
