@@ -1,60 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
-import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore'; 
+import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { Picker } from '@react-native-picker/picker';
 import Swal from 'sweetalert2';
 const BD = getFirestore(appFirebase);
-
 export default function ModificarMesas(props) {
-    const [materias, setmaterias] = useState({ nombre: '', profesor: '',year:'' });
+    const [mesas, setmesas] = useState({ nombre: '', profesor: '', year: '' });
     const [selectedYear, setSelectedYear] = useState("default");
-    //Leer el document de la materia
-    const getmateriasById = async (id) => {
-        const materiasRef = doc(BD, 'materias', id);
-        const docSnap = await getDoc(materiasRef);
+    //Leer el document de la Mesa
+    const getmesasById = async (id) => {
+        const mesasRef = doc(BD, 'mesas', id);
+        const docSnap = await getDoc(mesasRef);
         if (docSnap.exists()) {
-            setmaterias(docSnap.data());
+            setmesas(docSnap.data());
             setSelectedYear(docSnap.data().year);
         } else {
             console.log("No se encontró el documento del usuario");
         }
     };
-
-    //Recuperar el Id de la materia
+    //Recuperar el Id de la Mesa
     useEffect(() => {
-        if (props.route.params.idmaterias) {
-            getmateriasById(props.route.params.idmaterias);
+        if (props.route.params.idMesas) {
+            getmesasById(props.route.params.idMesas);
         }
-    }, [props.route.params.idmaterias]);
-
-    //Act. Materia funcion
-    const ActMateria = async () => {
-        const materiasRef = doc(BD, 'materias', props.route.params.idmaterias);
+    }, [props.route.params.idMesas]);
+    //Act. Mesa funcion
+    const ActMesa = async () => {
+        const mesasRef = doc(BD, 'mesas', props.route.params.idMesas);
         try {
-            await updateDoc(materiasRef, {
-                nombre: materias.nombre,
-                profesor: materias.profesor,
+            await updateDoc(mesasRef, {
+                nombre: mesas.nombre,
+                profesor: mesas.profesor,
                 year: selectedYear
             });
             Swal.fire({
-                title: 'Materia actualizado exitosamente',
-                icon: 'success',                 
-                backdrop: false, 
-                allowOutsideClick: false 
+                title: 'Mesa actualizado exitosamente',
+                icon: 'success'
             })
         } catch (error) {
             Swal.fire({
                 error: 'Error',
-                title:'No se pudo modificar la materia',
-                icon: 'error',                 
-                backdrop: false, 
-                allowOutsideClick: false 
+                title: 'No se pudo modificar la Mesa',
+                icon: 'error'
             })
             console.log(error)
         }
     };
-
     const style = StyleSheet.create({
         container: {
             flex: 1,
@@ -81,7 +73,7 @@ export default function ModificarMesas(props) {
             justifyContent: 'center',
             alignItems: 'center'
         },
-        modificarMesas: {
+        modificarmesas: {
             fontSize: 18,
             fontFamily: 'sans-serif',
             textAlign: 'center'
@@ -113,7 +105,6 @@ export default function ModificarMesas(props) {
             fontFamily: 'sans-serif'
         }
     });
-
     return (
         <ImageBackground
             source={require('../assets/epet20fondo.png')}
@@ -121,26 +112,23 @@ export default function ModificarMesas(props) {
             style={style.backgroundImage}
         >
             <View style={style.form}>
-                <Text style={style.modificarMesas}>Modificar materias</Text>
-
+                <Text style={style.modificarmesas}>Modificar mesas</Text>
                 <Text style={{ fontSize: 15 }}>Nombre</Text>
                 <View style={style.cajaIng}>
                     <TextInput
-                        value={materias.nombre}
+                        value={mesas.nombre}
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setmaterias({ ...materias, nombre: value })}
+                        onChangeText={(value) => setmesas({ ...mesas, nombre: value })}
                     />
                 </View>
-
                 <Text style={{ fontSize: 15 }}>Profesor</Text>
                 <View style={style.cajaIng}>
                     <TextInput
-                        value={materias.profesor}
+                        value={mesas.profesor}
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setmaterias({ ...materias, profesor: value })}
+                        onChangeText={(value) => setmesas({ ...mesas, apellido: value })}
                     />
                 </View>
-
                 <Text style={{ fontSize: 15 }}>Año</Text>
                 <Picker
                     selectedValue={selectedYear}
@@ -157,9 +145,8 @@ export default function ModificarMesas(props) {
                     <Picker.Item label="5° año" value="5°" />
                     <Picker.Item label="6° año" value="6°" />
                 </Picker>
-
                 <View style={style.containerButton}>
-                    <TouchableOpacity style={style.button} onPress={ActMateria}>
+                    <TouchableOpacity style={style.button} onPress={ActMesa}>
                         <Text style={style.textButton}>Modificar</Text>
                     </TouchableOpacity>
                 </View>

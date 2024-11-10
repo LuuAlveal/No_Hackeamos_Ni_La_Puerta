@@ -7,19 +7,19 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const BD = getFirestore(appFirebase);
 
-export default function ListMaterias() {
-    const [materias, setmaterias] = useState([]);
+export default function ListaMesas() {
+    const [mesas, setMesas] = useState([]);
     const navigation = useNavigation();
     const AgregarMesas = () => {
         navigation.navigate('AgregarMesas')
     };
     useEffect(() => {
-        const materiasCollection = collection(BD, 'materias');
-        const materias = onSnapshot(materiasCollection, (querySnapshot) => {
-            const materias = [];
+        const mesasCollection = collection(BD, 'mesas');
+        const Mesas = onSnapshot(mesasCollection, (querySnapshot) => {
+            const mesas = [];
             querySnapshot.forEach((doc) => {
                 const { nombre, profesor, fecha, year } = doc.data();
-                materias.push({
+                mesas.push({
                     id: doc.id,
                     nombre,
                     profesor,
@@ -27,16 +27,15 @@ export default function ListMaterias() {
                     year
                 });
             });
-            setmaterias(materias);
+            setMesas(mesas);
         });
 
-        return () => materias();
+        return () => Mesas();
     }, []);
 
-    const eliminarMateria = async (id) => {
-        const materiaRef = doc(BD, 'materias', id);
-        await deleteDoc(materiaRef);
-        setmaterias(materias.filter((materia) => materia.id !== id));
+    const eliminarMesa = async (id) => {
+        const mesaRef = doc(BD, 'mesas', id);
+        await deleteDoc(mesaRef);
     };
 
     const style = StyleSheet.create({
@@ -106,51 +105,51 @@ export default function ListMaterias() {
         }
     });
 
-return (
-    <ImageBackground
-    source={require('../assets/FondoEpetHome.jpeg')}
-    resizeMode={'cover'}
-    style={style.backgroundImage}
-    >
-    <View style={style.container}>
-        <View style={style.form}>
-            <Text style={style.modificarMesas}>LISTA DE MESAS</Text>
-            <View style={style.scrollView}>
-                {materias.map((materia) => (
-                    <View style={style.alumnoContainer} key={materia.id}>
-                        <ListItem bottomDivider 
-                            onPress={() =>
-                                navigation.navigate('ModificarMesas', {
-                                    idmaterias: materia.id
-                                })
-                            }
-                        >
-                            <ListItem.Chevron />
-                            <ListItem.Content>
-                                <ListItem.Title>{materia.nombre} {materia.fecha} - Año {materia.year}</ListItem.Title>
-                                <ListItem.Subtitle>{materia.profesor}</ListItem.Subtitle>
-                            </ListItem.Content>
-                            <TouchableOpacity
-                                onPress={() => eliminarMateria(materia.id)}
-                            >
-                                <Icon name="trash" size={24} color="#FF0000" style={style.basura} />
-                            </TouchableOpacity>
-                        </ListItem>
+    return (
+        <ImageBackground
+            source={require('../assets/FondoEpetHome.jpeg')}
+            resizeMode={'cover'}
+            style={style.backgroundImage}
+        >
+            <View style={style.container}>
+                <View style={style.form}>
+                    <Text style={style.modificarMesas}>LISTA DE MESAS</Text>
+                    <View style={style.scrollView}>
+                        {mesas.map((mesa) => (
+                            <View style={style.alumnoContainer} key={mesa.id}>
+                                <ListItem bottomDivider
+                                    onPress={() =>
+                                        navigation.navigate('ModificarMesas', {
+                                            idMesas: mesa.id
+                                        })
+                                    }
+                                >
+                                    <ListItem.Chevron />
+                                    <ListItem.Content>
+                                        <ListItem.Title>{mesa.nombre} {mesa.fecha} - Año {mesa.year}</ListItem.Title>
+                                        <ListItem.Subtitle>{mesa.profesor}</ListItem.Subtitle>
+                                    </ListItem.Content>
+                                    <TouchableOpacity
+                                        onPress={() => eliminarMesa(mesa.id)}
+                                    >
+                                        <Icon name="trash" size={24} color="#FF0000" style={style.basura} />
+                                    </TouchableOpacity>
+                                </ListItem>
+                            </View>
+                        ))}
                     </View>
-                ))}
+                </View>
+                <View style={style.containerButton}>
+                    <TouchableOpacity
+                        style={style.button}
+                        onPress={AgregarMesas}
+                    >
+                        <Text style={style.textButton}>
+                            Agregar mesa
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
-        <View style={style.containerButton}>
-            <TouchableOpacity
-                style={style.button}
-                onPress={AgregarMesas}
-                >
-                    <Text style={style.textButton}>
-                        Agregar Materia
-                    </Text>
-                </TouchableOpacity>
-        </View>
-    </View>
-    </ImageBackground>
-);
+        </ImageBackground>
+    );
 }
