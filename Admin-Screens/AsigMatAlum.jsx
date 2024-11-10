@@ -213,7 +213,7 @@ export default function AsigMatAlum(props) {
                             style={style.cajaIng}>
                             <Picker.Item label="Seleccione el año de la materia" value="default" />
                             {[1, 2, 3, 4, 5, 6].map((year) => (
-                                <Picker.Item key={year} label={`${year}`} value={`${year}`} />
+                                <Picker.Item key={year} label={`${year}°`} value={`${year}`} />
                             ))}
                         </Picker>
                         <Text style={{ fontSize: 15 }}>Materia</Text>

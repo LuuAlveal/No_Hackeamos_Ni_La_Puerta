@@ -176,7 +176,7 @@ export default function ModificarAlumno(props) {
                     <TouchableOpacity style={style.button} onPress={ActAlum}>
                         <Text style={style.textButton}>Modificar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AsigMatAlum', {diAlumno: props.route.params.idAlumno})} >
+                    <TouchableOpacity style={style.button} onPress={() => navigation.navigate('AsigMatAlum', {idAlumno: props.route.params.idAlumno})} >
                         <Text style={style.textButton}>Asignar Materia</Text>
                     </TouchableOpacity>
                 </View>
