@@ -32,11 +32,20 @@ export default function Login (){
                 if (docSnap.exists()) { //se corrobora si el documento existe
                     const userData = docSnap.data();//se obtiene los datos del usuario
                     const rol = userData.rol;//se obtiene el rol del usuario
+                    const estado = userData.estado;
                     //dependiendo del rol es a donde va a ser rediccionado el usuario
                     if (rol === '1') {
                         navigation.navigate('Admin');
-                    } else if (rol === '2') {
+                    } else if ((rol === '2')&& (estado === 'ACTIVO')) {
                         navigation.navigate('Home')
+                    }
+                    else{
+                        Swal.fire({
+                            title: 'El usuario esta inactivo',
+                            icon: 'error',
+                            backdrop: false, 
+                            allowOutsideClick: false 
+                        })
                     }
                 } else {
                     console.log("No se encontró el documento del usuario");
