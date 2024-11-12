@@ -48,6 +48,8 @@ export default function InfOpc(props) {
         text: 'Te has inscrito correctamente.',
         icon: 'success',
         confirmButtonText: 'Aceptar',
+        backdrop: false, 
+        allowOutsideClick: false 
       }).then(() => {
         navigation.navigate('Opciones');
       });
@@ -58,6 +60,8 @@ export default function InfOpc(props) {
         text: 'No se pudo completar la inscripción.',
         icon: 'error',
         confirmButtonText: 'Aceptar',
+        backdrop: false, 
+        allowOutsideClick: false 
       });
     }
   };

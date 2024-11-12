@@ -36,13 +36,17 @@ export default function ModificarMesas(props) {
             });
             Swal.fire({
                 title: 'Mesa actualizado exitosamente',
-                icon: 'success'
+                icon: 'success',
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         } catch (error) {
             Swal.fire({
                 error: 'Error',
                 title: 'No se pudo modificar la Mesa',
-                icon: 'error'
+                icon: 'error',
+                backdrop: false, 
+                allowOutsideClick: false 
             })
             console.log(error)
         }
