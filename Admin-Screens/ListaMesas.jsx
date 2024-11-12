@@ -18,7 +18,7 @@ export default function ListaMesas() {
         const Mesas = onSnapshot(mesasCollection, (querySnapshot) => {
             const mesas = [];
             querySnapshot.forEach((doc) => {
-                const { nombre, profesor, fecha, year } = doc.data();
+                const { nombre, profesor, fecha, year, estado } = doc.data();
                 if (estado === "ACTIVO") {
                     
                     mesas.push({
