@@ -76,11 +76,12 @@ export default function AsigMatAlum(props) {
             const alumnoSnapshot = await getDoc(alumnoRef);
             //obtenemos las materias ya existentes del alumno o si no tiene hacemos un array vacio
             let materiasExistentes = alumnoSnapshot.data().materias || [];
+            let materiasInscriptas = alumnoSnapshot.data().inscripto || [];
             //agregamos las materias seleccionadas con las materias ya existentes, si hay duplicadas se eliminan
             materiasExistentes = [...new Set([...materiasExistentes, ...materiasSeleccionadas])];
-
+            let cantidadTotal = materiasExistentes.length + materiasInscriptas.length;
             //si el alumno tiene mas de 3 materias en total, muestra una alerta y limita la lista a 3
-            if (materiasExistentes.length > 3) {
+            if (cantidadTotal > 3) {
                 materiasExistentes = materiasExistentes.slice(0, 3);
                 return Swal.fire({
                     title: 'Cantidad máxima de previas',
