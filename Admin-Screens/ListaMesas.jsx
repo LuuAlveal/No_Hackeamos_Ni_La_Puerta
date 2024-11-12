@@ -19,13 +19,16 @@ export default function ListaMesas() {
             const mesas = [];
             querySnapshot.forEach((doc) => {
                 const { nombre, profesor, fecha, year } = doc.data();
-                mesas.push({
-                    id: doc.id,
-                    nombre,
-                    profesor,
-                    fecha,
-                    year
-                });
+                if (estado === "ACTIVO") {
+                    
+                    mesas.push({
+                        id: doc.id,
+                        nombre,
+                        profesor,
+                        fecha,
+                        year
+                    });
+                }
             });
             setMesas(mesas);
         });
