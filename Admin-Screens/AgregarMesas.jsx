@@ -14,7 +14,8 @@ export default function AgregarMesas() {
     const [state, setState] = useState({
         nombre: "",
         profesor: "",
-        fecha: ""
+        fecha: "",
+        estado:"ACTIVO"
     })
     const mesasPorAño = {
         '1': [
@@ -194,7 +195,8 @@ export default function AgregarMesas() {
                 nombre: selectedName,
                 profesor: state.profesor,
                 year: selectedYear,
-                fecha: state.fecha
+                fecha: state.fecha,
+                estado: state.estado
             });
             Swal.fire({
                 title: 'Mesa Agregada Exitosamente',
@@ -229,7 +231,9 @@ export default function AgregarMesas() {
             Swal.fire({
                 title: 'ERROR',
                 text: 'Ingrese el nombre del profesor',
-                icon: 'warning'
+                icon: 'warning',          
+                backdrop: false, 
+                allowOutsideClick: false 
             })
         }else {
             try {
@@ -237,7 +241,8 @@ export default function AgregarMesas() {
                     nombre: selectedName,
                     profesor: state.profesor,
                     year: selectedYear,
-                    fecha: state.fecha
+                    fecha: state.fecha,
+                    estado: state.estado
                 });
                 Swal.fire({
                     title: 'Mesa Creada Exitosamente',

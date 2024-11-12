@@ -36,7 +36,7 @@ export default function ListaMesas() {
     const eliminarMesa = async (id) => {
         const mesaRef = doc(BD, 'mesas', id);
         await updateDoc(mesaRef,{
-            estado: "inactivo"
+            estado: "INACTIVO"
         })
     };
 

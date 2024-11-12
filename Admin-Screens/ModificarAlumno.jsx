@@ -81,6 +81,7 @@ export default function ModificarAlumno(props) {
         backgroundImage: {
             flex: 1,
             width: '100%',
+            height:'100vh',
             justifyContent: 'center',
             alignItems: 'center'
         },
@@ -119,7 +120,7 @@ export default function ModificarAlumno(props) {
 
     return (
         <ImageBackground
-            source={require('../assets/epet20fondo.png')}
+            source={require('../assets/FondoEpetHome.jpeg')}
             resizeMode={'cover'}
             style={style.backgroundImage}
         >
