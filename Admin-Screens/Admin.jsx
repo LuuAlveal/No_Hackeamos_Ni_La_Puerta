@@ -10,15 +10,6 @@ export default function Admin() {
     const ListaMesas = () => {
         navigation.navigate('ListaMesas')
     }
-    const ListaProfesores = () => {
-        navigation.navigate('ListaProfesores')
-    }
-    const ListaMaterias = () => {
-        navigation.navigate('ListaMaterias')
-    }
-    const ModificarAlumno = () => {
-        navigation.navigate('ModificarAlumno')
-    }
     const style = StyleSheet.create({
         container: {
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -73,26 +64,6 @@ export default function Admin() {
                     >
                         <Text style={style.textButton}>
                             LISTA DE MESAS
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={style.containerButton}>
-                    <TouchableOpacity
-                        style={style.button}
-                        onPress={ListaProfesores}
-                    >
-                        <Text style={style.textButton}>
-                            LISTA DE PROFESORES
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={style.containerButton}>
-                    <TouchableOpacity
-                        style={style.button}
-                        onPress={ListaMaterias}
-                    >
-                        <Text style={style.textButton}>
-                            LISTA DE MATERIAS
                         </Text>
                     </TouchableOpacity>
                 </View>
