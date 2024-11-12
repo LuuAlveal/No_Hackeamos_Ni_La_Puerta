@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Swal from 'sweetalert2';
-
-export default function InfOpc() {
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import appFirebase from '../firebase';
+const BD = getFirestore(appFirebase);
+export default function InfOpc(props) {
   const navigation = useNavigation();
-  const [mesa, setMesa] = useState({
-    profesor: 'Juan Pérez',
-    fecha: '15/11/2024',
-    hora: '10:00 hs',
-    materia: 'Programación',
+  const [mesa, setmesas] = useState({
+    profesor: '',
+    fecha: '',
+    nombre: '',
   });
   const [inscrito, setInscrito] = useState(false);
-
+  //Leer el document de la Mesa
+  const getmesasById = async (id) => {
+    const mesasRef = doc(BD, 'mesas', id);
+    const docSnap = await getDoc(mesasRef);
+    if (docSnap.exists()) {
+      setmesas(docSnap.data());
+    } else {
+      console.log("No se encontro el documento de la mesa");
+    }
+  };
+  useEffect(() => {
+    if (props.route.params.idMateria) {
+      getmesasById(props.route.params.idMateria);
+    }
+  }, [props.route.params.idMateria]);
   const handleInscripcion = () => {
-   
+
     setInscrito(true);
     Swal.fire({
       title: '¡Inscripción exitosa!',
@@ -37,8 +52,7 @@ export default function InfOpc() {
           <Text style={styles.title}>Información de la Mesa</Text>
           <Text style={styles.info}>Profesor: {mesa.profesor}</Text>
           <Text style={styles.info}>Fecha: {mesa.fecha}</Text>
-          <Text style={styles.info}>Hora: {mesa.hora}</Text>
-          <Text style={styles.info}>Materia: {mesa.materia}</Text>
+          <Text style={styles.info}>Materia: {mesa.nombre}</Text>
           {inscrito ? (
             <Text style={styles.info}>¡Ya estás inscrito!</Text>
           ) : (
