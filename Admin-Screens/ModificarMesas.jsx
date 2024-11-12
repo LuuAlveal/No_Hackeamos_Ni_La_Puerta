@@ -16,7 +16,7 @@ export default function ModificarMesas(props) {
             setmesas(docSnap.data());
             setSelectedYear(docSnap.data().year);
         } else {
-            console.log("No se encontró el documento del usuario");
+            console.log("No se encontro el documento de la mesa");
         }
     };
     //Recuperar el Id de la Mesa
@@ -138,12 +138,12 @@ export default function ModificarMesas(props) {
                     style={style.cajaIng}
                 >
                     <Picker.Item label="Seleccione su año" value="default" />
-                    <Picker.Item label="1° año" value="1°" />
-                    <Picker.Item label="2° año" value="2°" />
-                    <Picker.Item label="3° año" value="3°" />
-                    <Picker.Item label="4° año" value="4°" />
-                    <Picker.Item label="5° año" value="5°" />
-                    <Picker.Item label="6° año" value="6°" />
+                    <Picker.Item label="1° año" value="1" />
+                    <Picker.Item label="2° año" value="2" />
+                    <Picker.Item label="3° año" value="3" />
+                    <Picker.Item label="4° año" value="4" />
+                    <Picker.Item label="5° año" value="5" />
+                    <Picker.Item label="6° año" value="6" />
                 </Picker>
                 <View style={style.containerButton}>
                     <TouchableOpacity style={style.button} onPress={ActMesa}>
