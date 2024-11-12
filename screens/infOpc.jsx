@@ -1,10 +1,12 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Swal from 'sweetalert2';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { doc, getDoc, getFirestore, arrayRemove, arrayUnion, updateDoc } from 'firebase/firestore';
 import appFirebase from '../firebase';
+import { getAuth } from 'firebase/auth';
 const BD = getFirestore(appFirebase);
+const auth = getAuth(appFirebase);
 export default function InfOpc(props) {
   const navigation = useNavigation();
   const [mesa, setmesas] = useState({
@@ -23,23 +25,43 @@ export default function InfOpc(props) {
       console.log("No se encontro el documento de la mesa");
     }
   };
+  //recuperar el id de la materia 
   useEffect(() => {
     if (props.route.params.idMateria) {
       getmesasById(props.route.params.idMateria);
     }
   }, [props.route.params.idMateria]);
-  const handleInscripcion = () => {
+  const handleInscripcion = async () => {
+    try {
+      const user = auth.currentUser;//obtener el uid del usuario
+      const alumnoRef = doc(BD, 'alumnos', user.uid);//buscar el usuario por el uid
+      const materiaId = props.route.params.idMateria;
 
-    setInscrito(true);
-    Swal.fire({
-      title: '¡Inscripción exitosa!',
-      text: 'Te has inscrito correctamente.',
-      icon: 'success',
-      confirmButtonText: 'Aceptar',
-    }).then(() => {
-      navigation.navigate('');
-    });
+      await updateDoc(alumnoRef, {
+        materias: arrayRemove(materiaId),//elimina el uid del array de "materias"
+        inscripto: arrayUnion(materiaId),//agrega el uid a un array nuevo "inscripto"
+      });
+
+      setInscrito(true);
+      Swal.fire({
+        title: '¡Inscripción exitosa!',
+        text: 'Te has inscrito correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+      }).then(() => {
+        navigation.navigate('Opciones');
+      });
+    } catch (error) {
+      console.log("Error en la inscripción: ", error);
+      Swal.fire({
+        title: 'Error en la inscripción',
+        text: 'No se pudo completar la inscripción.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
+    }
   };
+
 
   return (
     <ImageBackground
@@ -53,13 +75,9 @@ export default function InfOpc(props) {
           <Text style={styles.info}>Profesor: {mesa.profesor}</Text>
           <Text style={styles.info}>Fecha: {mesa.fecha}</Text>
           <Text style={styles.info}>Materia: {mesa.nombre}</Text>
-          {inscrito ? (
-            <Text style={styles.info}>¡Ya estás inscrito!</Text>
-          ) : (
-            <TouchableOpacity style={styles.button} onPress={handleInscripcion}>
-              <Text style={styles.buttonText}>Inscribirse</Text>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity style={styles.button} onPress={handleInscripcion}>
+            <Text style={styles.buttonText}>Inscribirse</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
