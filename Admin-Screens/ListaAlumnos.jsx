@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { collection, onSnapshot, getFirestore, doc, deleteDoc } from 'firebase/firestore';
+import { collection, onSnapshot, getFirestore, doc, updateDoc } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import ModificarAlumno from './ModificarAlumno';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 const BD = getFirestore(appFirebase);
 
 export default function ListaAlumnos() {
@@ -19,7 +19,7 @@ export default function ListaAlumnos() {
             const alumnos = [];
             querySnapshot.forEach((doc) => {
                 const { nombre, apellido, dni, year, rol, estado } = doc.data();
-                if ((rol === '2')&&(estado === "ACTIVO")) { // Solo carga los alumnos con rol 2
+                if ((rol === '2') && (estado === "ACTIVO")) { // Solo carga los alumnos con rol 2
                     alumnos.push({
                         id: doc.id,
                         nombre,
@@ -38,7 +38,10 @@ export default function ListaAlumnos() {
 
     const eliminarAlumno = async (id) => {
         const alumnoRef = doc(BD, 'alumnos', id);
-        await deleteDoc(alumnoRef);
+        // Actualiza el estado del alumno a "INACTIVO"
+        await updateDoc(alumnoRef, {
+            estado: "INACTIVO"
+        });
     };
 
     const style = StyleSheet.create({
@@ -87,7 +90,7 @@ export default function ListaAlumnos() {
             width: '100%',
             position: 'relative',
             display: 'flex',
-            flexDirection:'column',
+            flexDirection: 'column',
             alignCenter: 'center',
             justifyContent: 'center',
             height: '12vh',
@@ -140,3 +143,4 @@ export default function ListaAlumnos() {
         </ImageBackground>
     );
 }
+``
