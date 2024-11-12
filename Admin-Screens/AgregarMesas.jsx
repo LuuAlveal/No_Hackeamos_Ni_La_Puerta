@@ -23,7 +23,7 @@ export default function AgregarMesas() {
     })
     const [startDate, setStartDate] = useState(new Date());
     const mesasPorAño = {
-        '1°': [
+        '1': [
             { label: 'Biología', value: 'Biología' },
             { label: 'Construccion de la Ciudadanía', value: 'Construccion de la Ciudadanía' },
             { label: 'Dibujo Técnico I', value: 'Dibujo Técnico I' },
@@ -42,7 +42,7 @@ export default function AgregarMesas() {
             { label: 'Taller', value: 'Taller' },
             { label: 'Teatro', value: 'Teatro' }
         ],
-        '2°': [
+        '2': [
             { label: 'Biología e Higiene', value: 'Biología e Higiene' },
             { label: 'Dibujo Técnico II', value: 'Dibujo Técnico II' },
             { label: 'Economía II', value: 'Economía II' },
@@ -61,7 +61,7 @@ export default function AgregarMesas() {
             { label: 'Taller', value: 'Taller' },
             { label: 'Teatro II', value: 'Teatro II' }
         ],
-        '3°': [
+        '3': [
             { label: 'Dibujo Tecnico III', value: 'Dibujo Tecnico III' },
             { label: 'Educación Cívica II', value: 'Educación Cívica II' },
             { label: 'Educación Física', value: 'Educación Física' },
@@ -74,7 +74,7 @@ export default function AgregarMesas() {
             { label: 'Química', value: 'Química' },
             { label: 'Taller', value: 'Taller' }
         ],
-        '4°': [
+        '4': [
             { label: 'Análisis Matemático', value: 'Análisis Matemático' },
             { label: 'Educación Física', value: 'Educación Física' },
             { label: 'Física IV', value: 'Física IV' },
@@ -87,7 +87,7 @@ export default function AgregarMesas() {
             { label: 'Química Aplicada', value: 'Química Aplicada' },
             { label: 'Taller ', value: 'Taller ' },
         ],
-        '5°': [
+        '5': [
             { label: 'Ciencia - Tecnologia e Informacion', value: 'Ciencia - Tecnologia e Informacion' },
             { label: 'Educación Física', value: 'Educación Física' },
             { label: 'Estadística y Probabilidad', value: 'Estadística y Probabilidad' },
@@ -101,7 +101,7 @@ export default function AgregarMesas() {
             { label: 'Técnicas Avanzadas de Programación', value: 'Técnicas Avanzadas de Programación' },
             { label: 'Tecnología de Redes I', value: 'Tecnología de Redes I' },
         ],
-        '6°': [
+        '6': [
             { label: 'Computación Gráfica', value: 'Computación Gráfica' },
             { label: 'Educación Física', value: 'Educación Física' },
             { label: 'Etica y Deontologia Profesional', value: 'Etica y Deontologia Profesional' }, //Agregar Practicas profecionalizantes
