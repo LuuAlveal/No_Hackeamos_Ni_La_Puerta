@@ -21,6 +21,7 @@ import ModificarAlumno from '../Admin-Screens/ModificarAlumno';
 import ModificarMesas from '../Admin-Screens/ModificarMesas';
 import AsigMatAlum from '../Admin-Screens/AsigMatAlum';
 import historial from '../screens/historial';
+import InfHistorial from '../screens/InfHistorial';
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
 
@@ -114,7 +115,7 @@ export default function MyStack() {
           }
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="historial"
         component={historial}
         options={{
@@ -169,8 +170,8 @@ export default function MyStack() {
         }}
       />
       <Stack.Screen
-        name="Ajustes"
-        component={Ajustes}
+        name="InfHistorial"
+        component={InfHistorial}
         options={{
           title: "E.P.E.T N 20",
           headerTintColor: 'white',
@@ -178,6 +179,15 @@ export default function MyStack() {
           headerStyle: {
             backgroundColor: '#304A6E',
           },
+          headerRight: () => {
+            return (
+              <Button
+                onPress={() => navigation.navigate('Ajustes')}
+                title="Ajustes"
+                color="#304A6E"
+              />
+            );
+          }
         }}
       />
       <Stack.Screen

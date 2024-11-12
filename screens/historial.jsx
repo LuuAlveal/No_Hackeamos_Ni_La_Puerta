@@ -16,13 +16,13 @@ export default function Opciones() {
   useEffect(() => {
     const getHistorial = async () => {
       try {
-        const user = auth.currentUser ;
+        const user = auth.currentUser;
         const alumnoRef = doc(BD, 'alumnos', user.uid);
         const docSnap = await getDoc(alumnoRef);
 
         if (docSnap.exists()) {
           const data = docSnap.data();
-          const materiasUids = data.materias || [];
+          const materiasUids = data.inscripto || [];
           setHistorial(materiasUids);
 
           const materiasInformacion = await Promise.all(materiasUids.map(async (materiaId) => {
@@ -54,7 +54,11 @@ export default function Opciones() {
           {MateriasInfo.length > 0 ? (
             MateriasInfo.map((materia, index) => (
               <TouchableOpacity key={index} style={styles.optionButton}
-        
+                onPress={() =>
+                  navigation.navigate('InfHistorial', {
+                    idMateria: materia.id
+                  })
+                }
               >
                 <Text style={styles.buttonText}>{materia.nombre}</Text>
               </TouchableOpacity>
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonText: {
-    textAlign: 'center', 
-    fontSize: 16 ,
+    textAlign: 'center',
+    fontSize: 16,
   }
 });
