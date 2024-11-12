@@ -5,10 +5,6 @@ import appFirebase from '../firebase';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Swal from 'sweetalert2';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import dayjs from 'dayjs';
 const BD = getFirestore(appFirebase);
 
 export default function AgregarMesas() {
@@ -18,9 +14,8 @@ export default function AgregarMesas() {
     const [state, setState] = useState({
         nombre: "",
         profesor: "",
-        fecha: new Date()
+        fecha: ""
     })
-    const [startDate, setStartDate] = useState(new Date());
     const mesasPorAño = {
         '1': [
             { label: 'Biología', value: 'Biología' },
@@ -92,7 +87,7 @@ export default function AgregarMesas() {
             { label: 'Estadística y Probabilidad', value: 'Estadística y Probabilidad' },
             { label: 'Inglés Técnico II', value: 'Inglés Técnico II' },
             { label: 'Organización y Arquitectura I', value: 'Organización y Arquitectura I' },
-            { label: 'Practicas Profesionalizantes', value: 'Practicas Profesionalizantes' }, //PREGUNTAR EL NOMBRE CORRECTO
+            { label: 'Practicas Profesionalizantes', value: 'Practicas Profesionalizantes' },
             { label: 'Principios de Testing', value: 'Principios de Testing' },
             { label: 'Programación Web Estática y Laboratorio Web', value: 'Programación Web Estática y Laboratorio Web' },
             { label: 'Sistemas Operativos I', value: 'Sistemas Operativos I' },
@@ -103,10 +98,11 @@ export default function AgregarMesas() {
         '6': [
             { label: 'Computación Gráfica', value: 'Computación Gráfica' },
             { label: 'Educación Física', value: 'Educación Física' },
-            { label: 'Etica y Deontologia Profesional', value: 'Etica y Deontologia Profesional' }, //Agregar Practicas profecionalizantes
+            { label: 'Etica y Deontologia Profesional', value: 'Etica y Deontologia Profesional' },
             { label: 'Ingles Tecnico III', value: 'Ingles Tecnico III' },
             { label: 'Introducción a la Automatización y Control', value: 'Introducción a la Automatización y Control' },
             { label: 'Organización y Arquitectura II', value: 'Organización y Arquitectura II' },
+            { label: 'Pasantias', value: 'Pasantias' },
             { label: 'Programación Web Dinámica', value: 'Programación Web Dinámica' },
             { label: 'Seguridad Informática', value: 'Seguridad Informática' },
             { label: 'Sistemas de Gestión de Calidad de Software', value: 'Sistemas de Gestión de Calidad de Software' },
@@ -115,21 +111,78 @@ export default function AgregarMesas() {
             { label: 'Tecnología de Redes II', value: 'Tecnología de Redes II' }
         ]
     };
-    const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); 
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${day}/${month}/${year}`;
-    };
-    const handleDateChange = (date) => {
-        const isWeekday = date.getDay() >= 1 && date.getDay() <= 5;
-        if (isWeekday) {
-            setStartDate(date);
-            setState({ ...state, fecha: formatDate(date) });
-        }
-    };
-    const isDateValid = (date) => {
-        return date >= new Date();
+    const fechasPredeterminadas = {
+        'Biología': '02/12/2024 08:00',
+        'Construccion de la Ciudadanía': '02/12/2024 13:30' ,
+        'Dibujo Técnico I': '02/12/2024 08:00' ,
+        'Educación Física': '02/12/2024 13:30' ,
+        'ESI I': '02/12/2024 08:00' ,
+        'Filosofía I': '02/12/2024 13:30' ,
+        'Fisicoquímica': '02/12/2024 08:00' ,
+        'Geografía I': '02/12/2024 13:30' ,
+        'Historia I': '02/12/2024 08:00' ,
+        'Informatica I': '02/12/2024 13:30' ,
+        'Ingles I': '03/12/2024 08:00' ,
+        'Lengua I': '03/12/2024 13:30' ,
+        'Literatura I': '03/12/2024 08:00' ,
+        'Matemática I': '03/12/2024 13:30' ,
+        'Música': '03/12/2024 08:00' ,
+        'Taller': '03/12/2024 13:30' ,
+        'Teatro': '03/12/2024 08:00' ,
+        'Biología e Higiene': '03/12/2024 13:30' ,
+        'Dibujo Técnico II': '04/12/2024 08:00' ,
+        'Economía II': '04/12/2024 13:30' ,
+        'Educación Cívica': '04/12/2024 08:00' ,
+        'ESI II': '04/12/2024 13:30' ,
+        'Filosofía II': '04/12/2024 08:00' ,
+        'Física II': '04/12/2024 13:30' ,
+        'Geografía II': '04/12/2024 08:00' ,
+        'Historia II': '04/12/2024 13:30' ,
+        'Informática II': '05/12/2024 08:00' ,
+        'Inglés II': '05/12/2024 13:30' ,
+        'Lengua II': '05/12/2024 08:00' ,
+        'Literatura II': '05/12/2024 13:30' ,
+        'Matemática II': '05/12/2024 08:00' ,
+        'Teatro II': '05/12/2024 13:30' ,
+        'Dibujo Tecnico III': '05/12/2024 08:00' ,
+        'Educación Cívica II': '05/12/2024 13:30' ,
+        'Física III': '09/12/2024 08:00' ,
+        'Geografía III': '09/12/2024 13:30' ,
+        'Historia III': '09/12/2024 08:00' ,
+        'Inglés III': '09/12/2024 13:30' ,
+        'Lengua y Literatura': '09/12/2024 08:00' ,
+        'Matemática III': '09/12/2024 13:30' ,
+        'Química': '09/12/2024 08:00' ,
+        'Análisis Matemático': '09/12/2024 18:00' ,
+        'Física IV': '09/12/2024 18:00' ,
+        'Inglés Técnico I': '09/12/2024 18:00' ,
+        'Instruccion Civica': '10/12/2024 18:00' ,
+        'Introducción a la Base de Datos': '10/12/2024 18:00' ,
+        'Introducción a la Programación': '10/12/2024 18:00' ,
+        'Literatura IV': '11/12/2024 18:00' ,
+        'Lógica': '11/12/2024 18:00' ,
+        'Química Aplicada': '11/12/2024 18:00' ,
+        'Ciencia - Tecnologia e Informacion': '12/12/2024 18:00' ,
+        'Estadística y Probabilidad': '12/12/2024 18:00' ,
+        'Inglés Técnico II': '12/12/2024 18:00' ,
+        'Organización y Arquitectura I': '13/12/2024 18:00' ,
+        'Practicas Profesionalizantes': '13/12/2024 18:00' ,
+        'Principios de Testing': '13/12/2024 18:00' ,
+        'Programación Web Estática y Laboratorio Web': '16/12/2024 18:00' ,
+        'Sistemas Operativos I': '16/12/2024 18:00' ,
+        'Técnicas Avanzadas de Programación': '16/12/2024 18:00' ,
+        'Tecnología de Redes I': '16/12/2024 18:00' ,
+        'Computación Gráfica': '17/12/2024 18:00' ,
+        'Etica y Deontologia Profesional': '17/12/2024 18:00' ,
+        'Ingles Tecnico III': '17/12/2024 18:00' ,
+        'Introducción a la Automatización y Control': '02/12/2024 18:00' ,
+        'Organización y Arquitectura II': '02/12/2024 18:00' ,
+        'Pasantias': '02/12/2024 18:00' ,
+        'Programación Web Dinámica': '03/12/2024 18:00' ,
+        'Seguridad Informática': '03/12/2024 18:00' ,
+        'Sistemas de Gestión de Calidad de Software': '03/12/2024 18:00' ,
+        'Sistemas Operativos II': '03/12/2024 18:00' ,
+        'Tecnología de Redes II': '03/12/2024 18:00' 
     };
     const handleChangeText = (name, value) => {
         setState({ ...state, [name]: value })
@@ -140,8 +193,8 @@ export default function AgregarMesas() {
             await addDoc(collection(BD, 'mesas'), {
                 nombre: selectedName,
                 profesor: state.profesor,
-                fecha: state.fecha.toString(), 
                 year: selectedYear,
+                fecha: state.fecha
             });
             Swal.fire({
                 title: 'Mesa Agregada Exitosamente',
@@ -178,21 +231,13 @@ export default function AgregarMesas() {
                 text: 'Ingrese el nombre del profesor',
                 icon: 'warning'
             })
-        } else if (state.fecha === '') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese la fecha',
-                icon: 'error',                 
-                backdrop: false, 
-                allowOutsideClick: false 
-            })
         }else {
             try {
                 await addDoc(collection(BD, 'mesas'), {
                     nombre: selectedName,
                     profesor: state.profesor,
-                    fecha: state.fecha,
-                    year: selectedYear
+                    year: selectedYear,
+                    fecha: state.fecha
                 });
                 Swal.fire({
                     title: 'Mesa Creada Exitosamente',
@@ -301,7 +346,12 @@ export default function AgregarMesas() {
                     <Picker
                         selectedValue={selectedName}
                         onValueChange={(itemValue, itemIndex) => {
-                            setSelectedName(itemValue)
+                            setSelectedName(itemValue);
+                            if (itemValue in fechasPredeterminadas) {
+                                setState({ ...state, fecha: fechasPredeterminadas[itemValue] });
+                            } else {
+                                setState({ ...state, fecha: '' });
+                            }
                         }}
                         style={{ paddingHorizontal: 15, borderColor: 'white'}}
                     >
@@ -320,10 +370,6 @@ export default function AgregarMesas() {
                             onChangeText={(value) => handleChangeText('profesor', value)}
                         />
                     </View>
-
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DateTimePicker/>
-                    </LocalizationProvider>
 
                     <View style={style.containerButton}>
                         <TouchableOpacity
