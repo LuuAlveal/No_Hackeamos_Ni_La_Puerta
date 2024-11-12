@@ -18,8 +18,8 @@ export default function ListaAlumnos() {
         const Alumnos = onSnapshot(alumnosCollection, (querySnapshot) => {
             const alumnos = [];
             querySnapshot.forEach((doc) => {
-                const { nombre, apellido, dni, year, rol } = doc.data();
-                if (rol === '2') { // Solo carga los alumnos con rol 2
+                const { nombre, apellido, dni, year, rol, estado } = doc.data();
+                if ((rol === '2')&&(estado === "ACTIVO")) { // Solo carga los alumnos con rol 2
                     alumnos.push({
                         id: doc.id,
                         nombre,

@@ -24,7 +24,9 @@ export default function Register() {
         dni: "",
         email: "",
         password: "",
-        rol: "2"
+        rol: "2",
+        estado: "ACTIVO"
+
     })
     //Funcion para alternar entre ver/ocultar contraseña
     const verPassword = () => {
@@ -98,9 +100,9 @@ export default function Register() {
                     apellido: state.apellido,
                     dni: state.dni,
                     email: state.email,
-                    materiasPrevias: [],
                     rol: state.rol,
-                    year: selectedYear
+                    year: selectedYear,
+                    estado: state.estado
                 });
                 Swal.fire({
                     title: 'Cuenta Creada Exitosamente',
