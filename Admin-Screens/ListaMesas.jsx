@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { collection, onSnapshot, getFirestore, doc, deleteDoc } from 'firebase/firestore';
+import { collection, onSnapshot, getFirestore, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import appFirebase from '../firebase';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -35,7 +35,9 @@ export default function ListaMesas() {
 
     const eliminarMesa = async (id) => {
         const mesaRef = doc(BD, 'mesas', id);
-        await deleteDoc(mesaRef);
+        await updateDoc(mesaRef,{
+            estado: "inactivo"
+        })
     };
 
     const style = StyleSheet.create({
