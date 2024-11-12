@@ -20,7 +20,7 @@ import ListaMesas from '../Admin-Screens/ListaMesas';
 import ModificarAlumno from '../Admin-Screens/ModificarAlumno';
 import ModificarMesas from '../Admin-Screens/ModificarMesas';
 import AsigMatAlum from '../Admin-Screens/AsigMatAlum';
-
+import historial from '../screens/historial';
 const Stack = createStackNavigator();
 const auth = getAuth(appFirebase);
 
@@ -96,6 +96,27 @@ export default function MyStack() {
       <Stack.Screen
         name="Opciones"
         component={Opciones}
+        options={{
+          title: "E.P.E.T N 20",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E'
+          },
+          headerRight: () => {
+            return (
+              <Button
+                onPress={() => navigation.navigate('Ajustes')}
+                title="Ajustes"
+                color="#304A6E"
+              />
+            );
+          }
+        }}
+      />
+       <Stack.Screen
+        name="historial"
+        component={historial}
         options={{
           title: "E.P.E.T N 20",
           headerTintColor: 'white',

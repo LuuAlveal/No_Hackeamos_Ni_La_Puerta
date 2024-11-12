@@ -6,6 +6,9 @@ export default function Home() {
     const Opciones = () => {
        navigation.navigate('Opciones')
     }
+    const historial = () => {
+       navigation.navigate('historial')
+    }
     const style = StyleSheet.create({
         container: {
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -62,6 +65,7 @@ export default function Home() {
                 <View style={style.containerButton}>
                     <TouchableOpacity
                         style={style.button}
+                        onPress={historial}
                     >
                         <Text style={style.textButton}>
                             Historial
