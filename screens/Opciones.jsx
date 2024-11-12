@@ -4,45 +4,42 @@ import { useNavigation } from '@react-navigation/native';
 import appFirebase from '../firebase';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth } from 'firebase/auth';
+
 const BD = getFirestore(appFirebase);
 const auth = getAuth(appFirebase);
+
 export default function Opciones() {
   const navigation = useNavigation();
   const [previas, setPrevias] = useState([]);
   const [MateriasInfo, setMateriasInfo] = useState([]);
+
   useEffect(() => {
-    //funcion para recuperar las materias previas del alumno logueado
     const getPrevias = async () => {
       try {
-        //obtener el id del usuario logueado
-        const user = auth.currentUser;
-        //obtener el documento del usuario logueado por su uid 
+        const user = auth.currentUser ;
         const alumnoRef = doc(BD, 'alumnos', user.uid);
         const docSnap = await getDoc(alumnoRef);
 
         if (docSnap.exists()) {
           const data = docSnap.data();
-          const materiasUids = data.materias || []; //materias del alumno o si no tiene niguna pone un array vacio
-          setPrevias(materiasUids); //guarda los uids de las materias
+          const materiasUids = data.materias || [];
+          setPrevias(materiasUids);
 
-          //obtener la info de las materias
           const materiasInformacion = await Promise.all(materiasUids.map(async (materiaId) => {
-            const materiaRef = doc(BD, 'mesas', materiaId); //obtenemos el documento de la materia
+            const materiaRef = doc(BD, 'mesas', materiaId);
             const materiaSnap = await getDoc(materiaRef);
             if (materiaSnap.exists()) {
-              return { id: materiaId, ...materiaSnap.data() }; //guardamos el id y los datos de la materia
+              return { id: materiaId, ...materiaSnap.data() };
             }
           }));
-          //actualizar el estado con la materia
           setMateriasInfo(materiasInformacion);
         }
-      }
-      catch (error) { //muestra un error en consola si es que lo hay
+      } catch (error) {
         console.error(error);
       }
     };
 
-    getPrevias(); //devolvemos las materias
+    getPrevias();
   }, []);
 
   return (
@@ -51,7 +48,6 @@ export default function Opciones() {
       resizeMode={'cover'}
       style={styles.backgroundImage}
     >
-
       <View style={styles.container}>
         <View style={styles.optionsContainer}>
           <Text style={styles.title}>Materias Previas</Text>
@@ -64,7 +60,7 @@ export default function Opciones() {
                   })
                 }
               >
-                <Text >{materia.nombre}</Text>
+                <Text style={styles.buttonText}>{materia.nombre}</Text>
               </TouchableOpacity>
             ))
           ) : (
@@ -102,6 +98,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 6,
     elevation: 5,
+    alignItems: 'center',
   },
   optionButton: {
     padding: 16,
@@ -110,10 +107,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '80%',
     height: 50,
-    backgroundColor: '#FFFAFA'
+    backgroundColor: '#FFFAFA',
+    justifyContent: 'center',
   },
   title: {
     textAlign: "center",
-    fontSize: 20
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  buttonText: {
+    textAlign: 'center', 
+    fontSize: 16 ,
   }
 });
