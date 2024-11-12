@@ -14,7 +14,6 @@ const BD = getFirestore(appFirebase);
 export default function AgregarMesas() {
     const navigation = useNavigation();
     const [selectedName, setSelectedName] = useState("default");
-    const [selectedProfesor, setSelectedProfesor] = useState("default");
     const [selectedYear, setSelectedYear] = useState("default");
     const [state, setState] = useState({
         nombre: "",
@@ -116,83 +115,6 @@ export default function AgregarMesas() {
             { label: 'Tecnología de Redes II', value: 'Tecnología de Redes II' }
         ]
     };
-    const profesorPorMesas = {
-        'Biología' : [
-            { label: 'Liliana Aquito', value: 'Liliana Aquito' },
-            { label: 'Mariana Navoni', value: 'Mariana Navoni' }
-        ],
-        'Construccion de la Ciudadanía' : [
-            { label: 'Nazareno Miles', value: 'Nazareno Miles' },
-            { label: 'Rodriguez Barozi', value: 'Rodriguez Barozi' }
-        ],
-        'Dibujo Técnico I' : [
-            { label: 'Leonardo Solalinde', value: 'Leonardo Solalinde' },
-            { label: 'Romina Maldonado', value: 'Romina Maldonado' },
-            { label: 'Rocio Infante', value: 'Rocio Infante' }
-        ],
-        'Educación Física' : [
-            { label: 'Jorge Cardenas', value: 'Jorge Cardenas' },
-            { label: 'Graciana Franzoni', value: 'Graciana Franzoni' },
-            { label: 'Alejandra Prado', value: 'Alejandra Prado' }
-        ],
-        'ESI I' : [
-            { label: 'Sabrina Olmedo', value: 'Sabrina Olmedo' },
-            { label: 'Erika Cuello', value: 'Erika Cuello' }
-        ],
-        'Filosofía I' : [
-            { label: 'Maria Nidia Heit', value: 'Maria Nidia Heit' },
-            { label: 'Jessica Miranda', value: 'Jessica Miranda' }
-        ],
-        'Fisicoquímica' : [
-            { label: 'Carla Parada', value: 'Carla Parada' },
-            { label: 'Juan Jose Romero', value: 'Juan Jose Romero' }
-        ],
-        'Geografía I' : [
-            { label: 'Ludmila Pereira', value: 'Ludmila Pereira' },
-            { label: 'Ludmila Sena', value: 'Ludmila Sena' },
-            { label: 'Lorena Apablaza', value: 'Lorena Apablaza' }
-        ],
-        'Historia I' : [
-            { label: 'Hector Oriz', value: 'Hector Oriz' },
-            { label: 'Lucas Martilano', value: 'Lucas Martilano' }
-        ],
-        'Informatica I' : [
-            { label: 'Daniel Gualda', value: 'Daniel Gualda' },
-            { label: 'Giselle Balboa', value: 'Giselle Balboa' }
-        ],
-        'Ingles I' : [
-            { label: 'Sofia Katz', value: 'Sofia Katz' },
-            { label: 'Florencia Castro', value: 'Florencia Castro' },
-            { label: 'Carolina Salinas', value: 'Carolina Salinas' }
-        ],
-        'Lengua I' : [
-            { label: 'Fabiana Ferreyra', value: 'Fabiana Ferreyra' },
-            { label: 'Florencia Beltran', value: 'Florencia Beltran' },
-            { label: 'Luciana Chazarreta', value: 'Luciana Chazarreta' }
-        ],
-        'Literatura I' : [
-            { label: 'Fabiana Ferreyra', value: 'Fabiana Ferreyra' },
-            { label: 'Florencia Beltran', value: 'Florencia Beltran' },
-            { label: 'Luciana Chazarreta', value: 'Luciana Chazarreta' }
-        ],
-        'Matemática I' : [
-            { label: 'Vanesa Merkel', value: 'Vanesa Merkel' },
-            { label: 'Lilen Garcia Guilbert', value: 'Lilen Garcia Guilbert' },
-            { label: 'Belen Gerez', value: 'Belen Gerez' }
-        ],
-        'Música' : [
-            { label: 'Pablo Barcena', value: 'Pablo Barcena' }
-        ],
-        'Taller' : [
-            { label: '', value: '' },
-            { label: '', value: '' },
-            { label: '', value: '' }
-        ],
-        'Teatro' : [
-            { label: 'Victoria Romero', value: 'Victoria Romero' },
-            { label: 'Daniela Jaime Flores', value: 'Daniela Jaime Flores' }
-        ] 
-    };
     const formatDate = (date) => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0'); 
@@ -217,7 +139,7 @@ export default function AgregarMesas() {
         try {
             await addDoc(collection(BD, 'mesas'), {
                 nombre: selectedName,
-                profesor: selectedProfesor,
+                profesor: state.profesor,
                 fecha: state.fecha.toString(), 
                 year: selectedYear,
             });
@@ -250,13 +172,11 @@ export default function AgregarMesas() {
                 backdrop: false, 
                 allowOutsideClick: false 
             })
-        }else if (selectedProfesor === 'default') {
+        }else if (state.profesor === '') {
             Swal.fire({
                 title: 'ERROR',
-                text: 'Ingrese el profesor',
-                icon: 'warning',                 
-                backdrop: false, 
-                allowOutsideClick: false 
+                text: 'Ingrese el nombre del profesor',
+                icon: 'warning'
             })
         } else if (state.fecha === '') {
             Swal.fire({
@@ -270,7 +190,7 @@ export default function AgregarMesas() {
             try {
                 await addDoc(collection(BD, 'mesas'), {
                     nombre: selectedName,
-                    profesor: selectedProfesor,
+                    profesor: state.profesor,
                     fecha: state.fecha,
                     year: selectedYear
                 });
@@ -382,11 +302,10 @@ export default function AgregarMesas() {
                         selectedValue={selectedName}
                         onValueChange={(itemValue, itemIndex) => {
                             setSelectedName(itemValue)
-                            setSelectedProfesor('default')
                         }}
                         style={{ paddingHorizontal: 15, borderColor: 'white'}}
                     >
-                        <Picker.Item label="Nombre de la materia" value="default" />
+                        <Picker.Item label="Nombre de la Materia" value="default" />
                         {selectedYear !== 'default' && mesasPorAño[selectedYear].map((subject) => (
                         <Picker.Item key={subject.value} label={subject.label} value={subject.value} />
                         ))}
@@ -395,18 +314,11 @@ export default function AgregarMesas() {
 
                     <Text style={{ fontSize: 15 }}>Profesor</Text>
                     <View style={style.cajaIng}>
-                    <Picker
-                        selectedValue={selectedProfesor}
-                        onValueChange={(itemValue, itemIndex) =>
-                            setSelectedProfesor(itemValue)
-                        }
-                        style={{ paddingHorizontal: 15, borderColor: 'white'}}
-                    >
-                        <Picker.Item label="Nombre de la mesa" value="default" />
-                        {selectedName !== 'default' && profesorPorMesas[selectedName].map((subject) => (
-                        <Picker.Item key={subject.value} label={subject.label} value={subject.value} />
-                        ))}
-                    </Picker>
+                    <TextInput
+                            placeholder='Nombre del Profesor' 
+                            style={{ paddingHorizontal: 15, outline: 0 }}
+                            onChangeText={(value) => handleChangeText('profesor', value)}
+                        />
                     </View>
 
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
