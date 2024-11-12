@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   infoContainer: {
-    backgroundColor: 'rgba(249, 249, 249, 0.5)',
+    backgroundColor: 'rgba(249, 249, 249, 0.7)',
     padding: 20,
     borderRadius: 10,
     borderWidth: 1,
