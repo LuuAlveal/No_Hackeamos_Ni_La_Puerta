@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 const PaginaEpet = () => {
   Linking.openURL('https://epet20.edu.ar/');
 };
-function ComplexForm() {
+function Form() {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -61,3 +61,13 @@ function ComplexForm() {
     </form>
   );
 }
+export default function Ajustes() {
+  const navigation = useNavigation();
+
+  const Ayuda = () => {
+    navigation.navigate('Ayuda');
+  };
+
+  const Creditos = () => {
+    navigation.navigate('Creditos');
+  };
