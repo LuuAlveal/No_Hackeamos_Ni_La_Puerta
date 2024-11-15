@@ -266,6 +266,7 @@ export default function Register() {
                         placeholder='DNI'
                         style={{ paddingHorizontal: 15, outline: 0 }}
                         maxLength={8}
+                        keyboardType='numeric' // Solo permite números en el teclado
                         onChangeText={(value) => handleChangeText('dni', value)}
                     />
                 </View>
