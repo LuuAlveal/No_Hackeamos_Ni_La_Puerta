@@ -59,14 +59,8 @@ export default function Register() {
         } else if (state.password === '') {
             Swal.fire({ title: 'ERROR', text: 'Ingrese una contraseña', icon: 'error', backdrop: false, allowOutsideClick: false });
         } else if (selectedYear === 'default') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Seleccione un año',
-                icon: 'warning',
-                backdrop: false, 
-                allowOutsideClick: false 
-            });
-        }
+            Swal.fire({ title: 'ERROR', text: 'Seleccione un año', icon: 'warning', backdrop: false, allowOutsideClick: false });
+        } 
         //Si los campos estan bien pasa esto
         else {
             try {
