@@ -126,7 +126,7 @@ export default function ListaAlumnos() {
                                 >
                                     <ListItem.Chevron />
                                     <ListItem.Content>
-                                        <ListItem.Title>{alumno.nombre} {alumno.apellido} - Año {alumno.year}</ListItem.Title>
+                                    <ListItem.Title>{alumno.nombre} {alumno.apellido} - {alumno.year ? alumno.year : "Año no especificado"} Año</ListItem.Title>
                                         <ListItem.Subtitle>{alumno.dni}</ListItem.Subtitle>
                                     </ListItem.Content>
                                     <TouchableOpacity
