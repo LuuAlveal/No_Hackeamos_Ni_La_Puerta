@@ -17,14 +17,47 @@ function ComplexForm() {
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    const { name, value } = event.target; // This line needs modification (explained below)
+    const { name, value } = event.target; 
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Simulate sending data (implement logic for your application)
     console.log('Datos del formulario:', formData);
   };
-
-  // No validation logic needed in this example, remove for clarity
+  return (
+    <form onSubmit={handleSubmit}>
+      <div> 
+        <label htmlFor="nombre">Nombre:</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          value={formData.nombre}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="telefono">Telefono:</label>
+        <input
+          type="telefono"
+          id="telefono"
+          name="telefono"
+          value={formData.telefono}
+          onChange={handleChange}
+        />
+      </div>
+       <button type="submit">Enviar</button> (Enviar = Submit)
+    </form>
+  );
+}
