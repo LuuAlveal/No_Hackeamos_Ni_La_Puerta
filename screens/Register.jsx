@@ -57,13 +57,7 @@ export default function Register() {
         } else if (state.email === '') {
             Swal.fire({ title: 'ERROR', text: 'Ingrese su email', icon: 'error', backdrop: false, allowOutsideClick: false });
         } else if (state.password === '') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese una contraseña',
-                icon: 'error',
-                backdrop: false, 
-                allowOutsideClick: false 
-            })
+            Swal.fire({ title: 'ERROR', text: 'Ingrese una contraseña', icon: 'error', backdrop: false, allowOutsideClick: false });
         } else if (selectedYear === 'default') {
             Swal.fire({
                 title: 'ERROR',
