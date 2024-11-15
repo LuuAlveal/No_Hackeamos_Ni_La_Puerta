@@ -49,13 +49,7 @@ export default function Register() {
     const handleCreateAccount = async () => {
         //Alertas dependiendo del estado de los campos (Si es que estan vacios o por defecto.)
         if (state.nombre === '') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese su nombre',
-                icon: 'warning',
-                backdrop: false, 
-                allowOutsideClick: false 
-            })
+            Swal.fire({ title: 'ERROR', text: 'Ingrese su nombre', icon: 'warning', backdrop: false, allowOutsideClick: false });
         } else if (state.apellido === '') {
             Swal.fire({
                 title: 'ERROR',
