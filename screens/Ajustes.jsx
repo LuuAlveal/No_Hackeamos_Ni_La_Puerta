@@ -71,3 +71,49 @@ export default function Ajustes() {
   const Creditos = () => {
     navigation.navigate('Creditos');
   };
+  return (
+    <ImageBackground
+      source={require('../assets/epet20fondo.png')}
+      resizeMode={'cover'}
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.Button} onPress={Ayuda}>
+          <Text>Preguntas Frecuentes</Text> (Preguntas Frecuentes = Frequently Asked Questions)
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.Button} onPress={Creditos}>
+          <Text>Creditos</Text> (Créditos = Credits)
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.Button} onPress={PaginaEpet}>
+          <Text>Pagina Oficial</Text> (Página Oficial = Official Page)
+        </TouchableOpacity>
+        {/* Integrate the form component here (Integra el componente del formulario aquí) */}
+        <ComplexForm /> {/* Add the ComplexForm component (Agrega el componente ComplexForm) */}
+      </View>
+    </ImageBackground>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height:   
+ '100vh',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  Button: {
+    padding: 16,
+    borderRadius: 10,
+    marginVertical: 10,
+    alignItems: 'center',
+    width: '160%',
+    backgroundColor: '#FFFAFA',
+  },
+});
