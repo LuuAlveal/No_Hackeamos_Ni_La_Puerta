@@ -187,7 +187,8 @@ export default function Login (){
             <View style = {style.form}>
                 <Text style = {{ fontSize: 15}}>E-Mail</Text>
                 <View style = {style.cajaIngCorreo}>
-                    <TextInput
+                    <TextInput 
+                        pattern="[A-Za-z]{20}"
                         placeholder='TuCorreo@example.com'
                         style = {{paddingHorizontal:15, outline:0}}
                         onChangeText={(text)=>setEmail(text)}

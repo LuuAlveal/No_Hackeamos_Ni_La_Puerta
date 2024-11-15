@@ -14,6 +14,14 @@ export default function Ajustes () {
   const Creditos = ()=> {
     navigation.navigate('Creditos')
   }
+  function ComplexForm() {
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      password: '',
+      birthday: '',
+    })
+  }
   return (
     <ImageBackground
       source={require ('../assets/epet20fondo.png')}

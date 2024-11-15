@@ -172,7 +172,6 @@ export default function ModificarAlumno(props) {
                     <Picker.Item label="6° año" value="6°" />
                     <Picker.Item label="Egresado" value="Egresado" />
                 </Picker>
-
                 <View style={style.containerButton}>
                     <TouchableOpacity style={style.button} onPress={ActAlum}>
                         <Text style={style.textButton}>Modificar</Text>
