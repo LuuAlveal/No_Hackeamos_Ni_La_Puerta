@@ -34,7 +34,16 @@ export default function Register() {
     };
     //Captura el texto ingresado y actualiza a el estado de la constante donde se almacenan los valores
     const handleChangeText = (name, value) => {
-        setState({ ...state, [name]: value })
+        // Validar caracteres especiales
+        const regex = /^[a-zA-Z\s]*$/; // Solo permite letras y espacios
+        if (name === 'nombre' || name === 'apellido') {
+            if (regex.test(value)) {
+                setState({ ...state, [name]: value.toUpperCase() }); // Convertir a mayúsculas
+            }
+        } else {
+            setState({ ...state, [name]: value });
+        }
+    };
     }
     //Funcion para crear cuenta
     const handleCreateAccount = async () => {
@@ -307,4 +316,3 @@ export default function Register() {
         </ImageBackground>
     );
 
-}
