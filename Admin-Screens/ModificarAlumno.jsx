@@ -11,6 +11,11 @@ export default function ModificarAlumno(props) {
     const [alumno, setAlumno] = useState({ nombre: '', apellido: '', dni: '',year:'' });
     const [selectedYear, setSelectedYear] = useState("default");
     const navigation = useNavigation();
+    // Función para validar caracteres
+    const validateInput = (value) => {
+        const regex = /^[A-Za-z\s]*$/; // Permitir solo letras y espacios
+        return regex.test(value);
+    };
     //Leer el documento del alumno
     const getAlumnoById = async (id) => {
         const alumnoRef = doc(BD, 'alumnos', id);
@@ -132,7 +137,12 @@ export default function ModificarAlumno(props) {
                     <TextInput
                         value={alumno.nombre}
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setAlumno({ ...alumno, nombre: value })}
+                        onChangeText={(value) => {
+                            const upperCaseValue = value.toUpperCase(); // Convertir a mayúsculas
+                            if (validateInput(upperCaseValue)) {
+                                setAlumno({ ...alumno, nombre: upperCaseValue });
+                            }
+                        }}
                     />
                 </View>
 
@@ -141,7 +151,12 @@ export default function ModificarAlumno(props) {
                     <TextInput
                         value={alumno.apellido}
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setAlumno({ ...alumno, apellido: value })}
+                        onChangeText={(value) => {
+                            const upperCaseValue = value.toUpperCase(); // Convertir a mayúsculas
+                            if (validateInput(upperCaseValue)) {
+                                setAlumno({ ...alumno, apellido: upperCaseValue });
+                            }
+                        }}
                     />
                 </View>
 

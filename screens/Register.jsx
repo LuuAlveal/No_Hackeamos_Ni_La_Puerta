@@ -34,33 +34,60 @@ export default function Register() {
     };
     //Captura el texto ingresado y actualiza a el estado de la constante donde se almacenan los valores
     const handleChangeText = (name, value) => {
-        // Validar caracteres especiales
-        const regex = /^[a-zA-Z\s]*$/; // Solo permite letras y espacios
-        if (name === 'nombre' || name === 'apellido') {
-            if (regex.test(value)) {
-                setState({ ...state, [name]: value.toUpperCase() }); // Convertir a mayúsculas
-            }
-        } else {
-            setState({ ...state, [name]: value });
-        }
-    };
+        setState({ ...state, [name]: value })
     }
     //Funcion para crear cuenta
     const handleCreateAccount = async () => {
         //Alertas dependiendo del estado de los campos (Si es que estan vacios o por defecto.)
         if (state.nombre === '') {
-            Swal.fire({ title: 'ERROR', text: 'Ingrese su nombre', icon: 'warning', backdrop: false, allowOutsideClick: false });
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese su nombre',
+                icon: 'warning',
+                backdrop: false, 
+                allowOutsideClick: false 
+            })
         } else if (state.apellido === '') {
-            Swal.fire({ title: 'ERROR', text: 'Ingrese su apellido', icon: 'warning', backdrop: false, allowOutsideClick: false });
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese su apellido',
+                icon: 'warning',
+                backdrop: false, 
+                allowOutsideClick: false 
+            })
         } else if (state.dni === '') {
-            Swal.fire({ title: 'ERROR', text: 'Ingrese su dni', icon: 'error', backdrop: false, allowOutsideClick: false });
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese su dni',
+                icon: 'error',
+                backdrop: false, 
+                allowOutsideClick: false 
+            })
         } else if (state.email === '') {
-            Swal.fire({ title: 'ERROR', text: 'Ingrese su email', icon: 'error', backdrop: false, allowOutsideClick: false });
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese su email',
+                icon: 'error',
+                backdrop: false, 
+                allowOutsideClick: false 
+            })
         } else if (state.password === '') {
-            Swal.fire({ title: 'ERROR', text: 'Ingrese una contraseña', icon: 'error', backdrop: false, allowOutsideClick: false });
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Ingrese una contraseña',
+                icon: 'error',
+                backdrop: false, 
+                allowOutsideClick: false 
+            })
         } else if (selectedYear === 'default') {
-            Swal.fire({ title: 'ERROR', text: 'Seleccione un año', icon: 'warning', backdrop: false, allowOutsideClick: false });
-        } 
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Seleccione un año',
+                icon: 'warning',
+                backdrop: false, 
+                allowOutsideClick: false 
+            });
+        }
         //Si los campos estan bien pasa esto
         else {
             try {
@@ -280,3 +307,4 @@ export default function Register() {
         </ImageBackground>
     );
 
+}
