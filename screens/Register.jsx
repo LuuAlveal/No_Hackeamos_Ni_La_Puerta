@@ -51,21 +51,9 @@ export default function Register() {
         if (state.nombre === '') {
             Swal.fire({ title: 'ERROR', text: 'Ingrese su nombre', icon: 'warning', backdrop: false, allowOutsideClick: false });
         } else if (state.apellido === '') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese su apellido',
-                icon: 'warning',
-                backdrop: false, 
-                allowOutsideClick: false 
-            })
+            Swal.fire({ title: 'ERROR', text: 'Ingrese su apellido', icon: 'warning', backdrop: false, allowOutsideClick: false });
         } else if (state.dni === '') {
-            Swal.fire({
-                title: 'ERROR',
-                text: 'Ingrese su dni',
-                icon: 'error',
-                backdrop: false, 
-                allowOutsideClick: false 
-            })
+            Swal.fire({ title: 'ERROR', text: 'Ingrese su dni', icon: 'error', backdrop: false, allowOutsideClick: false });
         } else if (state.email === '') {
             Swal.fire({
                 title: 'ERROR',
