@@ -95,6 +95,18 @@ export default function MyStack() {
         }}
       />
       <Stack.Screen
+        name="Ajustes"
+        component={Ajustes}
+        options={{
+          title: "E.P.E.T N 20",
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#304A6E',
+          }
+        }}
+      />
+      <Stack.Screen
         name="Opciones"
         component={Opciones}
         options={{

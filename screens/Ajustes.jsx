@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 const PaginaEpet = () => {
   Linking.openURL('https://epet20.edu.ar/');
 };
+/*
 function Form() {
   const [formData, setFormData] = useState({
     nombre: '',
@@ -61,6 +62,7 @@ function Form() {
     </form>
   );
 }
+*/
 export default function Ajustes() {
   const navigation = useNavigation();
 
@@ -79,16 +81,16 @@ export default function Ajustes() {
     >
       <View style={styles.container}>
         <TouchableOpacity style={styles.Button} onPress={Ayuda}>
-          <Text>Preguntas Frecuentes</Text> (Preguntas Frecuentes = Frequently Asked Questions)
+          <Text>Preguntas Frecuentes</Text> {/*(Preguntas Frecuentes = Frequently Asked Questions)*/}
         </TouchableOpacity>
         <TouchableOpacity style={styles.Button} onPress={Creditos}>
-          <Text>Creditos</Text> (Créditos = Credits)
+          <Text>Creditos</Text>{/* (Créditos = Credits)*/}
         </TouchableOpacity>
         <TouchableOpacity style={styles.Button} onPress={PaginaEpet}>
-          <Text>Pagina Oficial</Text> (Página Oficial = Official Page)
+          <Text>Pagina Oficial</Text> {/*(Página Oficial = Official Page)*/}
         </TouchableOpacity>
-        {/* Integrate the form component here (Integra el componente del formulario aquí) */}
-        <ComplexForm /> {/* Add the ComplexForm component (Agrega el componente ComplexForm) */}
+        {/* Integrate the form component here (Integra el componente del formulario aquí) 
+        <ComplexForm /> Add the ComplexForm component (Agrega el componente ComplexForm)*/}
       </View>
     </ImageBackground>
   );
@@ -103,8 +105,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     width: '100%',
-    height:   
- '100vh',
+    height: '100vh',
     justifyContent: 'center',
     alignItems: 'center',
   },
