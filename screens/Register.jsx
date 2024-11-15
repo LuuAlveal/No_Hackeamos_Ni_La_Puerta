@@ -34,8 +34,19 @@ export default function Register() {
     };
     //Captura el texto ingresado y actualiza a el estado de la constante donde se almacenan los valores
     const handleChangeText = (name, value) => {
-        setState({ ...state, [name]: value })
-    }
+        // Si el campo es 'dni', solo permite números
+        if (name === 'dni') {
+            const numericValue = value.replace(/[^0-9]/g, ''); // Reemplaza cualquier carácter que no sea un número
+            setState({ ...state, [name]: numericValue });
+        } else {
+            setState({ ...state, [name]: value });
+        }
+    };
+    // Función para validar caracteres
+    const validateInput = (value) => {
+        const regex = /^[A-Za-z\s]*$/; // Permitir solo letras y espacios
+        return regex.test(value);
+    };
     //Funcion para crear cuenta
     const handleCreateAccount = async () => {
         //Alertas dependiendo del estado de los campos (Si es que estan vacios o por defecto.)
@@ -55,14 +66,14 @@ export default function Register() {
                 backdrop: false, 
                 allowOutsideClick: false 
             })
-        } else if (state.dni === '') {
+        } else if (state.dni === '' || isNaN(state.dni)) {
             Swal.fire({
                 title: 'ERROR',
-                text: 'Ingrese su dni',
+                text: 'Ingrese un DNI válido (solo números)',
                 icon: 'error',
-                backdrop: false, 
-                allowOutsideClick: false 
-            })
+                backdrop: false,
+                allowOutsideClick: false
+            });
         } else if (state.email === '') {
             Swal.fire({
                 title: 'ERROR',
@@ -226,7 +237,12 @@ export default function Register() {
                     <TextInput
                         placeholder='Nombre'
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => handleChangeText('nombre', value)}
+                        onChangeText={(value) => {
+                        const upperCaseValue = value.toUpperCase(); // Convertir a mayúsculas
+                        if (validateInput(upperCaseValue)) {
+                            setAlumno({ ...alumno, nombre: upperCaseValue });
+                            }
+                        }}
                     />
                 </View>
 
@@ -235,7 +251,12 @@ export default function Register() {
                     <TextInput
                         placeholder='Apellido'
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => handleChangeText('apellido', value)}
+                        onChangeText={(value) => {
+                            const upperCaseValue = value.toUpperCase(); // Convertir a mayúsculas
+                            if (validateInput(upperCaseValue)) {
+                                setAlumno({ ...alumno, apellido: upperCaseValue });
+                            }
+                        }}
                     />
                 </View>
 
@@ -285,7 +306,7 @@ export default function Register() {
                         onChangeText={(value) => handleChangeText('password', value)}
                         style={{ flex:1, outline: 0 }}
                     />
-                    {/*boton para ver el icono del ojo*/}
+                    {/boton para ver el icono del ojo/}
                     <TouchableOpacity onPress={verPassword}>
                         <Icon name={passwordVisible ? 'eye-off' : 'eye'} size={24} /> 
                     </TouchableOpacity>
