@@ -131,7 +131,7 @@ export default function ListaMesas() {
                                 >
                                     <ListItem.Chevron />
                                     <ListItem.Content>
-                                        <ListItem.Title>{mesa.nombre} {mesa.fecha} - Año {mesa.year}</ListItem.Title>
+                                        <ListItem.Title>{mesa.nombre} {mesa.fecha} - {mesa.year}° Año</ListItem.Title>
                                         <ListItem.Subtitle>{mesa.profesor}</ListItem.Subtitle>
                                     </ListItem.Content>
                                     <TouchableOpacity
