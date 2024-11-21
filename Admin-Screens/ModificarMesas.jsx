@@ -131,7 +131,7 @@ export default function ModificarMesas(props) {
                     <TextInput
                         value={mesas.profesor}
                         style={{ paddingHorizontal: 15, outline: 0 }}
-                        onChangeText={(value) => setmesas({ ...mesas, apellido: value })}
+                        onChangeText={(value) => setmesas({ ...mesas, profesor: value })}
                     />
                 </View>
                 <Text style={{ fontSize: 15 }}>Año</Text>
